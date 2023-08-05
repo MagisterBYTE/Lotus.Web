@@ -47,7 +47,40 @@ namespace Lotus
 
                 return String.Empty;
             }
-        }
+
+			//---------------------------------------------------------------------------------------------------------
+			/// <summary>
+			/// Инициализация потока для технологии Server Sent Events
+			/// </summary>
+			/// <param name="httpContex">Контекст запроса</param>
+			/// <returns>Задача</returns>
+			//---------------------------------------------------------------------------------------------------------
+			public static async Task SSEInitAsync(this HttpContext httpContex)
+			{
+				httpContex.Response.Headers.Add("Cache-Control", "no-cache");
+				httpContex.Response.Headers.Add("Content-Type", "text/event-stream");
+				await httpContex.Response.Body.FlushAsync();
+			}
+
+			//---------------------------------------------------------------------------------------------------------
+			/// <summary>
+			/// Отправка данных по технологии Server Sent Event
+			/// </summary>
+			/// <param name="httpContex">Контекст запроса</param>
+			/// <param name="data">Данные</param>
+			/// <returns>Задача</returns>
+			//---------------------------------------------------------------------------------------------------------
+			public static async Task SSESendDataAsync(this HttpContext httpContex, String data)
+			{
+				foreach (var line in data.Split('\n'))
+				{
+					await httpContex.Response.WriteAsync("data: " + line + "\n");
+				}
+
+				await httpContex.Response.WriteAsync("\n");
+				await httpContex.Response.Body.FlushAsync();
+			}
+		}
 		//-------------------------------------------------------------------------------------------------------------
 		/**@}*/
 		//-------------------------------------------------------------------------------------------------------------
