@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 //---------------------------------------------------------------------------------------------------------------------
 using Lotus.Core;
+using Microsoft.AspNetCore.Authentication;
 //=====================================================================================================================
 namespace Lotus
 {
@@ -64,7 +65,7 @@ namespace Lotus
             //---------------------------------------------------------------------------------------------------------
             public override Task OnExceptionAsync(ExceptionContext context)
             {
-                if (context is null)
+				if (context is null)
                 {
                     throw new ArgumentNullException(nameof(context));
                 }

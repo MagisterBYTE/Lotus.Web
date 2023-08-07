@@ -5,15 +5,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>Lotus.Web</RootNamespace>
-    <Configurations>Debug;Release</Configurations>
+    <Configurations>Debug;Release;Publish</Configurations>
     <OutputPath>..\Output\$(Configuration)\</OutputPath>
     <DefineConstants>TRACE;USE_WEB</DefineConstants>
     <Authors>MagistrBYTE aka DanielDem</Authors>
     <Company>LotusPlatform</Company>
     <Copyright>MagistrBYTE aka DanielDem</Copyright>
-    <AssemblyVersion>1.9.0.0</AssemblyVersion>
-    <FileVersion>1.9.0.0</FileVersion>
-    <Version>1.9.0</Version>
+    <AssemblyVersion>1.9.1.0</AssemblyVersion>
+    <FileVersion>1.9.1.0</FileVersion>
+    <Version>1.9.1</Version>
     <Title>Lotus.Web.Common</Title>
     <PackageTags></PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -24,6 +24,11 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <NoWarn>1587,1591</NoWarn>
     <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Publish|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,6 +39,16 @@
     <None Include="Readme.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(Configuration)' == 'Publish'">
+    <PackageReference Include="Lotus.Core" Version="1.9.1" />
+    <PackageReference Include="Lotus.Repository" Version="1.9.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' != 'Publish'">
+    <ProjectReference Include="..\..\Lotus.Basis\Lotus.Core\Lotus.Core.csproj" />
+    <ProjectReference Include="..\..\Lotus.Basis\Lotus.Repository\Lotus.Repository.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.19" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
@@ -41,9 +56,9 @@
     <PackageReference Include="System.Net.Http.Json" Version="6.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Lotus.Basis\Lotus.Core\Lotus.Core.csproj" />
-    <ProjectReference Include="..\..\Lotus.Basis\Lotus.Repository\Lotus.Repository.csproj" />
-  </ItemGroup>
-
+  <Target Name="PublishToNuget" Condition="'$(Configuration)'=='Publish'" AfterTargets="Build">
+    <Message Text="Создание пакета Nuget:" Importance="high" />
+    <Exec Command="dotnet pack Lotus.Web.Common.csproj --no-build -c Publish" />
+  </Target>
+  
 </Project>
