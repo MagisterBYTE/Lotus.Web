@@ -67,7 +67,7 @@ namespace Lotus
 					}
 					else
 					{
-						Device newDevice = new Device();
+						var newDevice = new Device();
 						newDevice.SetCodeId();
 						await _dataStorage.AddAsync(newDevice);
 						await _dataStorage.FlushAsync();

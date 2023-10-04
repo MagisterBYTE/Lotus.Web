@@ -1347,9 +1347,9 @@ namespace Lotus
 			{
 				if (String.IsNullOrEmpty(file_name) == false)
 				{
-					String extension = Path.GetExtension(file_name);
+					var extension = Path.GetExtension(file_name);
 
-                    if (!String.IsNullOrEmpty(extension) && DictionaryMIME.TryGetValue(extension, out string? mime_type))
+                    if (!String.IsNullOrEmpty(extension) && DictionaryMIME.TryGetValue(extension, out var mime_type))
                     {
                         return (mime_type);
                     }
