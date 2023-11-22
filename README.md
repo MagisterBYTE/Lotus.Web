@@ -1,4 +1,4 @@
-# Lotus.Windows
+# Lotus.Web
 Комплексное решения для платформы ASP Core NET
 
 ## Состоит из следующий проектов:
@@ -6,5 +6,5 @@
  - `Lotus.Web.Blazor` - модуль Web платформы для компонентов Blazor
 
 ## Зависит от:
- - Lotus.Core, версия 1.9.0
- - Lotus.Repository, версия 1.9.0
+ - Lotus.Core, версия 2.1.3
+ - Lotus.Repository, версия 2.1.3
