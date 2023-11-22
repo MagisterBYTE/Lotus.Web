@@ -10,10 +10,10 @@
 // Версия: 1.0.0.0
 // Последнее изменение от 30.04.2023
 //=====================================================================================================================
-using Microsoft.Extensions.Primitives;
-using Microsoft.Net.Http.Headers;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Net.Http.Headers;
 using UAParser;
 //=====================================================================================================================
 namespace Lotus

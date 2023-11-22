@@ -11,9 +11,9 @@
     <Authors>MagistrBYTE aka DanielDem</Authors>
     <Company>LotusPlatform</Company>
     <Copyright>MagistrBYTE aka DanielDem</Copyright>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
-    <Version>2.0.0</Version>
+    <AssemblyVersion>2.1.3.0</AssemblyVersion>
+    <FileVersion>2.1.3.0</FileVersion>
+    <Version>2.1.3</Version>
     <Title>Lotus.Web.Common</Title>
     <PackageTags></PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -40,8 +40,8 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' == 'Publish'">
-    <PackageReference Include="Lotus.Core" Version="1.9.2" />
-    <PackageReference Include="Lotus.Repository" Version="1.9.2" />
+    <PackageReference Include="Lotus.Core" Version="2.1.3" />
+    <PackageReference Include="Lotus.Repository" Version="2.1.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(Configuration)' != 'Publish'">
@@ -50,15 +50,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.14" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
     <PackageReference Include="UAParser" Version="3.1.47" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Source\Features\ResourceFile\Models\" />
   </ItemGroup>
 
   <Target Name="PublishToNuget" Condition="'$(Configuration)'=='Publish'" AfterTargets="Build">

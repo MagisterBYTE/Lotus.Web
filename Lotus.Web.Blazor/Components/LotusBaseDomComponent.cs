@@ -35,10 +35,10 @@ namespace Lotus
 		{
 			#region ======================================= ДАННЫЕ ====================================================
 			// Основные параметры
-			protected internal String mID;
-			protected internal Dictionary<String, Object> mAttributes;
-			protected internal CClassMapper mClassMapper;
-			protected internal CStyleMapper mStyleMapper;
+			protected internal String _id;
+			protected internal Dictionary<String, Object> _attributes;
+			protected internal CClassMapper _classMapper;
+			protected internal CStyleMapper _styleMapper;
 			#endregion
 
 			#region ======================================= СВОЙСТВА ==================================================
@@ -51,8 +51,8 @@ namespace Lotus
 			[Parameter]
 			public String ID
 			{
-                get { return (mID); }
-                set { mID = value; }
+                get { return (_id); }
+                set { _id = value; }
 			}
 
 			/// <summary>
@@ -61,8 +61,8 @@ namespace Lotus
 			[Parameter(CaptureUnmatchedValues = true)]
 			public Dictionary<String, Object> Attributes
 			{
-				get { return (mAttributes); }
-				set { mAttributes = value; }
+				get { return (_attributes); }
+				set { _attributes = value; }
 			}
 
 			/// <summary>
@@ -70,7 +70,7 @@ namespace Lotus
 			/// </summary>
 			public CClassMapper ClassMapper
 			{
-				get { return (mClassMapper); }
+				get { return (_classMapper); }
 			}
 
 			/// <summary>
@@ -79,8 +79,8 @@ namespace Lotus
 			[Parameter]
 			public String Class
 			{
-                get { return (mClassMapper.AsString()); }
-                set { mClassMapper.SetFromString(value); }
+                get { return (_classMapper.AsString()); }
+                set { _classMapper.SetFromString(value); }
 			}
 
 			/// <summary>
@@ -88,7 +88,7 @@ namespace Lotus
 			/// </summary>
 			public CStyleMapper StyleMapper
 			{
-				get { return (mStyleMapper); }
+				get { return (_styleMapper); }
 			}
 
 			/// <summary>
@@ -97,8 +97,8 @@ namespace Lotus
 			[Parameter]
 			public String Style
 			{
-                get { return (mStyleMapper.AsString()); }
-                set { mStyleMapper.SetFromString(value); }
+                get { return (_styleMapper.AsString()); }
+                set { _styleMapper.SetFromString(value); }
 			}
 			#endregion
 
@@ -110,10 +110,10 @@ namespace Lotus
 			//---------------------------------------------------------------------------------------------------------
 			public LotusBaseDomComponent()
 			{
-				mID = "cubex_id_" + Guid.NewGuid().ToString();
-				mClassMapper = new CClassMapper();
-				mStyleMapper = new CStyleMapper();
-				mAttributes = new Dictionary<String, Object>();
+				_id = "cubex_id_" + Guid.NewGuid().ToString();
+				_classMapper = new CClassMapper();
+				_styleMapper = new CStyleMapper();
+				_attributes = new Dictionary<String, Object>();
 			}
 			#endregion
 		}
