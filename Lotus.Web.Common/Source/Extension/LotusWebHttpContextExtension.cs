@@ -64,8 +64,8 @@ namespace Lotus
 			//---------------------------------------------------------------------------------------------------------
 			public static async Task SSEInitAsync(this HttpContext httpContext)
 			{
-				httpContext.Response.Headers.Add("Cache-Control", "no-cache");
-				httpContext.Response.Headers.Add("Content-Type", "text/event-stream");
+				httpContext.Response.Headers.Append("Cache-Control", "no-cache");
+				httpContext.Response.Headers.Append("Content-Type", "text/event-stream");
 				await httpContext.Response.Body.FlushAsync();
 			}
 
@@ -99,7 +99,7 @@ namespace Lotus
 			/// <returns>Задача</returns>
 			//---------------------------------------------------------------------------------------------------------
 			public static async Task SSESendEventAsync<TPayload>(this HttpResponse httpContext, 
-				TPayload payload, String sseEventName)
+				TPayload? payload, String sseEventName)
 			{
 				await httpContext.WriteAsync($"event: {sseEventName}\n");
 
@@ -154,11 +154,13 @@ namespace Lotus
 
 					var client_info = uaParser.Parse(userAgent);
 
-					var device = new Device();
-					device.Platform = $"{client_info.OS.Family} {client_info.OS.Major} {client_info.OS.Minor}";
-					device.Family = client_info.Device.Family;
-					device.Brand = client_info.Device.Brand;
-					device.Model = client_info.Device.Model;
+					var device = new Device
+					{
+						Platform = $"{client_info.OS.Family} {client_info.OS.Major} {client_info.OS.Minor}",
+						Family = client_info.Device.Family,
+						Brand = client_info.Device.Brand,
+						Model = client_info.Device.Model
+					};
 					device.SetCodeId();
 
 					return device;

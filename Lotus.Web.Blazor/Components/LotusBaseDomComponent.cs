@@ -14,6 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Components;
+//---------------------------------------------------------------------------------------------------------------------
+#pragma warning disable BL0007
 //=====================================================================================================================
 namespace Lotus
 {
@@ -110,7 +112,7 @@ namespace Lotus
 			//---------------------------------------------------------------------------------------------------------
 			public LotusBaseDomComponent()
 			{
-				_id = "cubex_id_" + Guid.NewGuid().ToString();
+				_id = "lotus_id_" + Guid.NewGuid().ToString();
 				_classMapper = new CClassMapper();
 				_styleMapper = new CStyleMapper();
 				_attributes = new Dictionary<String, Object>();

@@ -6,5 +6,5 @@
  - `Lotus.Web.Blazor` - модуль Web платформы для компонентов Blazor
 
 ## Зависит от:
- - Lotus.Core, версия 2.1.3
- - Lotus.Repository, версия 2.1.3
+ - Lotus.Core, версия 2.4.2
+ - Lotus.Repository, версия 2.4.2

@@ -27,7 +27,7 @@ namespace Lotus
 		public class DeviceService : ILotusDeviceService
 		{
 			#region ======================================= ДАННЫЕ ====================================================
-			private readonly ILotusDataStorage _dataStorage;
+			private readonly ILotusRepository _repository;
 			#endregion
 
 			#region ======================================= КОНСТРУКТОРЫ ==============================================
@@ -37,9 +37,9 @@ namespace Lotus
 			/// </summary>
 			/// <param name="dataStorage">Интерфейс для работы с сущностями</param>
 			//---------------------------------------------------------------------------------------------------------
-			public DeviceService(ILotusDataStorage dataStorage)
+			public DeviceService(ILotusRepository dataStorage)
             {
-				_dataStorage = dataStorage;
+				_repository = dataStorage;
             }
 			#endregion
 
@@ -54,7 +54,7 @@ namespace Lotus
 			//---------------------------------------------------------------------------------------------------------
 			public async Task<Device> GetOrAddAsync(Device? device, CancellationToken token)
 			{
-				var devices = _dataStorage.Query<Device>();
+				var devices = _repository.Query<Device>();
 				if (device == null)
 				{
 					if (devices.Any())
@@ -65,8 +65,8 @@ namespace Lotus
 					{
 						var newDevice = new Device();
 						newDevice.SetCodeId();
-						await _dataStorage.AddAsync(newDevice);
-						await _dataStorage.FlushAsync();
+						await _repository.AddAsync(newDevice, token);
+						await _repository.FlushAsync(token);
 
 						return newDevice;
 					}
@@ -79,8 +79,8 @@ namespace Lotus
 				}
 
 				device.SetCodeId();
-				await _dataStorage.AddAsync(device);
-				await _dataStorage.FlushAsync();
+				await _repository.AddAsync(device, token);
+				await _repository.FlushAsync(token);
 
 				return device;
 			}
