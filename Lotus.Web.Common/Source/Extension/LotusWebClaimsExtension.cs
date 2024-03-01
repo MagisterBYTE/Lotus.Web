@@ -1,81 +1,56 @@
-﻿//=====================================================================================================================
-// Проект: Общий модуль платформы Web
-// Раздел: Методы расширения
-// Автор: MagistrBYTE aka DanielDem <dementevds@gmail.com>
-//---------------------------------------------------------------------------------------------------------------------
-/** \file LotusWebClaimsExtension.cs
-*		Статический класс реализующий методы расширения для работы с утверждениями.
-*/
-//---------------------------------------------------------------------------------------------------------------------
-// Версия: 1.0.0.0
-// Последнее изменение от 30.04.2023
-//=====================================================================================================================
 using System.Security.Claims;
-//=====================================================================================================================
-namespace Lotus
+
+namespace Lotus.Web
 {
-	namespace Web
-	{
-		//-------------------------------------------------------------------------------------------------------------
-		/**
-         * \defgroup WebCommonExtension Методы расширения
-         * \ingroup WebCommon
-         * \brief Методы расширения.
-         * @{
-         */
-        //-------------------------------------------------------------------------------------------------------------
-		/// <summary>
-		/// Статический класс реализующий методы расширения для работы с утверждениями
-		/// </summary>
-		//-------------------------------------------------------------------------------------------------------------
-		public static class XClaimsExtension
-		{
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Поиск первого значения утверждения с указанным типом
-			/// </summary>
-			/// <param name="claims">Список утверждений</param>
-			/// <param name="claimType">Тип утверждения</param>
-			/// <returns>Значение</returns>
-			//---------------------------------------------------------------------------------------------------------
-			public static String? FindFirstValue(this IEnumerable<Claim> claims, String claimType)
-			{
-				foreach (var item in claims)
-				{
-					if (String.Compare(item.Type, claimType, true) == 0)
-					{
-						return item.Value;
-					}
-				}
+    /**
+     * \defgroup WebCommonExtension Методы расширения
+     * \ingroup WebCommon
+     * \brief Методы расширения.
+     * @{
+     */
+    /// <summary>
+    /// Статический класс реализующий методы расширения для работы с утверждениями.
+    /// </summary>
+    public static class XClaimsExtension
+    {
+        /// <summary>
+        /// Поиск первого значения утверждения с указанным типом.
+        /// </summary>
+        /// <param name="claims">Список утверждений.</param>
+        /// <param name="claimType">Тип утверждения.</param>
+        /// <returns>Значение.</returns>
+        public static string? FindFirstValue(this IEnumerable<Claim> claims, string claimType)
+        {
+            foreach (var item in claims)
+            {
+                if (string.Compare(item.Type, claimType, true) == 0)
+                {
+                    return item.Value;
+                }
+            }
 
-				return null;
-			}
+            return null;
+        }
 
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Поиск первого значения утверждения с указанным типом
-			/// </summary>
-			/// <param name="claims">Список утверждений</param>
-			/// <param name="claimType">Тип утверждения</param>
-			/// <param name="separatop">Разделитель</param>
-			/// <returns>Список уникальный значений</returns>
-			//---------------------------------------------------------------------------------------------------------
-			public static HashSet<String> FindFirstValueAsHashSet(this IEnumerable<Claim> claims,
-				String claimType, Char separatop = ',')
-			{
-				var value = claims.FindFirstValue(claimType);
-				if (String.IsNullOrEmpty(value) == false)
-				{
-					var functions = value.Split(new[] { separatop }, StringSplitOptions.RemoveEmptyEntries).ToArray();
-					return new HashSet<String>(functions, StringComparer.OrdinalIgnoreCase);
-				}
+        /// <summary>
+        /// Поиск первого значения утверждения с указанным типом.
+        /// </summary>
+        /// <param name="claims">Список утверждений.</param>
+        /// <param name="claimType">Тип утверждения.</param>
+        /// <param name="separatop">Разделитель.</param>
+        /// <returns>Список уникальный значений.</returns>
+        public static HashSet<string> FindFirstValueAsHashSet(this IEnumerable<Claim> claims,
+            string claimType, char separatop = ',')
+        {
+            var value = claims.FindFirstValue(claimType);
+            if (string.IsNullOrEmpty(value) == false)
+            {
+                var functions = value.Split(new[] { separatop }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+                return new HashSet<string>(functions, StringComparer.OrdinalIgnoreCase);
+            }
 
-				return new HashSet<String>();
-			}
-		}
-		//-------------------------------------------------------------------------------------------------------------
-		/**@}*/
-		//-------------------------------------------------------------------------------------------------------------
-	}
+            return new HashSet<string>();
+        }
+    }
+    /**@}*/
 }
-//=====================================================================================================================

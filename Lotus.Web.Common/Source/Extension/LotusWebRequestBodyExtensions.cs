@@ -1,58 +1,35 @@
-﻿//=====================================================================================================================
-// Проект: Общий модуль платформы Web
-// Раздел: Методы расширения
-// Автор: MagistrBYTE aka DanielDem <dementevds@gmail.com>
-//---------------------------------------------------------------------------------------------------------------------
-/** \file LotusWebClaimsExtension.cs
-*		Статический класс реализующий методы расширения для работы в телом Http запроса.
-*/
-//---------------------------------------------------------------------------------------------------------------------
-// Версия: 1.0.0.0
-// Последнее изменение от 30.04.2023
-//=====================================================================================================================
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-//=====================================================================================================================
-namespace Lotus
+
+namespace Lotus.Web
 {
-    namespace Web
+    /** \addtogroup WebCommonExtension
+    *@{*/
+    /// <summary>
+    /// Статический класс реализующий методы расширения для работы в телом Http запроса.
+    /// </summary>
+    public static class XRequestBodyExtensions
     {
-        //-------------------------------------------------------------------------------------------------------------
-        /** \addtogroup WebCommonExtension
-        *@{*/
-        //-------------------------------------------------------------------------------------------------------------
         /// <summary>
-        /// Статический класс реализующий методы расширения для работы в телом Http запроса
+        /// Чтение тела запроса из запроса и возвращает соержимое в виде строки.
         /// </summary>
-        //-------------------------------------------------------------------------------------------------------------
-        public static class XRequestBodyExtensions
+        /// <param name="httpRequest">HTTP запрос.</param>
+        /// <returns>Строка с содержимым тела запроса.</returns>
+        public static async ValueTask<string> ReadBodyAsStringAsync([NotNull] this HttpRequest httpRequest)
         {
-            //---------------------------------------------------------------------------------------------------------
-            /// <summary>
-            /// Чтение тела запроса из запроса и возвращает соержимое в виде строки
-            /// </summary>
-            /// <param name="httpRequest">HTTP запрос</param>
-            /// <returns>Строка с содержимым тела запроса</returns>
-            //---------------------------------------------------------------------------------------------------------
-            public static async ValueTask<string> ReadBodyAsStringAsync([NotNull] this HttpRequest httpRequest)
-            {
-                httpRequest = httpRequest ?? throw new ArgumentNullException(nameof(httpRequest));
+            httpRequest = httpRequest ?? throw new ArgumentNullException(nameof(httpRequest));
 
-                using var reader = new StreamReader(
-                    httpRequest.Body,
-                    encoding: Encoding.UTF8,
-                    detectEncodingFromByteOrderMarks: false,
-                    bufferSize: 1024,
-                    leaveOpen: true);
-                var result = await reader.ReadToEndAsync();
-                httpRequest.Body.Position = 0;
+            using var reader = new StreamReader(
+                httpRequest.Body,
+                encoding: Encoding.UTF8,
+                detectEncodingFromByteOrderMarks: false,
+                bufferSize: 1024,
+                leaveOpen: true);
+            var result = await reader.ReadToEndAsync();
+            httpRequest.Body.Position = 0;
 
-                return result;
-            }
+            return result;
         }
-        //-------------------------------------------------------------------------------------------------------------
-        /**@}*/
-        //-------------------------------------------------------------------------------------------------------------
     }
+    /**@}*/
 }
-//=====================================================================================================================

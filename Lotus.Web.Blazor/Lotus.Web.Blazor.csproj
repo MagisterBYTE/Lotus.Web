@@ -11,9 +11,9 @@
     <Authors>MagistrBYTE aka DanielDem</Authors>
     <Company>LotusPlatform</Company>
     <Copyright>MagistrBYTE aka DanielDem</Copyright>
-    <AssemblyVersion>2.4.2.0</AssemblyVersion>
-    <FileVersion>2.4.2.0</FileVersion>
-    <Version>2.4.2</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
+    <Version>3.0.0</Version>
     <Title>Lotus.Web.Blazor</Title>
     <PackageTags></PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
   </ItemGroup>

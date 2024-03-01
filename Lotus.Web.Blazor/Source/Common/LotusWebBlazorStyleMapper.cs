@@ -1,226 +1,185 @@
-﻿//=====================================================================================================================
-// Проект: Модуль Blazor платформы Web
-// Раздел: Общая подсистема
-// Автор: MagistrBYTE aka DanielDem <dementevds@gmail.com>
-//---------------------------------------------------------------------------------------------------------------------
-/** \file LotusWebBlazorStyleMapper.cs
-*		Класс обеспечивающий хранение, управление и доступ к атрибуту стиля HTML элемента.
-*/
-//---------------------------------------------------------------------------------------------------------------------
-// Версия: 1.0.0.0
-// Последнее изменение от 30.04.2023
-//=====================================================================================================================
-using System;
-using System.Collections.Generic;
 using System.Text;
-//=====================================================================================================================
-namespace Lotus
+
+namespace Lotus.Web
 {
-	namespace Web
-	{
-		//-------------------------------------------------------------------------------------------------------------
-		/** \addtogroup WebBlazorCommon
-		*@{*/
-		//-------------------------------------------------------------------------------------------------------------
-		/// <summary>
-		/// Класс обеспечивающий хранение, управление и доступ к атрибуту стиля HTML элемента
-		/// </summary>
-		//-------------------------------------------------------------------------------------------------------------
-		public class CStyleMapper : List<KeyValuePair<String, String>>
-		{
-			#region ======================================= КОНСТАНТНЫЕ ДАННЫЕ ========================================
-			/// <summary>
-			/// Разделитель стилей
-			/// </summary>
-			public const Char SEPARATOR = ';';
+    /** \addtogroup WebBlazorCommon
+	*@{*/
+    /// <summary>
+    /// Класс обеспечивающий хранение, управление и доступ к атрибуту стиля HTML элемента.
+    /// </summary>
+    public class CStyleMapper : List<KeyValuePair<string, string>>
+    {
+        #region Const
+        /// <summary>
+        /// Разделитель стилей.
+        /// </summary>
+        public const char SEPARATOR = ';';
 
-			/// <summary>
-			/// Пустое значение
-			/// </summary>
-			public static readonly KeyValuePair<String, String> Empty;
-			#endregion
+        /// <summary>
+        /// Пустое значение.
+        /// </summary>
+        public static readonly KeyValuePair<string, string> Empty;
+        #endregion
 
-			#region ======================================= СТАТИЧЕСКИЕ МЕТОДЫ ========================================
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Получение свойства и значения стиля CSS
-			/// </summary>
-			/// <param name="style">Стиль</param>
-			/// <returns>Пара свойства и значения стиля CSS</returns>
-			//---------------------------------------------------------------------------------------------------------
-			public static KeyValuePair<String, String> GetStylePropertyAndValue(String style)
-			{
-				Int32 find_key = style.IndexOf(":");
-				if (find_key > 0 && find_key < style.Length - 2)
-				{
-					// Свойство есть
-					String key = style.Substring(0, find_key);
-					String value = style.Substring(find_key + 1).Trim(SEPARATOR);
-					return (new KeyValuePair<String, String>(key, value));
-				}
-				else
-				{
-					return (Empty);
-				}
-			}
-			#endregion
+        #region Static methods
+        /// <summary>
+        /// Получение свойства и значения стиля CSS.
+        /// </summary>
+        /// <param name="style">Стиль.</param>
+        /// <returns>Пара свойства и значения стиля CSS.</returns>
+        public static KeyValuePair<string, string> GetStylePropertyAndValue(string style)
+        {
+            var find_key = style.IndexOf(":");
+            if (find_key > 0 && find_key < style.Length - 2)
+            {
+                // Свойство есть
+                var key = style.Substring(0, find_key);
+                var value = style.Substring(find_key + 1).Trim(SEPARATOR);
+                return (new KeyValuePair<string, string>(key, value));
+            }
+            else
+            {
+                return (Empty);
+            }
+        }
+        #endregion
 
-			#region ======================================= ДАННЫЕ ====================================================
-			#endregion
+        #region Fields
+        #endregion
 
-			#region ======================================= СВОЙСТВА ==================================================
-			#endregion
+        #region Properties
+        #endregion
 
-			#region ======================================= КОНСТРУКТОРЫ ==============================================
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Конструктор инициализирует данные списка предустановленными данными
-			/// </summary>
-			//---------------------------------------------------------------------------------------------------------
-			public CStyleMapper()
-			{
-			}
+        #region Constructors
+        /// <summary>
+        /// Конструктор инициализирует данные списка предустановленными данными.
+        /// </summary>
+        public CStyleMapper()
+        {
+        }
 
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Конструктор инициализирует данные списка указанными данными
-			/// </summary>
-			/// <param name="capacity">Начальная максимальная емкость списка</param>
-			//---------------------------------------------------------------------------------------------------------
-			public CStyleMapper(Int32 capacity)
-				: base(capacity)
-			{
-			}
+        /// <summary>
+        /// Конструктор инициализирует данные списка указанными данными.
+        /// </summary>
+        /// <param name="capacity">Начальная максимальная емкость списка.</param>
+        public CStyleMapper(int capacity)
+            : base(capacity)
+        {
+        }
 
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Конструктор инициализирует данные списка указанными данными
-			/// </summary>
-			/// <param name="items">Список элементов</param>
-			//---------------------------------------------------------------------------------------------------------
-			public CStyleMapper(IList<KeyValuePair<String, String>> items)
-				: base(items)
-			{
-			}
+        /// <summary>
+        /// Конструктор инициализирует данные списка указанными данными.
+        /// </summary>
+        /// <param name="items">Список элементов.</param>
+        public CStyleMapper(IList<KeyValuePair<string, string>> items)
+            : base(items)
+        {
+        }
 
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Конструктор инициализирует данные списка указанными данными
-			/// </summary>
-			/// <param name="style_name">Строка с перечислением стилей</param>
-			//---------------------------------------------------------------------------------------------------------
-			public CStyleMapper(String style_name)
-			{
-				SetFromString(style_name);
-			}
-			#endregion
+        /// <summary>
+        /// Конструктор инициализирует данные списка указанными данными.
+        /// </summary>
+        /// <param name="style_name">Строка с перечислением стилей.</param>
+        public CStyleMapper(string style_name)
+        {
+            SetFromString(style_name);
+        }
+        #endregion
 
-			#region ======================================= СИСТЕМНЫЕ МЕТОДЫ ==========================================
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Преобразование к текстовому представлению
-			/// </summary>
-			/// <returns>Текстовое представление</returns>
-			//---------------------------------------------------------------------------------------------------------
-			public override String ToString()
-			{
-				return AsString();
-			}
-			#endregion
+        #region System methods
+        /// <summary>
+        /// Преобразование к текстовому представлению.
+        /// </summary>
+        /// <returns>Текстовое представление.</returns>
+        public override string ToString()
+        {
+            return AsString();
+        }
+        #endregion
 
-			#region ======================================= ОБЩИЕ МЕТОДЫ ==============================================
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Разбор стиля CSS из строки и присвоение их объекту
-			/// </summary>
-			/// <param name="style_name">Строка с перечислением стилей</param>
-			//---------------------------------------------------------------------------------------------------------
-			public void SetFromString(String style_name)
-			{
-				if (String.IsNullOrEmpty(style_name))
-				{
-					this.Clear();
-				}
-				else
-				{
-					String[] styles = style_name.Split(SEPARATOR, StringSplitOptions.RemoveEmptyEntries);
-					if (styles.Length > 0)
-					{
-						this.Clear();
-						for (Int32 i = 0; i < styles.Length; i++)
-						{
-							KeyValuePair<String, String> style = GetStylePropertyAndValue(styles[i]);
-							if (String.IsNullOrEmpty(style.Value) == false)
-							{
-								this.Add(style);
-							}
-						}
-					}
-				}
-			}
+        #region Main methods
+        /// <summary>
+        /// Разбор стиля CSS из строки и присвоение их объекту.
+        /// </summary>
+        /// <param name="style_name">Строка с перечислением стилей.</param>
+        public void SetFromString(string style_name)
+        {
+            if (string.IsNullOrEmpty(style_name))
+            {
+                this.Clear();
+            }
+            else
+            {
+                var styles = style_name.Split(SEPARATOR, StringSplitOptions.RemoveEmptyEntries);
+                if (styles.Length > 0)
+                {
+                    this.Clear();
+                    for (var i = 0; i < styles.Length; i++)
+                    {
+                        var style = GetStylePropertyAndValue(styles[i]);
+                        if (string.IsNullOrEmpty(style.Value) == false)
+                        {
+                            this.Add(style);
+                        }
+                    }
+                }
+            }
+        }
 
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Разбор стиля CSS из строки и добавление их объекту
-			/// </summary>
-			/// <param name="style_name">Строка с перечислением стилей</param>
-			//---------------------------------------------------------------------------------------------------------
-			public void AddFromString(String style_name)
-			{
-				String[] styles = style_name.Split(SEPARATOR, StringSplitOptions.RemoveEmptyEntries);
-				if (styles.Length > 0)
-				{
-					for (Int32 i = 0; i < styles.Length; i++)
-					{
-						KeyValuePair<String, String> style = GetStylePropertyAndValue(styles[i]);
-						if (String.IsNullOrEmpty(style.Value) == false)
-						{
-							this.Add(style);
-						}
-					}
-				}
-			}
+        /// <summary>
+        /// Разбор стиля CSS из строки и добавление их объекту.
+        /// </summary>
+        /// <param name="style_name">Строка с перечислением стилей.</param>
+        public void AddFromString(string style_name)
+        {
+            var styles = style_name.Split(SEPARATOR, StringSplitOptions.RemoveEmptyEntries);
+            if (styles.Length > 0)
+            {
+                for (var i = 0; i < styles.Length; i++)
+                {
+                    var style = GetStylePropertyAndValue(styles[i]);
+                    if (string.IsNullOrEmpty(style.Value) == false)
+                    {
+                        this.Add(style);
+                    }
+                }
+            }
+        }
 
-			//---------------------------------------------------------------------------------------------------------
-			/// <summary>
-			/// Преобразование к текстовому представлению
-			/// </summary>
-			/// <returns>Текстовое представление</returns>
-			//---------------------------------------------------------------------------------------------------------
-			public String AsString()
-			{
-				if (Count > 0)
-				{
-					if (Count == 1)
-					{
-						return (this[0].Key + ": " + this[0].Value);
-					}
-					else
-					{
-						StringBuilder builder = new StringBuilder(40);
-						for (Int32 i = 0; i < Count; i++)
-						{
-							builder.Append(this[i].Key + ": " + this[i].Value);
+        /// <summary>
+        /// Преобразование к текстовому представлению.
+        /// </summary>
+        /// <returns>Текстовое представление.</returns>
+        public string AsString()
+        {
+            if (Count > 0)
+            {
+                if (Count == 1)
+                {
+                    return (this[0].Key + ": " + this[0].Value);
+                }
+                else
+                {
+                    var builder = new StringBuilder(40);
+                    for (var i = 0; i < Count; i++)
+                    {
+                        builder.Append(this[i].Key + ": " + this[i].Value);
 
-							if (i < Count - 1)
-							{
-								builder.Append("; ");
-							}
-						}
+                        if (i < Count - 1)
+                        {
+                            builder.Append("; ");
+                        }
+                    }
 
-						return (builder.ToString());
-					}
-				}
-				else
-				{
-					return (String.Empty);
-				}
-			}
-			#endregion
-		}
-		//-------------------------------------------------------------------------------------------------------------
-		/**@}*/
-		//-------------------------------------------------------------------------------------------------------------
-	}
+                    return (builder.ToString());
+                }
+            }
+            else
+            {
+                return (string.Empty);
+            }
+        }
+        #endregion
+    }
+    /**@}*/
 }
-//=====================================================================================================================
