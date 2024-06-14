@@ -39,78 +39,29 @@ namespace Lotus.Web
         }
 
         /// <summary>
-        /// Инициализация потока для технологии Server Sent Events.
+        /// Получение клайма Sub или значение по умолчанию.
         /// </summary>
         /// <param name="httpContext">Контекст запроса.</param>
-        /// <returns>Задача.</returns>
-        public static async Task SSEInitAsync(this HttpContext httpContext)
+        /// <returns>Клайм Sub или значение по умолчанию.</returns>
+        public static string? GetClaimValueSubOrDefault(this HttpContext httpContext)
         {
-            httpContext.Response.Headers.Append("Cache-Control", "no-cache");
-            httpContext.Response.Headers.Append("Content-Type", "text/event-stream");
-            await httpContext.Response.Body.FlushAsync();
+            return httpContext.User.Claims.FirstOrDefault(x => x.Type == "sub")?.Value;
         }
 
         /// <summary>
-        /// Отправка данных по технологии Server Sent Event.
+        /// Получение значение указанного заголовка из запроса.
         /// </summary>
         /// <param name="httpContext">Контекст запроса.</param>
-        /// <param name="data">Данные.</param>
-        /// <returns>Задача.</returns>
-        public static async Task SSESendDataAsync(this HttpContext httpContext, string data)
+        /// <param name="headerKey">Имя заголовка.</param>
+        /// <returns>Значение указанного заголовка или значение по умолчанию.</returns>
+        public static string? GetRequestHeaderValue(this HttpContext httpContext, string headerKey)
         {
-            foreach (var line in data.Split('\n'))
+            if (httpContext.Request.Headers.TryGetValue(headerKey, out var values))
             {
-                await httpContext.Response.WriteAsync("data: " + line + "\n");
+                return values.FirstOrDefault();
             }
 
-            await httpContext.Response.WriteAsync("\n");
-            await httpContext.Response.Body.FlushAsync();
-        }
-
-        /// <summary>
-        /// Отправка события по технологии Server Sent Event.
-        /// </summary>
-        /// <typeparam name="TPayload">Тип данных.</typeparam>
-        /// <param name="httpContext">Контекст запроса.</param>
-        /// <param name="payload">Данные.</param>
-        /// <param name="sseEventName">Имя события.</param>
-        /// <returns>Задача.</returns>
-        public static async Task SSESendEventAsync<TPayload>(this HttpResponse httpContext,
-            TPayload? payload, string sseEventName)
-        {
-            await httpContext.WriteAsync($"event: {sseEventName}\n");
-
-            var lines = payload switch
-            {
-                null => new[] { string.Empty },
-                string s => s.Split('\n').ToArray(),
-                Exception x => new[]
-                {
-                    JsonSerializer.Serialize(new { Type = "Exception", x.Message, x.StackTrace }, Options)
-                },
-                _ => new[]
-                {
-                    JsonSerializer.Serialize(payload, Options)
-                }
-            };
-
-            foreach (var line in lines)
-            {
-                await httpContext.WriteAsync($"data: {line}\n");
-            }
-
-            await httpContext.WriteAsync("\n");
-            await httpContext.Body.FlushAsync();
-        }
-
-        /// <summary>
-        /// Сигнализация об окончании отправки событий по технологии Server Sent Event.
-        /// </summary>
-        /// <param name="httpContext">Контекст запроса.</param>
-        /// <returns>Задача.</returns>
-        public static async Task SSESendCloseAsync(this HttpResponse httpContext)
-        {
-            await httpContext.SSESendEventAsync<object>(null, "close");
+            return null;
         }
 
         /// <summary>
