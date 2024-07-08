@@ -1,0 +1,189 @@
+
+.lotus-border-primary {
+  border-color: var(--color-background-primary);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius); 
+  background-color: var(--color-background-main);
+  color: var(--color-background-primary);
+}
+
+.lotus-border-primary:hover {
+  background-color: var(--color-background-primary);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-primary:active {
+  background-color: var(--color-background-primaryDarker);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-primary:disabled {
+  border-color: var(--color-background-primary);
+  background-color: var(--color-background-main);
+  color: var(--color-background-primary);    
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-border-secondary {
+  border-color: var(--color-background-secondary);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius); 
+  background-color: var(--color-background-main);
+  color: var(--color-background-secondary);
+}
+
+.lotus-border-secondary:hover {
+  background-color: var(--color-background-secondary);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-secondary:active {
+  background-color: var(--color-background-secondaryDarker);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-secondary:disabled {
+  border-color: var(--color-background-secondary);
+  background-color: var(--color-background-main);
+  color: var(--color-background-secondary);    
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-border-success {
+  border-color: var(--color-background-success);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius); 
+  background-color: var(--color-background-main);
+  color: var(--color-background-success);
+}
+
+.lotus-border-success:hover {
+  background-color: var(--color-background-success);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-success:active {
+  background-color: var(--color-background-successDarker);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-success:disabled {
+  border-color: var(--color-background-success);
+  background-color: var(--color-background-main);
+  color: var(--color-background-success);    
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-border-danger {
+  border-color: var(--color-background-danger);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius); 
+  background-color: var(--color-background-main);
+  color: var(--color-background-danger);
+}
+
+.lotus-border-danger:hover {
+  background-color: var(--color-background-danger);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-danger:active {
+  background-color: var(--color-background-dangerDarker);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-danger:disabled {
+  border-color: var(--color-background-danger);
+  background-color: var(--color-background-main);
+  color: var(--color-background-danger);    
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-border-warning {
+  border-color: var(--color-background-warning);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius); 
+  background-color: var(--color-background-main);
+  color: var(--color-background-warning);
+}
+
+.lotus-border-warning:hover {
+  background-color: var(--color-background-warning);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-warning:active {
+  background-color: var(--color-background-warningDarker);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-warning:disabled {
+  border-color: var(--color-background-warning);
+  background-color: var(--color-background-main);
+  color: var(--color-background-warning);    
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-border-info {
+  border-color: var(--color-background-info);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius); 
+  background-color: var(--color-background-main);
+  color: var(--color-background-info);
+}
+
+.lotus-border-info:hover {
+  background-color: var(--color-background-info);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-info:active {
+  background-color: var(--color-background-infoDarker);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-info:disabled {
+  border-color: var(--color-background-info);
+  background-color: var(--color-background-main);
+  color: var(--color-background-info);    
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-border-accent {
+  border-color: var(--color-background-accent);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius); 
+  background-color: var(--color-background-main);
+  color: var(--color-background-accent);
+}
+
+.lotus-border-accent:hover {
+  background-color: var(--color-background-accent);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-accent:active {
+  background-color: var(--color-background-accentDarker);
+  color: var(--color-background-main); 
+}
+
+.lotus-border-accent:disabled {
+  border-color: var(--color-background-accent);
+  background-color: var(--color-background-main);
+  color: var(--color-background-accent);    
+  opacity: 0.65;
+  cursor: not-allowed;
+}

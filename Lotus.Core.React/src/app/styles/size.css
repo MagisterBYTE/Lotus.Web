@@ -1,0 +1,14 @@
+.lotus-size-small {
+  padding: 10px 10px;
+  font-size: 12px;
+}
+
+.lotus-size-medium {
+  padding: 14px 14px;
+  font-size: 16px;
+}
+
+.lotus-size-large {
+  padding: 20px 20px;
+  font-size: 20px;
+}

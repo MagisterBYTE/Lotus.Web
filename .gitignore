@@ -417,7 +417,12 @@ FodyWeavers.xsd
 .env.test.local
 .env.production.local
 
+.dist/*
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 Docs/html/
+
+*storybook.log
+Lotus.Core.React/dist/

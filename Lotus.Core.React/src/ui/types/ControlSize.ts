@@ -1,0 +1,1 @@
+export type TControlSize =  'small' | 'medium' | 'large' ;

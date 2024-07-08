@@ -1,0 +1,7 @@
+.lotus-button {
+  font-family: 'Verdana', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+}

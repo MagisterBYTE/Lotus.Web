@@ -1,0 +1,69 @@
+:root {
+
+  /* Базовые цвета */
+  --color-background-main-default:white;
+  --color-background-primary-default: #0d6efd;
+  --color-background-secondary-default: #6c757d;
+  --color-background-success-default: #198754;
+  --color-background-danger-default: #dc3545;
+  --color-background-warning-default: #ffc107;
+  --color-background-info-default: rgb(0, 128, 192); 
+  --color-background-accent-default: rgb(0, 128, 255); 
+
+  /* Темнее +25% черного */
+  --color-background-primaryDark-default: color-mix(in srgb, var( --color-background-primary-default) 75%, black); 
+  --color-background-secondaryDark-default: color-mix(in srgb, var( --color-background-secondary-default) 75%, black); 
+  --color-background-successDark-default: color-mix(in srgb, var( --color-background-success-default) 75%, black);   
+  --color-background-dangerDark-default: color-mix(in srgb, var( --color-background-danger-default) 75%, black);
+  --color-background-warningDark-default: color-mix(in srgb, var( --color-background-warning-default) 75%, black); 
+  --color-background-infoDark-default: color-mix(in srgb, var( --color-background-info-default) 75%, black);  
+  --color-background-accentDark-default: color-mix(in srgb, var( --color-background-accent-default) 75%, black); 
+  
+  /* Темнее +50% черного */
+  --color-background-primaryDarker-default: color-mix(in srgb, var( --color-background-primary-default) 50%, black); 
+  --color-background-secondaryDarker-default: color-mix(in srgb, var( --color-background-secondary-default) 50%, black); 
+  --color-background-successDarker-default: color-mix(in srgb, var( --color-background-success-default) 50%, black);   
+  --color-background-dangerDarker-default: color-mix(in srgb, var( --color-background-danger-default) 50%, black);
+  --color-background-warningDarker-default: color-mix(in srgb, var( --color-background-warning-default) 50%, black); 
+  --color-background-infoDarker-default: color-mix(in srgb, var( --color-background-info-default) 50%, black);  
+  --color-background-accentDarker-default: color-mix(in srgb, var( --color-background-accent-default) 50%, black); 
+  
+  /* Границы */
+  --border-width-default: 1px;
+  --border-style-default: solid; 
+  --border-radius-default: 0.5em;   
+}
+
+/* map tokens to proper theme */
+[data-theme='default'] 
+{
+  --color-background-main: var( --color-background-main-default);
+  --color-background-primary: var( --color-background-primary-default);
+  --color-background-secondary: var( --color-background-secondary-default);
+  --color-background-success: var( --color-background-success-default);
+  --color-background-danger: var( --color-background-danger-default);
+  --color-background-warning: var( --color-background-warning-default);
+  --color-background-info: var( --color-background-info-default);     
+  --color-background-accent: var( --color-background-accent-default);
+  
+  --color-background-primaryDark: var( --color-background-primaryDark-default);
+  --color-background-secondaryDark: var( --color-background-secondaryDark-default);
+  --color-background-successDark: var( --color-background-successDark-default);
+  --color-background-dangerDark: var( --color-background-dangerDark-default);
+  --color-background-warningDark: var( --color-background-warningDark-default);
+  --color-background-infoDark: var( --color-background-infoDark-default);     
+  --color-background-accentDark: var( --color-background-accentDark-default);  
+  
+  --color-background-primaryDarker: var( --color-background-primaryDarker-default);
+  --color-background-secondaryDarker: var( --color-background-secondaryDarker-default);
+  --color-background-successDarker: var( --color-background-successDarker-default);
+  --color-background-dangerDarker: var( --color-background-dangerDarker-default);
+  --color-background-warningDarker: var( --color-background-warningDarker-default);
+  --color-background-infoDarker: var( --color-background-infoDarker-default);     
+  --color-background-accentDarker: var( --color-background-accentDarker-default); 
+  
+  --border-width: var(--border-width-default);
+  --border-style: var(--border-style-default); 
+  --border-radius: var(--border-radius-default);         
+}
+      

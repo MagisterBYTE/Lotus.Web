@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",               // Какой стандарт JavaScript будет применяться при компиляции
+    "useDefineForClassFields": true,  // Используйте определение для полей класса
+    "lib": 
+    [
+      "ES2020", // Дополнительные API, доступные в ESNext. Они меняются по мере развития спецификации JavaScript
+      "DOM",    // Определения DOM: window, document, и т.д.
+      "DOM.Iterable"
+    ],
+    "module": "ES2022",  // Устанавливает модульную систему для программы
+    "skipLibCheck": false, // Пропустить проверку типов файлов объявлений
+    "baseUrl": "./src",
+
+    /* Interop Constraints */
+    "forceConsistentCasingInFileNames": true, // Принудительно использовать согласованный регистр в именах файлов 
+    "esModuleInterop": true,                  // Организует правильный импорт файлов JavaScript в проект    
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",          // Стратегия разрешения модуля - node - для реализации Node.js CommonJS
+    "allowJs": true,                        // Разрешает импорт файлов JavaScript в проект, а не только файлы .ts и .tsx
+    "allowSyntheticDefaultImports": true,   // Позволяет импортировать более красиво: import React from "react";
+    //"allowImportingTsExtensions": true,     // Разрешить импорт расширений TS
+    "resolveJsonModule": true,              // Позволяет импортировать модули с расширением .json
+    "isolatedModules": true,                // Изолированные модули для улучшения компиляции
+    "noEmit": false,                         // Не создавать выходные файлы компилятора, такие как исходный код JavaScript
+    "jsx": "react-jsx",                     // Управляет созданием конструкций JSX в файлах JavaScript - react - Выдавать .js файлы с измененным JSX на эквивалентные React.createElement вызовы    
+
+    /* Linting */
+    "strict": true,                     // Строгая проверка типов
+    "alwaysStrict": true, // Гарантирует, что ваши файлы анализируются в строгом режиме ECMAScript    
+    "strictNullChecks": true,           // Строгие проверки на null и undefined
+    "strictFunctionTypes": true,        // Строгие типы функций 
+    "strictBindCallApply": true,        // Строгая привязка вызова Bind и Apply
+    "strictPropertyInitialization": true, // Строгая инициализация свойств класса
+    "noUnusedLocals": true,             // Сообщайте об ошибках в неиспользуемых локальных переменных
+    "noUnusedParameters": true,         // Сообщайте об ошибках неиспользуемых параметров в функциях
+    "noFallthroughCasesInSwitch": true, // Сообщайте об ошибках для аварийных случаев в операторах switch    
+    "noImplicitThis": true,             // Вызвать ошибку в выражениях «this» с подразумеваемым типом «any».
+    "noImplicitAny": true,              // Никаких неявных any
+    "noImplicitReturns": true,          // При включении TypeScript будет проверять все пути кода в функции, чтобы убедиться, что они возвращают значение
+    "noUncheckedIndexedAccess": true,   // Нет непроверенного индексированного доступа
+    "noImplicitOverride": true,         // Нет неявного переопределения
+    "noPropertyAccessFromIndexSignature": true,    // Нет доступа к собственности из индексной подписи 
+
+    // Emit
+    "declaration": true,
+    "outDir": "./dist",
+    "emitDeclarationOnly":false
+  }
+}

@@ -1,0 +1,161 @@
+
+.lotus-background-primary {
+  background-color: var(--color-background-primary);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: var(--color-background-primaryDark); 
+  color: white;
+}
+
+.lotus-background-primary:hover {
+  background-color: var(--color-background-primaryDark);
+}
+
+.lotus-background-primary:active {
+  background-color: var(--color-background-primaryDarker);
+}
+
+.lotus-background-primary:disabled {
+  background-color: var(--color-background-primary);  
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-background-secondary {
+  background-color: var(--color-background-secondary);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: var(--color-background-secondaryDark);   
+  color: white;
+}
+
+.lotus-background-secondary:hover {
+  background-color: var(--color-background-secondaryDark);
+}
+
+.lotus-background-secondary:active {
+  background-color: var(--color-background-secondaryDarker);
+}
+
+.lotus-background-secondary:disabled {
+  background-color: var(--color-background-secondary);  
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-background-success {
+  background-color: var(--color-background-success);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: var(--color-background-successDark);     
+  color: white;
+}
+
+.lotus-background-success:hover {
+  background-color: var(--color-background-successDark);
+}
+
+.lotus-background-success:active {
+  background-color: var(--color-background-successDarker);
+}
+
+.lotus-background-success:disabled {
+  background-color: var(--color-background-success);  
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-background-danger {
+  background-color: var(--color-background-danger);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: var(--color-background-dangerDark);    
+  color: white;
+}
+
+.lotus-background-danger:hover {
+  background-color: var(--color-background-dangerDark);
+}
+
+.lotus-background-danger:active {
+  background-color: var(--color-background-dangerDarker);
+}
+
+.lotus-background-danger:disabled {
+  background-color: var(--color-background-danger);  
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-background-warning {
+  background-color: var(--color-background-warning);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: var(--color-background-warningDark);    
+  color: black;
+}
+
+.lotus-background-warning:hover {
+  background-color: var(--color-background-warningDark);
+}
+
+.lotus-background-warning:active {
+  background-color: var(--color-background-warningDarker);
+}
+
+.lotus-background-warning:disabled {
+  background-color: var(--color-background-warning);  
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-background-info {
+  background-color: var(--color-background-info);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: var(--color-background-infoDark);   
+  color: white;
+}
+
+.lotus-background-info:hover {
+  background-color: var(--color-background-infoDark);
+}
+
+.lotus-background-info:active {
+  background-color: var(--color-background-infoDarker);
+}
+
+.lotus-background-info:disabled {
+  background-color: var(--color-background-info);  
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.lotus-background-accent {
+  background-color: var(--color-background-accent);
+  border-width: var(--border-width);
+  border-style: var(--border-style);
+  border-radius: var(--border-radius);
+  border-color: var(--color-background-accentDark);    
+  color: white;
+}
+
+.lotus-background-accent:hover {
+  background-color: var(--color-background-accentDark);
+}
+
+.lotus-background-accent:active {
+  background-color: var(--color-background-accentDarker);
+}
+
+.lotus-background-accent:disabled {
+  background-color: var(--color-background-accent);  
+  opacity: 0.65;
+  cursor: not-allowed;
+}
