@@ -25,7 +25,7 @@ export interface IGrouping<TItem = any>
  */
 export function checkOfGrouping(value: object): boolean 
 {
-  if(value)
+  if (value)
   {
     return ('groupKey' in value) && ('items' in value);
   }
@@ -38,9 +38,9 @@ export function checkOfGrouping(value: object): boolean
  * @param value Объект для преобразования
  * @returns Объект реализующий интерфейс или undefined если объект не поддерживает интерфейс
  */
-export function instanceOfGrouping(value: object): IGrouping|undefined
+export function instanceOfGrouping(value: object): IGrouping | undefined
 {
-  if(checkOfGrouping(value))
+  if (checkOfGrouping(value))
   {
     return value as IGrouping;
   }

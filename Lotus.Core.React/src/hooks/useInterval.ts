@@ -11,7 +11,6 @@ export const useInterval = (callback: Function, delay: number) =>
     savedCallback.current = callback
   }, [callback])
 
-  // @ts-expect-error any
   // eslint-disable-next-line consistent-return
   useEffect(() => 
   {

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ComponentPropsWithRef } from 'react';
 
-export interface IVerticalStackProps extends React.HTMLProps<HTMLDivElement>
+export interface IVerticalStackProps extends ComponentPropsWithRef<'div'>
 {
   gap?: React.CSSProperties['gap'];
   alignItems?: React.CSSProperties['alignItems'];
@@ -9,11 +9,11 @@ export interface IVerticalStackProps extends React.HTMLProps<HTMLDivElement>
   children: React.ReactNode;
   // eslint-disable-next-line react/boolean-prop-naming
   fullWidth?: boolean;
-    // eslint-disable-next-line react/boolean-prop-naming
-  fullHeight?: boolean;   
+  // eslint-disable-next-line react/boolean-prop-naming
+  fullHeight?: boolean;
 }
 
-export const VerticalStack: React.FC<IVerticalStackProps> = (props:IVerticalStackProps) => 
+export const VerticalStack: React.FC<IVerticalStackProps> = (props: IVerticalStackProps) => 
 {
   return (
     <div {...props} style={{
@@ -21,8 +21,8 @@ export const VerticalStack: React.FC<IVerticalStackProps> = (props:IVerticalStac
       flexDirection: 'column',
       gap: props.gap,
       alignItems: props.alignItems ?? 'start',
-      justifyContent:  props.justifyContent ?? 'flex-start',
-      flexWrap:props.wrap,
+      justifyContent: props.justifyContent ?? 'flex-start',
+      flexWrap: props.wrap,
       width: props.fullWidth ? 'width: 100%' : undefined,
       height: props.fullHeight ? 'height: 100%' : undefined
     }}>

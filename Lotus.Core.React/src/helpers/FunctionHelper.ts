@@ -1,6 +1,6 @@
-import { ObjectUtil } from './ObjectUtil';
+import { ObjectHelper } from './ObjectHelper';
 
-export class FunctionUtil
+export class FunctionHelper
 {
   /**
      * Bind all methods on `scope` to that `scope`.
@@ -21,24 +21,24 @@ export class FunctionUtil
      *
      * @param scope     Usually, pass the value of `this` from your base class.
      */
-    
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
-  static bindAllMethods( scope:{} & Record<string, any> )
+  public static bindAllMethods(scope: {} & Record<string, any>)
   {
     for (const p in scope)
     {
       // Find the object in which prop was originally defined on
-      const ownObject = ObjectUtil.getPropertyDefinitionObject( scope, p );
+      const ownObject = ObjectHelper.getPropertyDefinitionObject(scope, p);
 
       // Now we can check if it is a getter/setter
-      const descriptor = Object.getOwnPropertyDescriptor( ownObject, p );
+      const descriptor = Object.getOwnPropertyDescriptor(ownObject, p);
       if (descriptor && (descriptor.get || descriptor.set))
         continue;   // Don't bind if `scope[p]` is a getter/setter, we'd be attemping to bind the value returned by the getter
 
       // Only bind if scope[p] is a function that's not already a class member
       // the bound function will be added as a class member, referencing the function on the prototype
-      if (!Object.prototype.hasOwnProperty.call( scope, p ) && typeof scope[p] == 'function')
-        scope[p] = scope[p].bind( scope );
+      if (!Object.prototype.hasOwnProperty.call(scope, p) && typeof scope[p] == 'function')
+        scope[p] = scope[p].bind(scope);
     }
   }
 }

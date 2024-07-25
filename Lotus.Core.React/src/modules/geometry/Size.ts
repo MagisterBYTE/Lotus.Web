@@ -10,6 +10,6 @@ export interface ISize
 
   /**
    * Высота
-   */  
+   */
   height: number;
 }

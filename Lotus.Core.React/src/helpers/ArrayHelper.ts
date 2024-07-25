@@ -76,7 +76,7 @@ export class ArrayHelper
       if (exist)
       {
         exist.items.push(element);
-      } 
+      }
       else
       {
         const newUserGroup: IGrouping<TItem> = { groupKey: key, items: [element] };

@@ -1,14 +1,19 @@
+.lotus-size-smaller {
+  padding: var(--lotus-padding-smaller);
+  font-size: x-small
+}
+
 .lotus-size-small {
-  padding: 10px 10px;
-  font-size: 12px;
+  padding: var(--lotus-padding-small);
+  font-size: small
 }
 
 .lotus-size-medium {
-  padding: 14px 14px;
-  font-size: 16px;
+  padding: var(--lotus-padding-medium);
+  font-size: medium;
 }
 
 .lotus-size-large {
-  padding: 20px 20px;
-  font-size: 20px;
+  padding: var(--lotus-padding-large);
+  font-size: large;
 }

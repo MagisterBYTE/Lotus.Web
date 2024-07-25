@@ -11,7 +11,7 @@ export interface ISortProperty
   /**
    * Статус сортировки по убыванию
    */
-  isDesc?:boolean;
+  isDesc?: boolean;
 }
 
 /**

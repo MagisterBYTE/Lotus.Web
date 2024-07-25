@@ -3,7 +3,7 @@ import { IFeedbackState } from './FeedbackState';
 import { hideAlertFeedbackAction, showAlertFeedbackAction } from './FeedbackActions';
 
 
-const initialState: IFeedbackState = 
+const initialState: IFeedbackState =
 {
   alertMessage: '',
   alertOpen: false,
@@ -18,7 +18,7 @@ export const feedbackSlice = createSlice({
   extraReducers: (builder) => 
   {
     builder.addCase(showAlertFeedbackAction, (state, action) => 
-    {     
+    {
       state.alertMessage = action.payload.message;
       state.alertOpen = true,
       state.alertType = action.payload.type
@@ -26,9 +26,9 @@ export const feedbackSlice = createSlice({
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     builder.addCase(hideAlertFeedbackAction, (state, _) => 
-    {     
+    {
       state.alertMessage = '';
       state.alertOpen = false
-    });       
+    });
   }
 });

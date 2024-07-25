@@ -426,3 +426,4 @@ Docs/html/
 
 *storybook.log
 Lotus.Core.React/dist/
+Lotus.Core.React/coverage/

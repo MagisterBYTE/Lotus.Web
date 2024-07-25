@@ -6,11 +6,7 @@ import eslintReactHooks from 'eslint-plugin-react-hooks';
 import eslintReactRefresh from 'eslint-plugin-react-refresh';
 import eslintImport from 'eslint-plugin-import';
 import eslintStorybook from 'eslint-plugin-storybook';
-// import prettierPlugin from 'eslint-plugin-prettier';
-// import eslintConfigPrettier from 'eslint-config-prettier';
 
-
-/** @type {import('eslint').Linter.FlatConfig[]} */
 export default tseslint.config(
   {
     plugins: {
@@ -23,7 +19,7 @@ export default tseslint.config(
     }
   },
   {
-    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js', 'rollup.config.js']
+    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js', 'rollup.config.js', '.storybook']
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -39,16 +35,13 @@ export default tseslint.config(
       parserOptions:
       {
         project: ['tsconfig.json'],
-        ecmaFeatures: { jsx: true }
+        ecmaFeatures: { jsx: true },
       }
     }
   },
   {
     files: ['src/**/*.{ts,tsx}'],
     rules: {
-      // ...prettierPlugin.configs.recommended.rules,
-      // ...eslintConfigPrettier.rules,
-
       // eslint
       'quotes': ['error', 'single'],
       'indent': ['error', 2, { 'SwitchCase': 1 }],
@@ -61,6 +54,7 @@ export default tseslint.config(
       'no-unused-vars': 'off',
       'spaced-comment': ['error', 'always', { 'markers': ['/'] }],
       'max-lines': ['warn', { max: 1200 }],
+      'max-len': ["error", { "code": 150, "tabWidth": 2, "ignoreComments": true }],
 
       // eslint-plugin-react
       'react/jsx-pascal-case': ['error'],

@@ -4,7 +4,6 @@ import { IPageInfoResponse } from './PageInfo';
 /**
  * Интерфейса для получения данных
  */
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface IResponse<TPayload = any>
 {

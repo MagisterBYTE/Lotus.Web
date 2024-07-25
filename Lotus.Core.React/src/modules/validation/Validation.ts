@@ -6,5 +6,5 @@ import { IValidationResult } from './ValidationResult';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface IValidation<TValue = any>
 {
-    validation:(value: TValue|null) => IValidationResult;
+    validation: (value: TValue | null) => IValidationResult;
 }

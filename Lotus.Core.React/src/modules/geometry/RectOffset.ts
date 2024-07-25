@@ -12,18 +12,18 @@ export interface IRectOffset
 
   /**
    * Смещение сверху
-   */  
+   */
   top: number;
 
   /**
    * Смещение сверху
-   */  
-  right: number;  
+   */
+  right: number;
 
   /**
    * Смещение снизу
-   */  
-  bottom: number;   
+   */
+  bottom: number;
 }
 
 /**

@@ -25,7 +25,7 @@ export interface ICommand<TCommandParameter = any>
   /**
    * Основной метод команды отвечающий за ее выполнение
    */
-  execute():void;
+  execute(): void;
 
   /**
    * Метод определяющий возможность выполнения команды
@@ -35,7 +35,7 @@ export interface ICommand<TCommandParameter = any>
   /**
    * Статус выбора
    */
-  isSelected():boolean;
+  isSelected(): boolean;
 
   //
   // ПАРАМЕТРЫ МАРШРУТИЗАЦИИ
@@ -53,10 +53,10 @@ export interface ICommand<TCommandParameter = any>
    */
   label: string;
 
-   /**
-   * Иконка
-   */
-   icon?: ReactNode;
+  /**
+  * Иконка
+  */
+  icon?: ReactNode;
 
   /**
    * Порядок при сортировке команд
@@ -66,7 +66,7 @@ export interface ICommand<TCommandParameter = any>
   /**
    * Группа к которой относиться команда
    */
-  group?: string;  
+  group?: string;
 }
 
 /**
@@ -119,7 +119,7 @@ export class BaseCommand<TCommandParameter = any> implements ICommand<TCommandPa
    * Группа к которой относиться команда
    */
   group?: string;
-  
+
   constructor(name: string) 
   {
     this.name = name;
@@ -129,7 +129,7 @@ export class BaseCommand<TCommandParameter = any> implements ICommand<TCommandPa
   /**
    * Основной метод команды отвечающий за ее выполнение
    */
-  public execute():void
+  public execute(): void
   {
 
   }
@@ -141,12 +141,12 @@ export class BaseCommand<TCommandParameter = any> implements ICommand<TCommandPa
   {
     return true;
   }
-  
+
   /**
    * Статус выбора
    */
-  public isSelected():boolean
+  public isSelected(): boolean
   {
     return false;
-  }  
+  }
 }

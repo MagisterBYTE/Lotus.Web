@@ -16,7 +16,7 @@ export interface IRoute
   /**
    * Набор разрешений для перехода по данному маршруту
    */
-  permissions?: string[];  
+  permissions?: string[];
 }
 
 /**

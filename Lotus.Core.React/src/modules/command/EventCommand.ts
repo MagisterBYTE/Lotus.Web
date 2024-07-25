@@ -5,7 +5,7 @@ import { BaseCommand } from './Command';
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class EventCommand<TCommandParameter = any> extends BaseCommand<TCommandParameter>
-{ 
+{
   constructor(name: string) 
   {
     super(name);
@@ -14,7 +14,7 @@ export class EventCommand<TCommandParameter = any> extends BaseCommand<TCommandP
   /**
    * Основной метод команды отвечающий за ее выполнение
    */
-  public override execute():void
+  public override execute(): void
   {
     const event = new Event('openModal');
     window.dispatchEvent(event);
@@ -27,17 +27,17 @@ export class EventCommand<TCommandParameter = any> extends BaseCommand<TCommandP
   {
     return true;
   }
-  
+
   /**
    * Статус выбора
    */
-  public override isSelected():boolean
+  public override isSelected(): boolean
   {
-    if(window.location.pathname === this.route?.path)
+    if (window.location.pathname === this.route?.path)
     {
       return true;
     }
 
     return false;
-  }    
+  }
 }

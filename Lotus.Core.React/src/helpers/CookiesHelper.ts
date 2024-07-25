@@ -28,7 +28,7 @@ export class CookiesHelper
       path: '/',
       // при необходимости добавьте другие значения по умолчанию
       ...options
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
 
     if (currentOptions['expires'] instanceof Date) 

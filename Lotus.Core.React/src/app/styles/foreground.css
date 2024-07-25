@@ -1,0 +1,118 @@
+.lotus-foreground-primary {
+  color: white;
+}
+
+.lotus-foreground-primary:hover {
+  color: white;
+}
+
+.lotus-foreground-primary:active {
+  color: white;
+}
+
+.lotus-foreground-primary:disabled {
+  color: white;
+  opacity: 0.65;
+}
+
+.lotus-foreground-secondary {
+  color: white;
+}
+
+.lotus-foreground-secondary:hover {
+  color: white;
+}
+
+.lotus-foreground-secondary:active {
+  color: white;
+}
+
+.lotus-foreground-secondary:disabled {
+  color: white;
+  opacity: 0.65;
+}
+
+.lotus-foreground-success {
+  color: white;
+}
+
+.lotus-foreground-success:hover {
+  color: white;
+}
+
+.lotus-foreground-success:active {
+  color: white;
+}
+
+.lotus-foreground-success:disabled {
+  color: white;
+  opacity: 0.65;
+}
+
+.lotus-foreground-danger {
+  color: white;
+}
+
+.lotus-foreground-danger:hover {
+  color: white;
+}
+
+.lotus-foreground-danger:active {
+  color: white;
+}
+
+.lotus-foreground-danger:disabled {
+  color: white;
+  opacity: 0.65;
+}
+
+.lotus-foreground-warning {
+  color: black;
+}
+
+.lotus-foreground-warning:hover {
+  color: black;
+}
+
+.lotus-foreground-warning:active {
+  color: black;
+}
+
+.lotus-foreground-warning:disabled {
+  color: black;
+  opacity: 0.65;
+}
+
+.lotus-foreground-info {
+  color: white;
+}
+
+.lotus-foreground-info:hover {
+  color: white;
+}
+
+.lotus-foreground-info:active {
+  color: white;
+}
+
+.lotus-foreground-info:disabled {
+  color: white;
+  opacity: 0.65;
+}
+
+.lotus-foreground-accent {
+  color: white;
+}
+
+.lotus-foreground-accent:hover {
+  color: white;
+}
+
+.lotus-foreground-accent:active {
+  color: white;
+}
+
+.lotus-foreground-accent:disabled {
+  color: white;
+  opacity: 0.65;
+}

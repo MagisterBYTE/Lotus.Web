@@ -76,8 +76,8 @@ export class SelectOptionHelper
     }
 
     return options[0]!.text;
-  } 
-  
+  }
+
   /**
    * Получение корректной иконки по умолчанию или начальной иконки
    * @param options Список опций
@@ -88,7 +88,7 @@ export class SelectOptionHelper
   {
     if (initialSelectedValue)
     {
-      let icon:ReactNode = undefined;
+      let icon: ReactNode = undefined;
       options.forEach(element => 
       {
         if (element.value === initialSelectedValue)
@@ -101,8 +101,8 @@ export class SelectOptionHelper
     }
 
     return options[0]!.icon;
-  } 
-  
+  }
+
   /**
    * Получение корректного текста по умолчанию или начального значения текста
    * @param options Список опций
@@ -129,7 +129,7 @@ export class SelectOptionHelper
     {
       return [];
     }
-  }  
+  }
 
   /**
    * Получение текста из значения опций

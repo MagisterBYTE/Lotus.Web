@@ -2,22 +2,21 @@ import { ToastOptions, toast } from 'react-toastify';
 import { ToastErrorPanel } from './ToastErrorPanel';
 
 
-export const toastPromise = <TData,>(promise: Promise<TData> | (() => Promise<TData>), 
+export const toastPromise = <TData,>(promise: Promise<TData> | (() => Promise<TData>),
   textPending: string,
   textSuccess: string,
   textFailed: string,
-  options?: ToastOptions<TData>): Promise<TData>=>
+  options?: ToastOptions<TData>): Promise<TData> =>
 {
-  return toast.promise<TData>(promise, 
+  return toast.promise<TData>(promise,
     {
       pending: textPending,
       success: textSuccess,
-      error: 
+      error:
       {
-        render({data})
+        render({ data })
         {
-          // eslint-disable-next-line react/react-in-jsx-scope
-          return <ToastErrorPanel error={data} title={textFailed}/>
+          return <ToastErrorPanel error={data} title={textFailed} />
         }
       }
     }, options);

@@ -1,7 +1,7 @@
 /**
  * Определение интерфейса для представления сущности предметной области
  */
-export interface IEntity<TKey = number|string>
+export interface IEntity<TKey = number | string>
 {
   /**
    * Идентификатор сущности

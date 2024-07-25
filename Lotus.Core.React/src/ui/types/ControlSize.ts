@@ -1,1 +1,4 @@
-export type TControlSize =  'small' | 'medium' | 'large' ;
+/**
+ * Размер элементов UI
+ */
+export type TControlSize = 'smaller' | 'small' | 'medium' | 'large';

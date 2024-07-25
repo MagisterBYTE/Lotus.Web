@@ -1,5 +1,4 @@
 export * from './app'
-export * from './assets';
 export * from './helpers'
 export * from './hooks'
 export * from './localization'

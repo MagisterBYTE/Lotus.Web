@@ -1,4 +1,4 @@
-import { IFilterFunctionDesc } from 'modules/filter/FilterFunction';
+import { IFilterFunctionDesc } from 'modules/filter';
 
 /**
  * Интерфейс для описания фильтрации свойства
@@ -18,5 +18,5 @@ export interface IPropertyFiltering
   /**
    * Вариант фильтра
    */
-  variant?: 'text' | 'select' | 'multi-select' | 'range' | 'checkbox' 
+  variant?: 'text' | 'select' | 'multi-select' | 'range' | 'checkbox'
 }

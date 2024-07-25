@@ -2,7 +2,6 @@ import { IFilterObject } from './FilterProperty';
 import { IPageInfoRequest } from './PageInfo';
 import { ISortObject } from './SortProperty';
 
-
 /**
  * Базовый интерфейс для запроса данных
  */

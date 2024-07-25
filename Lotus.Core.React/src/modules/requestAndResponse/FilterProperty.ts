@@ -19,7 +19,7 @@ export interface IFilterProperty
   /**
    * Тип свойства
    */
-  propertyType: IPropertyTypeDesc; 
+  propertyType: IPropertyTypeDesc;
 
   /**
    * Статус типа свойства - массив
@@ -29,17 +29,17 @@ export interface IFilterProperty
   /**
   * Учитывать регистр при фильтрации строк
   */
-  isSensativeCase?: boolean; 
+  isSensativeCase?: boolean;
 
   /**
    * Значение
    */
-  value?:string;
+  value?: string;
 
   /**
    * Массив значений
    */
-  values?:string[];
+  values?: string[];
 
 }
 
@@ -52,28 +52,28 @@ export type IFilterObject = IFilterProperty[];
  * Проверка на значение фильтра свойства
  * @param filterProperty Параметры фильтрации свойства
  */
-export const hasFilterPropertyValue = (filterProperty:IFilterProperty):boolean =>
+export const hasFilterPropertyValue = (filterProperty: IFilterProperty): boolean =>
 {
-  if(!filterProperty.value && !filterProperty.values) return false;
+  if (!filterProperty.value && !filterProperty.values) return false;
 
-  if(filterProperty.value && !filterProperty.values)
+  if (filterProperty.value && !filterProperty.values)
   {
-    if(filterProperty.value === '')
+    if (filterProperty.value === '')
     {
       return false;
     }
     return true;
   }
 
-  if(!filterProperty.value && filterProperty.values)
+  if (!filterProperty.value && filterProperty.values)
   {
-    if(filterProperty.values.length === 0)
+    if (filterProperty.values.length === 0)
     {
       return false;
     }
     return true;
   }
-  
+
   return false;
 }
 
@@ -81,16 +81,16 @@ export const hasFilterPropertyValue = (filterProperty:IFilterProperty):boolean =
  * Проверка на значение фильтров свойств
  * @param filterProperty Список параметров фильтрации свойства
  */
-export const hasFilterPropertiesValue = (filterProperties:IFilterObject):boolean =>
+export const hasFilterPropertiesValue = (filterProperties: IFilterObject): boolean =>
 {
   let findValue = false;
   filterProperties.forEach(x =>
   {
-    if(findValue === false)
+    if (findValue === false)
     {
       findValue = hasFilterPropertyValue(x);
     }
   });
-  
+
   return findValue;
 }

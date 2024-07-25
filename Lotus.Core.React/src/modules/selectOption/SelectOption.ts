@@ -9,7 +9,7 @@ export interface ISelectOption
   /**
    * Значение
    */
-  value:TKey;
+  value: TKey;
 
   /**
    * Текст

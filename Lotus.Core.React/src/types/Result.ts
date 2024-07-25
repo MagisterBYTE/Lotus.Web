@@ -23,7 +23,7 @@ export interface IResult<TData = any>
   /**
    * Дополнительные данные
    */
-  data?:TData;
+  data?: TData;
 }
 
 /**
@@ -34,7 +34,7 @@ export interface IResult<TData = any>
 
 export function checkOfResult(value: object): boolean
 {
-  if(value)
+  if (value)
   {
     return ('succeeded' in value) && ('code' in value);
   }
@@ -47,9 +47,9 @@ export function checkOfResult(value: object): boolean
  * @param value Объект для преобразования
  * @returns Объект реализующий интерфейс или undefined если объект не поддерживает интерфейс
  */
-export function instanceOfResult(value: object): IResult|undefined
+export function instanceOfResult(value: object): IResult | undefined
 {
-  if(checkOfResult(value))
+  if (checkOfResult(value))
   {
     return value as IResult;
   }

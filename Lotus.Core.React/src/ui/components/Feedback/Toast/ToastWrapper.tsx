@@ -9,5 +9,5 @@ export interface IToastWrapperProps extends ToastContainerProps
 
 export const ToastWrapper: React.FC<IToastWrapperProps> = (props: IToastWrapperProps) => 
 {
-  return <ToastContainer {...props}/>
+  return <ToastContainer {...props} />
 };

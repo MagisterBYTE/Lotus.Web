@@ -1,4 +1,4 @@
-import { IValidationResult } from 'modules/validation/ValidationResult';
+import { IValidationResult } from 'modules/validation';
 
 /**
  * Интерфейс для описания редактируемого свойства
@@ -25,5 +25,5 @@ export interface IPropertyEditable
    * @param value Значения свойства
    * @returns Статус валидации
    */
-  onValidation: (value:object) =>IValidationResult; 
+  onValidation: (value: object) => IValidationResult;
 }

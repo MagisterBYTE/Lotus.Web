@@ -27,10 +27,11 @@ export default
       'react/jsx-runtime',
       'react-redux',
       'react-toastify',
+      'react-icons',
       'axios',
       'numeral',
       'classnames'],
-
+        
     plugins: [
       nodeResolve(),
       typescript(

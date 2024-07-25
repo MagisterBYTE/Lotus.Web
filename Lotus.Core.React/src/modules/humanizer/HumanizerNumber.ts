@@ -10,12 +10,12 @@ export class HumanizerNumber
   {
     return numeral(number).format(HumanizerNumber.DEFAULT_FORMAT);
   }
-  
+
   public static formatCurrency(amount: number)
   {
     return numeral(amount).format(HumanizerNumber.CURRENCY_FORMAT);
   }
-  
+
   public static formatPercentage(amount: number) 
   {
     return numeral(amount).format(HumanizerNumber.PERCENTAGE_FORMAT);

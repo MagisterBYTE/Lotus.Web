@@ -6,7 +6,7 @@ import { BaseCommand } from './Command';
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class NavigationCommand<TCommandParameter = any> extends BaseCommand<TCommandParameter>
-{ 
+{
   constructor(name: string, route: IRoute) 
   {
     super(name);
@@ -16,7 +16,7 @@ export class NavigationCommand<TCommandParameter = any> extends BaseCommand<TCom
   /**
    * Основной метод команды отвечающий за ее выполнение
    */
-  public override execute():void
+  public override execute(): void
   {
   }
 
@@ -27,17 +27,17 @@ export class NavigationCommand<TCommandParameter = any> extends BaseCommand<TCom
   {
     return true;
   }
-  
+
   /**
    * Статус выбора
    */
-  public override isSelected():boolean
+  public override isSelected(): boolean
   {
-    if(window.location.pathname === this.route?.path)
+    if (window.location.pathname === this.route?.path)
     {
       return true;
     }
 
     return false;
-  }    
+  }
 }

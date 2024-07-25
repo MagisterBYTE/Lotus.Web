@@ -21,7 +21,7 @@ export abstract class ApiService
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected handleRequest(config: InternalAxiosRequestConfig<any>):InternalAxiosRequestConfig<any>|Promise<InternalAxiosRequestConfig<any>>
+  protected handleRequest(config: InternalAxiosRequestConfig<any>): InternalAxiosRequestConfig<any> | Promise<InternalAxiosRequestConfig<any>>
   {
     config.timeout = 10 * 60 * 1000;
     config.cancelToken = axios.CancelToken.source().token;
@@ -46,33 +46,38 @@ export abstract class ApiService
     if (error.response) 
     {
       // Все ошибки приводим к типу IResult для унификации обработки и реагирования
-      const result:IResult|undefined = instanceOfResult(error.response.data as object);
-      if(result)
+      const result: IResult | undefined = instanceOfResult(error.response.data as object);
+      if (result)
       {
         console.log(error.response.data);
-        return Promise.reject(result); 
+        return Promise.reject(result);
       }
       else
       {
-        const resultError:IResult = {succeeded: false, code: Number(error.response.status ?? 500), message: error.message };
-        return Promise.reject(resultError); 
+        const resultError: IResult = 
+        { 
+          succeeded: false, 
+          code: Number(error.response.status ?? 500), 
+          message: error.message 
+        };
+        return Promise.reject(resultError);
       }
     }
     else
     {
       // Запрос был сделан, но ответ не получен - `error.request`- это экземпляр XMLHttpRequest в браузере
-      if(error.request)
+      if (error.request)
       {
         // Проверка на отдельные коды ошибок
-        if(error.code === 'ERR_NETWORK')
+        if (error.code === 'ERR_NETWORK')
         {
-          const result:IResult = {succeeded: false, code: 500, message: error.message};
-          return Promise.reject(result); ;
+          const result: IResult = { succeeded: false, code: 500, message: error.message };
+          return Promise.reject(result);;
         }
 
         console.log(error);
         console.log('Error is not result!!!');
-        return Promise.reject(error); 
+        return Promise.reject(error);
       }
       else
       {
@@ -110,7 +115,7 @@ export abstract class ApiService
 
   protected getConfigAcceptJson()
   {
-    const config:AxiosRequestConfig = {
+    const config: AxiosRequestConfig = {
       headers:
       {
         'Accept': 'application/json'

@@ -11,10 +11,10 @@ export interface IValidationResult
     /**
      * Текст ошибки
      */
-    text?: string 
+    text?: string
 }
 
 /**
  * Успешный результат валидации
  */
-export const ValidationResultSuccess:IValidationResult = {error: false};
+export const ValidationResultSuccess: IValidationResult = { error: false };

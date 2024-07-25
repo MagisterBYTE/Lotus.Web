@@ -10,7 +10,8 @@ export class HumanizerPerson
    * @param substitutes 
    * @returns 
    */
-  public static getLastNameWithInitials(lastName: string | null, firstName: string | null, patronymic: string | null, substitutes?: Array<string | null>)
+  public static getLastNameWithInitials(lastName: string | null, firstName: string | null, patronymic: string | null, 
+    substitutes?: Array<string | null>)
   {
     if (!lastName) 
     {

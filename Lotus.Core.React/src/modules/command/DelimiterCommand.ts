@@ -52,7 +52,7 @@ export class DelimiterCommand<TCommandParameter = any> implements ICommand<TComm
    * Группа к которой относиться команда
    */
   group?: string;
-  
+
   constructor(name: string) 
   {
     this.name = name;
@@ -63,7 +63,7 @@ export class DelimiterCommand<TCommandParameter = any> implements ICommand<TComm
   /**
    * Основной метод команды отвечающий за ее выполнение
    */
-  public execute():void
+  public execute(): void
   {
 
   }
@@ -75,14 +75,14 @@ export class DelimiterCommand<TCommandParameter = any> implements ICommand<TComm
   {
     return true;
   }
-  
+
   /**
    * Статус выбора
    */
-  public isSelected():boolean
+  public isSelected(): boolean
   {
     return false;
-  }  
+  }
 }
 
 /**

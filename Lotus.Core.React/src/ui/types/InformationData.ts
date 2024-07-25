@@ -1,6 +1,5 @@
-
 /**
- * Интерфейс для определения дополнительного(расширенного) описания логики элемента UI
+ * Интерфейс для определения дополнительного(расширенного) описания элемента UI
  */
 export interface IInformationData
 {
@@ -12,5 +11,5 @@ export interface IInformationData
   /**
   * Ключ для дополнительного описания
   */
-  textInfoKey?: string;  
+  textInfoKey?: string;
 }

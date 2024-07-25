@@ -13,12 +13,12 @@ export interface IPropertyDescriptor
   /**
    * Имя свойства
    */
-  fieldName: string;   
+  fieldName: string;
 
   /**
    * Наименования свойства
    */
-  name: string;    
+  name: string;
 
   /**
    * Описание свойства (в виде подсказки)
@@ -28,7 +28,7 @@ export interface IPropertyDescriptor
   /**
    * Тип свойства
    */
-  propertyType: IPropertyTypeDesc;  
+  propertyType: IPropertyTypeDesc;
 
   /**
    * Типа свойства - массив
@@ -38,18 +38,18 @@ export interface IPropertyDescriptor
   /**
    * Опции возможных значений свойства
    */
-  options?: ISelectOption[];  
+  options?: ISelectOption[];
 
   /**
    * Статус поддержки сортировки по свойству
    */
-  sorting?: IPropertySorting;  
+  sorting?: IPropertySorting;
 
   /**
    * Статус поддержки фильрации по свойству
    */
   filtering?: IPropertyFiltering;
-  
+
   /**
    * Статус поддержки группировки по свойству
    */
@@ -63,5 +63,5 @@ export interface IPropertyDescriptor
   /**
    * Отображение указанного свойства как изображения
    */
-  viewImage?: boolean;  
+  viewImage?: boolean;
 }

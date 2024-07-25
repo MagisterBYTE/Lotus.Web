@@ -7,14 +7,14 @@ export const useMediaQuery = (mediaQuery: string) =>
   const [matches, setMatches] = useState(() =>
     isSsr ? false : window.matchMedia(mediaQuery).matches
   );
-  
+
   useLayoutEffect(() => 
   {
     if (isSsr) 
     {
       return;
     }
-    
+
     const mediaQueryList = window.matchMedia(mediaQuery);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -11,7 +11,7 @@ describe('test HumanizerPerson.getLastNameWithInitials', () =>
   it('should return first non-empty substitude if lastName was not passed', () => 
   {
     expect(HumanizerPerson.getLastNameWithInitials('', 'first', 'patronymic', ['', '', 'sub3'])).toBe('sub3');
-    expect(HumanizerPerson.getLastNameWithInitials('', 'first', 'patronymic', ['', 'sub2','sub3'])).toBe('sub2');
+    expect(HumanizerPerson.getLastNameWithInitials('', 'first', 'patronymic', ['', 'sub2', 'sub3'])).toBe('sub2');
     expect(HumanizerPerson.getLastNameWithInitials('', 'first', 'patronymic', ['sub1', '', 'sub3'])).toBe('sub1');
   });
 

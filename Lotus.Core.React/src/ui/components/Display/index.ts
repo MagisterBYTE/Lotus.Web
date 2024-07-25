@@ -1,1 +1,1 @@
-export { SpanColored, type ISpanColoredProps } from './SpanColored/SpanColored';
+export { Chip, type IChipProps } from './Chip/Chip';

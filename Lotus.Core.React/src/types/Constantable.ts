@@ -15,9 +15,9 @@ export interface IConstantable
  * @returns true, если объекта поддерживает интерфейс, false в противном случае
  */
 
-export const checkOfConstantable= (value: object): boolean =>
+export const checkOfConstantable = (value: object): boolean =>
 {
-  if(value)
+  if (value)
   {
     return ('isConst' in value) && value.isConst === true;
   }
@@ -30,9 +30,9 @@ export const checkOfConstantable= (value: object): boolean =>
  * @param value Объект для преобразования
  * @returns Объект реализующий интерфейс или undefined если объект не поддерживает интерфейс
  */
-export const instanceOfConstantable= (value: object): IConstantable|undefined =>
+export const instanceOfConstantable = (value: object): IConstantable | undefined =>
 {
-  if(checkOfConstantable(value))
+  if (checkOfConstantable(value))
   {
     return value as IConstantable;
   }
