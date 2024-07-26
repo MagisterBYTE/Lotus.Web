@@ -8,7 +8,7 @@ export class ArrayHelper
    * @param to Конечное значение
    * @returns Числовой массив
    */
-  public static getNumberArrayFromTo = (from: number, to: number): number[] =>
+  public static getNumberArrayFromTo(from: number, to: number): number[]
   {
     const result: number[] = [];
 
@@ -44,9 +44,8 @@ export class ArrayHelper
   {
     let find: boolean = true;
 
-    for (let index = 0; index < source.length; index++)
+    for (const element of source)
     {
-      const element = source[index]!;
       find = checked.includes(element);
       if (find)
       {

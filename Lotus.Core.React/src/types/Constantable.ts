@@ -15,7 +15,8 @@ export interface IConstantable
  * @returns true, если объекта поддерживает интерфейс, false в противном случае
  */
 
-export const checkOfConstantable = (value: object): boolean =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function checkOfConstantable(value: any): value is IConstantable
 {
   if (value)
   {
@@ -30,7 +31,8 @@ export const checkOfConstantable = (value: object): boolean =>
  * @param value Объект для преобразования
  * @returns Объект реализующий интерфейс или undefined если объект не поддерживает интерфейс
  */
-export const instanceOfConstantable = (value: object): IConstantable | undefined =>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function instanceOfConstantable(value: any): IConstantable | undefined
 {
   if (checkOfConstantable(value))
   {

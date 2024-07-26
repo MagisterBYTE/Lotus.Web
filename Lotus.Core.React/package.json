@@ -11,7 +11,7 @@
     "build-storybook": "storybook build"
   },
   "keywords": [],
-  "author": "MagistrBYTE aka DanielDem",
+  "author": "MagisterBYTE aka DanielDem",
   "license": "MIT",
   "description": "Базовый модуль React платформы Lotus",
   "devDependencies": {

@@ -46,7 +46,7 @@ export interface IPropertyDescriptor
   sorting?: IPropertySorting;
 
   /**
-   * Статус поддержки фильрации по свойству
+   * Статус поддержки фильтрации по свойству
    */
   filtering?: IPropertyFiltering;
 

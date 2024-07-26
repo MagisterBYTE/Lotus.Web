@@ -23,11 +23,12 @@ export interface IGrouping<TItem = any>
  * @param value Проверяемый объект
  * @returns true, если объекта поддерживает интерфейс, false в противном случае
  */
-export function checkOfGrouping(value: object): boolean 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function checkOfGrouping(value: any): value is IGrouping 
 {
   if (value)
   {
-    return ('groupKey' in value) && ('items' in value);
+    return ('groupKey' in value) && ('items' in value) && (Array.isArray(value['items']));
   }
 
   return false;
@@ -38,7 +39,8 @@ export function checkOfGrouping(value: object): boolean
  * @param value Объект для преобразования
  * @returns Объект реализующий интерфейс или undefined если объект не поддерживает интерфейс
  */
-export function instanceOfGrouping(value: object): IGrouping | undefined
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function instanceOfGrouping(value: any): IGrouping | undefined
 {
   if (checkOfGrouping(value))
   {

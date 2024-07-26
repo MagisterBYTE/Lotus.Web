@@ -2,7 +2,7 @@ import { IRequest } from './Request';
 
 export class RequestHelper
 {
-  public static createURLSearchParams = (request?: IRequest): URLSearchParams =>
+  public static createURLSearchParams(request?: IRequest): URLSearchParams
   {
     if (request)
     {
@@ -40,15 +40,14 @@ export class RequestHelper
             search.append(`filtering[${index}].propertyType`, filter.propertyType.id.toString());
             search.append(`filtering[${index}].value`, value);
 
-            if (filter.isSensativeCase)
+            if (filter.isSensitiveCase)
             {
-              search.append(`filtering[${index}].isSensativeCase`, 'true');
+              search.append(`filtering[${index}].isSensitiveCase`, 'true');
             }
 
             index++;
           }
           else
-          {
             if (filter.values)
             {
               const values = filter.values;
@@ -61,7 +60,6 @@ export class RequestHelper
                 search.append(`filtering[${index}].values[${iv}]`, val);
               }
             }
-          }
         })
       }
 

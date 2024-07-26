@@ -25,5 +25,6 @@ export interface IPropertyEditable
    * @param value Значения свойства
    * @returns Статус валидации
    */
-  onValidation: (value: object) => IValidationResult;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onValidation: (value: any) => IValidationResult;
 }

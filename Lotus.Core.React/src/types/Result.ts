@@ -32,7 +32,8 @@ export interface IResult<TData = any>
  * @returns true, если объекта поддерживает интерфейс, false в противном случае
  */
 
-export function checkOfResult(value: object): boolean
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function checkOfResult(value: any): value is IResult
 {
   if (value)
   {
@@ -47,7 +48,8 @@ export function checkOfResult(value: object): boolean
  * @param value Объект для преобразования
  * @returns Объект реализующий интерфейс или undefined если объект не поддерживает интерфейс
  */
-export function instanceOfResult(value: object): IResult | undefined
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function instanceOfResult(value: any): IResult | undefined
 {
   if (checkOfResult(value))
   {

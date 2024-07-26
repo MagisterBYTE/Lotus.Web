@@ -29,7 +29,7 @@ export interface IFilterProperty
   /**
   * Учитывать регистр при фильтрации строк
   */
-  isSensativeCase?: boolean;
+  isSensitiveCase?: boolean;
 
   /**
    * Значение
