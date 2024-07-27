@@ -1,0 +1,6 @@
+export { type IObjectInfo, ObjectInfoBase } from './ObjectInfo'
+export { type IPropertyDescriptor } from './PropertyDescriptor'
+export { type IPropertyEditable } from './PropertyEditable'
+export { type IPropertyGrouping } from './PropertyGrouping'
+export { type IPropertySorting } from './PropertySorting'
+export { type IPropertyTypeDesc, PropertyTypeEnum, type TPropertyType } from './PropertyType'

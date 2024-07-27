@@ -1,0 +1,1 @@
+Модуль Core для TypeScript платформы Lotus
