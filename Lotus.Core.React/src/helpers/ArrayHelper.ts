@@ -18,7 +18,7 @@ export class ArrayHelper
     }
 
     return result;
-  };
+  }
 
   /**
    * Проверка массива что он является строго числовым
