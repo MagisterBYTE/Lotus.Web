@@ -1,4 +1,4 @@
-export const filtres = {
+export const filters = {
   equals: 'Равно',
   equalsAbbr: '=',
   notEqual: 'Не равно',

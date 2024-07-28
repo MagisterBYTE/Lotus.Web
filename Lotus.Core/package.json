@@ -13,7 +13,7 @@
   "license": "MIT",
   "description": "Модуль Core для TypeScript платформы Lotus",
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
+    "@eslint/js": "^10.0.0",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^11.1.6",
     "@rollup/plugin-url": "^8.0.2",
@@ -43,7 +43,7 @@
   },
   "type": "module",
   "main": "dist/cjs/index.js",
-  "unpkg": "dist/lotus-core-react.min.js",
+  "unpkg": "dist/lotus-core.min.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "files": [

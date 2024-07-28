@@ -23,8 +23,8 @@ export const FilterFunctionEnum =
     {
       id: 0,
       name: 'equals',
-      abbr: localizationCore.filtres.equalsAbbr,
-      desc: localizationCore.filtres.equals
+      abbr: localizationCore.filters.equalsAbbr,
+      desc: localizationCore.filters.equals
     },
 
     /**
@@ -34,8 +34,8 @@ export const FilterFunctionEnum =
     {
       id: 1,
       name: 'notEquals',
-      abbr: localizationCore.filtres.notEqualAbbr,
-      desc: localizationCore.filtres.notEqual
+      abbr: localizationCore.filters.notEqualAbbr,
+      desc: localizationCore.filters.notEqual
     },
 
     /**
@@ -45,8 +45,8 @@ export const FilterFunctionEnum =
     {
       id: 2,
       name: 'lessThan',
-      abbr: localizationCore.filtres.lessThanAbbr,
-      desc: localizationCore.filtres.lessThan
+      abbr: localizationCore.filters.lessThanAbbr,
+      desc: localizationCore.filters.lessThan
     },
 
     /**
@@ -56,8 +56,8 @@ export const FilterFunctionEnum =
     {
       id: 3,
       name: 'lessThanOrEqualTo',
-      abbr: localizationCore.filtres.lessThanOrEqualAbbr,
-      desc: localizationCore.filtres.lessThanOrEqual
+      abbr: localizationCore.filters.lessThanOrEqualAbbr,
+      desc: localizationCore.filters.lessThanOrEqual
     },
 
     /**
@@ -67,8 +67,8 @@ export const FilterFunctionEnum =
     {
       id: 4,
       name: 'greaterThan',
-      abbr: localizationCore.filtres.greaterThanAbbr,
-      desc: localizationCore.filtres.greaterThan
+      abbr: localizationCore.filters.greaterThanAbbr,
+      desc: localizationCore.filters.greaterThan
     },
 
     /**
@@ -78,8 +78,8 @@ export const FilterFunctionEnum =
     {
       id: 5,
       name: 'greaterThanOrEqualTo',
-      abbr: localizationCore.filtres.greaterThanOrEqualAbbr,
-      desc: localizationCore.filtres.greaterThanOrEqual
+      abbr: localizationCore.filters.greaterThanOrEqualAbbr,
+      desc: localizationCore.filters.greaterThanOrEqual
     },
 
     /**
@@ -89,41 +89,41 @@ export const FilterFunctionEnum =
     {
       id: 6,
       name: 'between',
-      abbr: localizationCore.filtres.betweenAbbr,
-      desc: localizationCore.filtres.between
+      abbr: localizationCore.filters.betweenAbbr,
+      desc: localizationCore.filters.between
     },
 
     /**
-    * Aргумент(строка) может находиться в любом месте c учетом регистра
+    * Аргумент (строка) может находиться в любом месте c учетом регистра
     */
     Contains:
     {
       id: 7,
       name: 'contains',
-      abbr: localizationCore.filtres.contains,
-      desc: localizationCore.filtres.contains
+      abbr: localizationCore.filters.contains,
+      desc: localizationCore.filters.contains
     },
 
     /**
-    * Aргумент(строка) может находиться в любом месте c учетом регистра
+    * Аргумент(строка) может находиться в любом месте c учетом регистра
     */
     StartsWith:
     {
       id: 8,
       name: 'startsWith',
-      abbr: localizationCore.filtres.startsWith,
-      desc: localizationCore.filtres.startsWith
+      abbr: localizationCore.filters.startsWith,
+      desc: localizationCore.filters.startsWith
     },
 
     /**
-     * Aргумент(строка) должна находится в конце c учетом регистра
+     * Аргумент(строка) должна находится в конце c учетом регистра
      */
     EndsWith:
     {
       id: 9,
       name: 'endsWith',
-      abbr: localizationCore.filtres.endsWith,
-      desc: localizationCore.filtres.endsWith
+      abbr: localizationCore.filters.endsWith,
+      desc: localizationCore.filters.endsWith
     },
 
     /**
@@ -133,8 +133,8 @@ export const FilterFunctionEnum =
     {
       id: 10,
       name: 'notEmpty',
-      abbr: localizationCore.filtres.notEmpty,
-      desc: localizationCore.filtres.notEmpty
+      abbr: localizationCore.filters.notEmpty,
+      desc: localizationCore.filters.notEmpty
     },
 
     /**
@@ -144,8 +144,8 @@ export const FilterFunctionEnum =
     {
       id: 11,
       name: 'includeAny',
-      abbr: localizationCore.filtres.includeAny,
-      desc: localizationCore.filtres.includeAny
+      abbr: localizationCore.filters.includeAny,
+      desc: localizationCore.filters.includeAny
     },
 
     /**
@@ -155,8 +155,8 @@ export const FilterFunctionEnum =
     {
       id: 12,
       name: 'includeAll',
-      abbr: localizationCore.filtres.includeAll,
-      desc: localizationCore.filtres.includeAll
+      abbr: localizationCore.filters.includeAll,
+      desc: localizationCore.filters.includeAll
     },
 
     /**
@@ -166,8 +166,8 @@ export const FilterFunctionEnum =
     {
       id: 13,
       name: 'includeEquals',
-      abbr: localizationCore.filtres.includeEquals,
-      desc: localizationCore.filtres.includeEquals
+      abbr: localizationCore.filters.includeEquals,
+      desc: localizationCore.filters.includeEquals
     },
 
     /**
@@ -177,8 +177,8 @@ export const FilterFunctionEnum =
     {
       id: 14,
       name: 'includeNone',
-      abbr: localizationCore.filtres.includeNone,
-      desc: localizationCore.filtres.includeNone
+      abbr: localizationCore.filters.includeNone,
+      desc: localizationCore.filters.includeNone
     }
   } as const;
 
