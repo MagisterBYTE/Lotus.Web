@@ -1,0 +1,8 @@
+{
+  "presets": [
+    "next",
+    "@babel/preset-typescript",
+    "@babel/preset-react",
+    "@wyw-in-js/babel-preset"
+  ]
+}

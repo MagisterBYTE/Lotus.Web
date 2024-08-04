@@ -1,1 +1,1 @@
-Базовый модуль React платформы Lotus
+Модуль Core.React для TypeScript платформы Lotus

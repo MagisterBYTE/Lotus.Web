@@ -1,10 +1,31 @@
-import { useEffect, useState } from 'react';
+import { CSSProperties, useEffect, useState } from 'react';
 import { TThemeMode } from '../types';
 import { ThemeHelper } from '../helpers';
 import { ThemeContext } from './ThemeContext';
+import { TControlSize } from 'ui/types';
 
 export const ThemeProvider = (props: { children: React.ReactNode }) => 
 {
+  const sizeControl:Record<TControlSize, CSSProperties> = 
+  {
+    smaller: {
+      padding: '0.25em 0.25em',
+      fontSize: 'smaller'
+    },
+    small: {
+      padding: '0.35em 0.35em',
+      fontSize: 'small'
+    },
+    medium: {
+      padding: '0.45em 0.45em',
+      fontSize: 'medium'
+    },
+    large: {
+      padding: '0.5em 0.5em',
+      fontSize: 'large'
+    }
+  }
+
   const [theme, setTheme] = useState<TThemeMode>(ThemeHelper.loadFromStorage());
 
   useEffect(() => 
@@ -17,6 +38,7 @@ export const ThemeProvider = (props: { children: React.ReactNode }) =>
     <ThemeContext.Provider
       value={{
         theme,
+        sizeControl,
         setTheme
       }}
     >

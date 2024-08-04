@@ -9,17 +9,19 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@chromatic-com/storybook',
-    '@storybook/addon-interactions'
   ],
   framework: {
     name: '@storybook/react-vite',
-    options: {}
+    options: 
+    {
+      
+    }
   },
 
   viteFinal(config, { configType }) {
     return mergeConfig(config, {
       plugins: [
-        tsconfigPaths()
+        tsconfigPaths(),
       ]
     })
   }

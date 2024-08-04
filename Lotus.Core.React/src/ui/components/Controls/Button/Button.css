@@ -8,6 +8,10 @@
   border-width: var(--lotus-border-width);
   border-style: var(--lotus-border-style);
   border-radius: var(--lotus-border-radius);
+  transition: background-color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+  box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+  border-color 400ms cubic-bezier(0.4, 0, 0.2, 1), 
+  color 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .lotus-button-filled-primary {
@@ -41,12 +45,13 @@
 .lotus-button-outline-primary {
   color: var(--lotus-color-primary) !important;
   background-color: var(--lotus-color-background);
-  border-color: var(--lotus-color-primaryDark);
+  border-color: rgba(13, 110, 253, 0.6);
 }
 
 .lotus-button-outline-primary:hover {
-  color: white !important;
-  background-color: var(--lotus-color-primary);
+  /* color: white !important; */
+  background-color: rgba(13, 110, 253, 0.1);
+  border-color: var(--lotus-color-primaryDark);
 }
 
 .lotus-button-outline-secondary {

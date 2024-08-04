@@ -1,1 +1,3 @@
-export { Chip, type IChipProps } from './Chip/Chip';
+export * from './Chip';
+export * from './Label';
+export * from './IconPopoverInfo';

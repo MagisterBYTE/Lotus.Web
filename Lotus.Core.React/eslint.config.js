@@ -44,6 +44,7 @@ export default tseslint.config(
     rules: {
       // eslint
       'quotes': ['error', 'single'],
+      'jsx-quotes': ['error', 'prefer-single'],
       'indent': ['error', 2, { 'SwitchCase': 1 }],
       'brace-style': ['error', 'allman', { 'allowSingleLine': true }],
       'padded-blocks': ['error', { 'blocks': 'never' }],

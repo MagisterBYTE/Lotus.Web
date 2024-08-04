@@ -1,0 +1,1 @@
+export { MultiSelect, type IMultiSelectProps } from './MultiSelect';

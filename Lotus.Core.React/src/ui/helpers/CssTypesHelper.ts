@@ -1,4 +1,4 @@
-import { NumberHelper } from 'helpers';
+import { NumberHelper } from 'lotus-core';
 import { TCssHeight, TCssWidth } from 'ui/types';
 
 export class CssTypesHelper

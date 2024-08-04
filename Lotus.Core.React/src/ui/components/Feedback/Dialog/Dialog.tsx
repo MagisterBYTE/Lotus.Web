@@ -64,21 +64,21 @@ export const Dialog = forwardRef<IDialogComponent, IDialogProps>(function Dialog
       ref={dialogRef}
       className={dialogClass}
     >
-      <div className="lotus-dialog-main">
-        <div className="lotus-dialog-header">
+      <div className='lotus-dialog-main'>
+        <div className='lotus-dialog-header'>
           {label && (
             <div className='lotus-dialog-header-text'>{label}</div>
           )}
 
-          <button onClick={handleButtonCloseClick} className="lotus-dialog-header-button"> ✕ </button>
+          <button onClick={handleButtonCloseClick} className='lotus-dialog-header-button'> ✕ </button>
         </div>
 
 
-        <div className="lotus-dialog-body">
+        <div className='lotus-dialog-body'>
           {children}
         </div>
 
-        <div className="lotus-dialog-footer">
+        <div className='lotus-dialog-footer'>
           {footer}
           <Button value='Ок' label='Ок' variant='outline' />
           <Button onClick={handleButtonCloseClick} value='Cancel' label='Cancel' variant='outline' />

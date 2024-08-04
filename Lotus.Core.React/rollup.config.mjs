@@ -22,7 +22,7 @@ export default
       }
     ],
 
-    external: ['classnames'],
+    external: ['classnames', 'lotus-core', 'use-ripple-hook'],
 
     plugins: [
       peerDepsExternal(),

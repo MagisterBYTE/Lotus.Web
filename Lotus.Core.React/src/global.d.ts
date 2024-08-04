@@ -3,6 +3,11 @@ declare module '*.scss' {
   export default content
 }
 
+declare module '*.css' {
+  const content: Record<string, string>
+  export default content
+}
+
 declare module '*.svg' {
   import type { HTMLProps, FC } from 'react'
 

@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import { IRectOffset, IRectSizeOffset } from 'modules/geometry';
+import { IRectOffset, IRectSizeOffset } from 'lotus-core';
 import { CssTypesHelper } from 'ui/helpers';
 import { useLayoutState } from '../store/LayoutSelector';
 import { TScreenType } from '../domain/ScreenType';

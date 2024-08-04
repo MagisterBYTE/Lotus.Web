@@ -1,5 +1,5 @@
 import React from 'react';
-import { instanceOfResult } from 'types';
+import { instanceOfResult } from 'lotus-core';
 import { IToastErrorProps } from './toastError';
 
 export const ToastErrorPanel: React.FC<IToastErrorProps> = ({ title, error }: IToastErrorProps) =>

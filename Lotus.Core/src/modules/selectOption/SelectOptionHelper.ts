@@ -133,6 +133,28 @@ export class SelectOptionHelper
   }
 
   /**
+   * Получение опций из значения опций
+   * @param options Массив всех опций
+   * @param selectedValue Выбранное значение
+   * @returns Опция
+   */
+  public static getSelectOptionByValue(options: ISelectOption[], selectedValue?: TKey): ISelectOption
+  {
+    if (selectedValue)
+    {
+      for(const element of options)
+      {
+        if (element.value === selectedValue)
+        {
+          return element;
+        }
+      }
+    }
+
+    return options[0];
+  }
+
+  /**
    * Получение текста из значения опций
    * @param options Массив всех опций
    * @param selectedValue Выбранное значение
@@ -178,6 +200,34 @@ export class SelectOptionHelper
     }
 
     return icon;
+  }
+
+  /**
+   * Получение массива опций из выбранных значений опций
+   * @param options Массив всех опций
+   * @param selectedValues Выбранные значения
+   * @returns Массив опций
+   */
+  public static getSelectOptionsByValues(options: ISelectOption[], selectedValues?: TKey[]): ISelectOption[]
+  {
+    if (selectedValues && selectedValues.length > 0)
+    {
+      const optionsSelected: ISelectOption[] = [];
+
+      options.forEach(element => 
+      {
+        if (selectedValues.find((x) => x === element.value))
+        {
+          optionsSelected.push(element)
+        }
+      });
+
+      return optionsSelected;
+    }
+    else
+    {
+      return [];
+    }
   }
 
   /**

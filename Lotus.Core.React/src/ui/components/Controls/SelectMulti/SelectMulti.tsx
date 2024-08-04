@@ -1,12 +1,13 @@
-import { ISelectOption, TKey } from 'lotus-core';
+import { ISelectOption, SelectOptionHelper, TKey } from 'lotus-core';
 import { ReactNode, useState } from 'react';
-import Select, { ActionMeta, OptionProps, Props, SingleValue } from 'react-select';
+import { ActionMeta, InputActionMeta, MultiValue, OptionProps, Props } from 'react-select';
+import Select from 'react-select/base';
 import { ILabelProps, Label } from 'ui/components/Display/Label';
 import { HorizontalStack } from 'ui/components/Layout/HorizontalStack';
 import { TColorType, TControlSize } from 'ui/types';
-import './SelectOne.css';
 
-export interface ISelectOneProps<TValueOption extends TKey = TKey> extends ILabelProps, Props<ISelectOption, false> 
+
+export interface ISelectMultiProps<TValueOption extends TKey = TKey> extends ILabelProps, Props<ISelectOption, true>
 {
   /**
    * Цвет
@@ -17,46 +18,47 @@ export interface ISelectOneProps<TValueOption extends TKey = TKey> extends ILabe
    * Размер
    */
   size?: TControlSize;
-
+  
   /**
    * Список опций
    */
   options: ISelectOption[];
 
   /**
-   * Функция обратного вызова для установки выбранного значения
-   * @param selectedValue Выбранное значение
+   * Функция обратного вызова для установки выбранных значений
+   * @param selectedValues Выбранные значения или пустой массив
    * @returns 
    */
-  onSetSelectedValue?: (selectedValue: TValueOption) => void;
+  onSetSelectedValues?: (selectedValues: TValueOption[])=>void;
 
   /**
-   * Изначально выбранное значение
+   * Изначально выбранные значения
    */
-  initialSelectedValue?: TValueOption;
+  initialSelectedValues?: TValueOption[];
 
   /**
    * Дополнительный элемент справа
    */
   rightElement?: ReactNode;
-}
+}  
 
-export const SelectOne = <TValueOption extends TKey = TKey>({options, onSetSelectedValue, initialSelectedValue, 
-  textInfo, textInfoKey, labelStyle, isTopLabel, rightElement, ...props}: ISelectOneProps<TValueOption>) => 
+export const SelectMulti = <TValueOption extends TKey = TKey>({options, onSetSelectedValues, initialSelectedValues, 
+  textInfo, textInfoKey, labelStyle, isTopLabel, rightElement, ...props}: ISelectMultiProps<TValueOption>) =>
 {
-  const [selectedOption, setSelectedOption] = useState<ISelectOption|undefined>(options.find(x => x.value === initialSelectedValue));
+  const [selectedOptions, setSelectedOptions] = useState<ISelectOption[]>(
+    SelectOptionHelper.getSelectOptionsByValues(options, initialSelectedValues));
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleSelect = (newValue: SingleValue<ISelectOption>, _actionMeta: ActionMeta<ISelectOption>) => 
+  const handleSelect = (newValue: MultiValue<ISelectOption>, actionMeta: ActionMeta<ISelectOption>) => 
   {
-    const value = newValue?.value;
-    setSelectedOption(newValue!);
-    if(onSetSelectedValue)
+    const selectedValues = newValue.map(x => x.value);
+    setSelectedOptions(newValue.map(x => x));
+    if(onSetSelectedValues)
     {
-      onSetSelectedValue(value);
+      onSetSelectedValues(selectedValues);
     }
   };
-
+  
   const RenderItem = (props: OptionProps<ISelectOption>) => 
   {
     const {
@@ -69,7 +71,7 @@ export const SelectOne = <TValueOption extends TKey = TKey>({options, onSetSelec
       innerProps,
       data
     } = props;
-
+  
     if(data.icon)
     {
       if(typeof data.icon === 'string')
@@ -151,14 +153,27 @@ export const SelectOne = <TValueOption extends TKey = TKey>({options, onSetSelec
       textInfoKey={textInfoKey} >
       <HorizontalStack fullWidth> 
         <Select
-          {...props}
+          isMulti
           options={options}
-          value={selectedOption}
+          {...props}
+          value={selectedOptions}
           onChange={handleSelect}
-          components={{Option: RenderItem}}
-        />
+          components={{ Option: RenderItem }} 
+          inputValue=''
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          onInputChange={function (newValue: string, actionMeta: InputActionMeta): void
+          {
+            throw new Error('Function not implemented.');
+          } } 
+          onMenuOpen={function (): void
+          {
+            throw new Error('Function not implemented.');
+          } } onMenuClose={function (): void
+          {
+            throw new Error('Function not implemented.');
+          } }/>
         {rightElement}
       </HorizontalStack>
     </Label>
   );
-}
+};

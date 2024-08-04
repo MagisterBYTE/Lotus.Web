@@ -63,7 +63,7 @@
 }
 
 /* map tokens to proper theme */
-[data-theme='default'] {
+[data-theme='light'] {
   --lotus-color-background: var(--lotus-color-background-default);
   --lotus-color-foreground: var(--lotus-color-foreground-default);
   --lotus-color-primary: var(--lotus-color-primary-default);
