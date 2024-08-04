@@ -1,4 +1,5 @@
 export * from './api'
+export * from './color'
 export * from './command'
 export * from './filter'
 export * from './geometry'
