@@ -1,15 +1,16 @@
 :root {
 
-  /* Базовые цвета */
-  --lotus-color-background-default: rgb(255, 255, 255);
-  --lotus-color-foreground-default: rgb(0, 0, 0);
+  /* Базовые цвета (за основу взять Bootstrap)*/
   --lotus-color-primary-default: rgb(13, 110, 253);
   --lotus-color-secondary-default: rgb(108, 117, 125);
   --lotus-color-success-default: rgb(25, 135, 84);
   --lotus-color-danger-default: rgb(220, 53, 69);
   --lotus-color-warning-default: rgb(255, 193, 7);
-  --lotus-color-info-default: rgb(0, 128, 192);
-  --lotus-color-accent-default: rgb(0, 128, 255);
+  --lotus-color-info-default: rgb(13, 202, 240);
+  --lotus-color-accent-default: rgb(140, 104, 205);
+  --lotus-color-light-default: rgb(248, 249, 250);
+  --lotus-color-dark-default: rgb(33, 37, 41);
+  --lotus-color-border-default: rgb(222, 226, 230);
 
   /* Темнее +25% черного */
   --lotus-color-primaryDark-default: color-mix(in srgb, var(--lotus-color-primary-default) 75%, black);
@@ -19,6 +20,9 @@
   --lotus-color-warningDark-default: color-mix(in srgb, var(--lotus-color-warning-default) 75%, black);
   --lotus-color-infoDark-default: color-mix(in srgb, var(--lotus-color-info-default) 75%, black);
   --lotus-color-accentDark-default: color-mix(in srgb, var(--lotus-color-accent-default) 75%, black);
+  --lotus-color-lightDark-default: color-mix(in srgb, var(--lotus-color-light-default) 75%, black);
+  --lotus-color-darkDark-default: color-mix(in srgb, var(--lotus-color-dark-default) 75%, black);
+  --lotus-color-borderDark-default: color-mix(in srgb, var(--lotus-color-border-default) 75%, black);
 
   /* Темнее +50% черного */
   --lotus-color-primaryDarker-default: color-mix(in srgb, var(--lotus-color-primary-default) 50%, black);
@@ -28,6 +32,9 @@
   --lotus-color-warningDarker-default: color-mix(in srgb, var(--lotus-color-warning-default) 50%, black);
   --lotus-color-infoDarker-default: color-mix(in srgb, var(--lotus-color-info-default) 50%, black);
   --lotus-color-accentDarker-default: color-mix(in srgb, var(--lotus-color-accent-default) 50%, black);
+  --lotus-color-lightDarker-default: color-mix(in srgb, var(--lotus-color-light-default) 50%, black);
+  --lotus-color-darkDarker-default: color-mix(in srgb, var(--lotus-color-dark-default) 50%, black);
+  --lotus-color-borderDarker-default: color-mix(in srgb, var(--lotus-color-border-default) 50%, black);
 
   /* Светлее +25% белого */
   --lotus-color-primaryLight-default: color-mix(in srgb, var(--lotus-color-primary-default) 75%, white);
@@ -37,6 +44,21 @@
   --lotus-color-warningLight-default: color-mix(in srgb, var(--lotus-color-warning-default) 75%, white);
   --lotus-color-infoLight-default: color-mix(in srgb, var(--lotus-color-info-default) 75%, white);
   --lotus-color-accentLight-default: color-mix(in srgb, var(--lotus-color-accent-default) 75%, white);
+  --lotus-color-lightLight-default: color-mix(in srgb, var(--lotus-color-light-default) 75%, white);
+  --lotus-color-darkLight-default: color-mix(in srgb, var(--lotus-color-dark-default) 75%, white);
+  --lotus-color-borderLight-default: color-mix(in srgb, var(--lotus-color-border-default) 75%, white);
+
+  /* Светлее +85% белого (Максимально бледный цвет) */
+  --lotus-color-primaryPalest-default: color-mix(in srgb, var(--lotus-color-primary-default) 15%, white);
+  --lotus-color-secondaryPalest-default: color-mix(in srgb, var(--lotus-color-secondary-default) 15%, white);
+  --lotus-color-successPalest-default: color-mix(in srgb, var(--lotus-color-success-default) 15%, white);
+  --lotus-color-dangerPalest-default: color-mix(in srgb, var(--lotus-color-danger-default) 15%, white);
+  --lotus-color-warningPalest-default: color-mix(in srgb, var(--lotus-color-warning-default) 15%, white);
+  --lotus-color-infoPalest-default: color-mix(in srgb, var(--lotus-color-info-default) 15%, white);
+  --lotus-color-accentPalest-default: color-mix(in srgb, var(--lotus-color-accent-default) 15%, white);
+  --lotus-color-lightPalest-default: color-mix(in srgb, var(--lotus-color-light-default) 15%, white);
+  --lotus-color-darkPalest-default: color-mix(in srgb, var(--lotus-color-dark-default) 15%, white);
+  --lotus-color-borderPalest-default: color-mix(in srgb, var(--lotus-color-border-default) 15%, white);
 
   /* Тени */
   --lotus-shadow-primary-default: rgba(13, 110, 253, 0.4);
@@ -44,11 +66,13 @@
   --lotus-shadow-success-default: rgba(25, 135, 84, 0.4);
   --lotus-shadow-danger-default: rgba(220, 53, 69, 0.4);
   --lotus-shadow-warning-default: rgba(255, 193, 7, 0.4);
-  --lotus-shadow-info-default: rgba(0, 128, 192, 0.4);
-  --lotus-shadow-accent-default: rgba(0, 128, 255, 0.4);
+  --lotus-shadow-info-default: rgba(13, 202, 240, 0.4);
+  --lotus-shadow-accent-default: rgba(140, 104, 205, 0.4);
+  --lotus-shadow-light-default: rgba(248, 249, 250, 0.4);
+  --lotus-shadow-dark-default: rgba(33, 37, 41, 0.4);
+  --lotus-shadow-border-default: rgba(222, 226, 230, 0.4);
 
   /* Границы */
-  --lotus-border-color-default: rgb(222, 226, 230);
   --lotus-border-width-default: 1px;
   --lotus-border-style-default: solid;
   --lotus-border-radius-default: 0.4em;
@@ -62,7 +86,6 @@
   --lotus-font-main-default: 'Verdana', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* map tokens to proper theme */
 [data-theme='light'] {
   --lotus-color-background: var(--lotus-color-background-default);
   --lotus-color-foreground: var(--lotus-color-foreground-default);
@@ -73,6 +96,9 @@
   --lotus-color-warning: var(--lotus-color-warning-default);
   --lotus-color-info: var(--lotus-color-info-default);
   --lotus-color-accent: var(--lotus-color-accent-default);
+  --lotus-color-light: var(--lotus-color-light-default);
+  --lotus-color-dark: var(--lotus-color-dark-default);
+  --lotus-color-border: var(--lotus-color-border-default);
 
   --lotus-color-primaryDark: var(--lotus-color-primaryDark-default);
   --lotus-color-secondaryDark: var(--lotus-color-secondaryDark-default);
@@ -81,6 +107,9 @@
   --lotus-color-warningDark: var(--lotus-color-warningDark-default);
   --lotus-color-infoDark: var(--lotus-color-infoDark-default);
   --lotus-color-accentDark: var(--lotus-color-accentDark-default);
+  --lotus-color-lightDark: var(--lotus-color-lightDark-default);
+  --lotus-color-darkDark: var(--lotus-color-darkDark-default);
+  --lotus-color-borderDark: var(--lotus-color-borderDark-default);
 
   --lotus-color-primaryDarker: var(--lotus-color-primaryDarker-default);
   --lotus-color-secondaryDarker: var(--lotus-color-secondaryDarker-default);
@@ -89,6 +118,9 @@
   --lotus-color-warningDarker: var(--lotus-color-warningDarker-default);
   --lotus-color-infoDarker: var(--lotus-color-infoDarker-default);
   --lotus-color-accentDarker: var(--lotus-color-accentDarker-default);
+  --lotus-color-lightDarker: var(--lotus-color-lightDarker-default);
+  --lotus-color-darkDarker: var(--lotus-color-darkDarker-default);
+  --lotus-color-borderDarker: var(--lotus-color-borderDarker-default);
 
   --lotus-color-primaryLight: var(--lotus-color-primaryLight-default);
   --lotus-color-secondaryLight: var(--lotus-color-secondaryLight-default);
@@ -97,6 +129,20 @@
   --lotus-color-warningLight: var(--lotus-color-warningLight-default);
   --lotus-color-infoLight: var(--lotus-color-infoLight-default);
   --lotus-color-accentLight: var(--lotus-color-accentLight-default);
+  --lotus-color-lightLight: var(--lotus-color-lightLight-default);
+  --lotus-color-darkLight: var(--lotus-color-darkLight-default);
+  --lotus-color-borderLight: var(--lotus-color-borderLight-default);
+
+  --lotus-color-primaryPalest: var(--lotus-color-primaryPalest-default);
+  --lotus-color-secondaryPalest: var(--lotus-color-secondaryPalest-default);
+  --lotus-color-successPalest: var(--lotus-color-successPalest-default);
+  --lotus-color-dangerPalest: var(--lotus-color-dangerPalest-default);
+  --lotus-color-warningPalest: var(--lotus-color-warningPalest-default);
+  --lotus-color-infoPalest: var(--lotus-color-infoPalest-default);
+  --lotus-color-accentPalest: var(--lotus-color-accentPalest-default);
+  --lotus-color-lightPalest: var(--lotus-color-lightPalest-default);
+  --lotus-color-darkPalest: var(--lotus-color-darkPalest-default);
+  --lotus-color-borderPalest: var(--lotus-color-borderPalest-default);
 
   --lotus-shadow-primary: var(--lotus-shadow-primary-default);
   --lotus-shadow-secondary: var(--lotus-shadow-secondary-default);
@@ -105,8 +151,10 @@
   --lotus-shadow-warning: var(--lotus-shadow-warning-default);
   --lotus-shadow-info: var(--lotus-shadow-info-default);
   --lotus-shadow-accent: var(--lotus-shadow-accent-default);
+  --lotus-shadow-light: var(--lotus-shadow-light-default);
+  --lotus-shadow-dark: var(--lotus-shadow-dark-default);
+  --lotus-shadow-border: var(--lotus-shadow-border-default);
 
-  --lotus-border-color: var(--lotus-border-color-default);
   --lotus-border-width: var(--lotus-border-width-default);
   --lotus-border-style: var(--lotus-border-style-default);
   --lotus-border-radius: var(--lotus-border-radius-default);

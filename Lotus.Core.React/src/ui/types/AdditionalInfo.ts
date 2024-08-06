@@ -1,7 +1,7 @@
 /**
  * Интерфейс для определения дополнительного(расширенного) описания элемента UI
  */
-export interface IInformationData
+export interface IAdditionalInfo
 {
   /**
   * Дополнительное описание
