@@ -551,7 +551,7 @@ export class Color
    * @instance
    *
    * @example
-   * new Color(100,50,50).saturation(0.5).toString().to.be.equal("#712626");
+   * new Color(100,50,50).saturation(0.5).toString().toBe("#712626");
    *
    */
   saturation(saturation: number): Color 
