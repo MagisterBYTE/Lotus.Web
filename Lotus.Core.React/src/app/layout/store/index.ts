@@ -1,4 +1,5 @@
-export {
+export
+{
   showHeaderLayoutAction,
   showHeaderUserLayoutAction,
   openLeftPanelLayoutAction,

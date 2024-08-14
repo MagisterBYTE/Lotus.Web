@@ -27,30 +27,30 @@ import { EditTableFilterArray, EditTableFilterEnum, EditTableFilterString } from
 export interface IFormCreatedItem<TItem extends Record<string, any> | null>
 {
   open: boolean;
-  onClose: ()=>void;
-  onCreate: ()=>void;
-  onCreatedItem: (createdItem: TItem|null)=>void;
+  onClose: () => void;
+  onCreate: () => void;
+  onCreatedItem: (createdItem: TItem | null) => void;
 }
 
 export interface IFormDeletedItem<TItem extends Record<string, any> | null>
 {
   open: boolean;
-  onClose: ()=>void;
-  onDelete: ()=>void;
-  onDeleteItem: (createdItem: TItem|null)=>void;
+  onClose: () => void;
+  onDelete: () => void;
+  onDeleteItem: (createdItem: TItem | null) => void;
 }
 
-export interface ITableViewProps<TItem extends Record<string, any>> extends Omit<MaterialReactTableProps<TItem>, 'columns'|'data'> 
+export interface ITableViewProps<TItem extends Record<string, any>> extends Omit<MaterialReactTableProps<TItem>, 'columns' | 'data'> 
 {
   objectInfo: IObjectInfo;
-  onGetItems:<TFilterRequest extends IRequest> (filter: TFilterRequest) => Promise<IResponsePage<TItem>>;
-  onTransformFilterRequest?:<TFilterRequest extends IRequest> (filter: TFilterRequest) =>TFilterRequest; 
+  onGetItems: <TFilterRequest extends IRequest> (filter: TFilterRequest) => Promise<IResponsePage<TItem>>;
+  onTransformFilterRequest?: <TFilterRequest extends IRequest> (filter: TFilterRequest) => TFilterRequest;
   onAddItem?: () => Promise<IResponse<TItem>>;
   onUpdateItem?: (item: TItem) => Promise<IResponse<TItem>>;
   onDuplicateItem?: (id: TKey) => Promise<IResponse<TItem>>;
   onDeleteItem?: (id: TKey) => Promise<IResponse>;
-  formCreated?: (args: IFormCreatedItem<TItem|null>) => ReactElement;
-  formDeleted?: (args: IFormDeletedItem<TItem|null>) => ReactElement;
+  formCreated?: (args: IFormCreatedItem<TItem | null>) => ReactElement;
+  formDeleted?: (args: IFormDeletedItem<TItem | null>) => ReactElement;
 }
 
 type Updater<T> = T | ((old: T) => T);
@@ -91,7 +91,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
   const [autoCloseToastify, setAutoCloseToastify] = useState<number | false>(2000);
 
   // Служебные методы для получения данных текущего редактируемого объекта
-  const setSelectedValues = (accessorKey:string, newSelectedValues: any[]) =>
+  const setSelectedValues = (accessorKey: string, newSelectedValues: any[]) =>
   {
     const newItem: TItem = { ...currentItem! };
 
@@ -100,21 +100,21 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
     setCurrentItem(newItem);
   }
 
-  const setSelectedValue = (accessorKey:string, newSelectedValue: TKey) =>
+  const setSelectedValue = (accessorKey: string, newSelectedValue: TKey) =>
   {
     const newItem: TItem = { ...currentItem! };
 
     // @ts-ignore
     newItem[accessorKey] = newSelectedValue;
     setCurrentItem(newItem);
-  }  
+  }
 
   // Модифицированные столбцы 
   const editColumns = properties.map((property) =>
   {
-    const column:MRT_ColumnDef<TItem> = MaterialReactTableHelper.convertPropertyDescriptorToColumn(property);
+    const column: MRT_ColumnDef<TItem> = MaterialReactTableHelper.convertPropertyDescriptorToColumn(property);
 
-    if(property.editing?.editorType === 'text')
+    if (property.editing?.editorType === 'text')
     {
       column.muiEditTextFieldProps = {
         error: property.editing?.onValidation(currentItem).error,
@@ -149,27 +149,27 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
       column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterString(column, onSelectFilterMode);
     }
 
-    if(property.editing?.editorType === 'select')
+    if (property.editing?.editorType === 'select')
     {
-      column.Cell = function({ cell }) 
+      column.Cell = function ({ cell }) 
       {
         const id = cell.getValue() as TKey;
         const options = property.options!;
         const text = SelectOptionHelper.getTextByValue(options, id);
         return (<>{text}</>)
       }
-      
-      column.Edit = function({ cell, column, table }) 
+
+      column.Edit = function ({ cell, column, table }) 
       {
         const id = cell.getValue() as TKey;
         const options = property.options!;
 
-        return <SelectOne size='small' 
-        // sx={{width: '100%'}}
+        return <SelectOne size='small'
+          // sx={{width: '100%'}}
           initialSelectedValue={id}
-          onSetSelectedValue={(selectedValue)=>{setSelectedValue(property.fieldName, selectedValue)}}
-          options={options} />        
-      }  
+          onSetSelectedValue={(selectedValue) => { setSelectedValue(property.fieldName, selectedValue) }}
+          options={options} />
+      }
 
       column.muiEditTextFieldProps = {
         error: property.editing?.onValidation(currentItem).error,
@@ -177,15 +177,15 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
         required: property.editing?.required,
         size: 'small',
         variant: 'outlined',
-        select: true 
+        select: true
       };
 
       column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterEnum(column, onSelectFilterMode);
-    }      
+    }
 
-    if(property.editing?.editorType === 'multi-select')
+    if (property.editing?.editorType === 'multi-select')
     {
-      column.Cell = function({ cell }) 
+      column.Cell = function ({ cell }) 
       {
         const massive = cell.getValue() as any[];
         const options = property.options!;
@@ -194,17 +194,17 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
         const text = texts.join(', ');
         return (<>{text}</>)
       }
-      
-      column.Edit = function({ cell, column, table }) 
+
+      column.Edit = function ({ cell, column, table }) 
       {
         const massive = cell.getValue() as any[];
         const options = property.options!;
-        return <SelectMulti size='medium' 
+        return <SelectMulti size='medium'
           // sx={{width: '100%'}}
           initialSelectedValues={massive}
-          onSetSelectedValues={(selectedValues)=>{setSelectedValues(property.fieldName, selectedValues)}}
+          onSetSelectedValues={(selectedValues) => { setSelectedValues(property.fieldName, selectedValues) }}
           options={options} />
-      }  
+      }
 
       column.muiEditTextFieldProps = {
         error: property.editing?.onValidation(currentItem).error,
@@ -212,20 +212,20 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
         required: property.editing?.required,
         size: 'small',
         variant: 'outlined',
-        select: true 
+        select: true
       };
 
       column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterArray(column, onSelectFilterMode);
-    }  
+    }
 
-    if(property.viewImage)
+    if (property.viewImage)
     {
       // column.Cell = function({ cell, row }) 
       // {
       //   const id = cell.getValue() as number;
       //   return <ImageBox id={id} />
       // }
-      
+
       // column.Edit = function({ cell, column, table }) 
       // {
       //   const id = cell.getValue() as number;
@@ -264,7 +264,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
 
     const request = { pageInfo: pageInfo, sorting: sorting, filtering: filtering };
 
-    if(onTransformFilterRequest)
+    if (onTransformFilterRequest)
     {
       const transformRequest = onTransformFilterRequest(request);
       return transformRequest;
@@ -339,7 +339,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
   {
     setOpenCreatedDialog(false);
     await refreshItems(getFilterQueryItems());
-  }  
+  }
   // #endregion
 
   //
@@ -477,17 +477,17 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
             </IconButton>
           </Tooltip>
           {onDuplicateItem &&
-          <Tooltip arrow placement='left' title={localizationCore.actions.duplicate}>
-            <IconButton size='large' onClick={() => { handleDuplicateRow(table, row) }}>
-              <ContentCopyIcon />
-            </IconButton>
-          </Tooltip>}
+            <Tooltip arrow placement='left' title={localizationCore.actions.duplicate}>
+              <IconButton size='large' onClick={() => { handleDuplicateRow(table, row) }}>
+                <ContentCopyIcon />
+              </IconButton>
+            </Tooltip>}
           {onDeleteItem &&
-          <Tooltip arrow placement='right' title={localizationCore.actions.delete}>
-            <IconButton size='large' color='error' onClick={() => handleDeleteRow(row)}>
-              <Delete />
-            </IconButton>
-          </Tooltip>}
+            <Tooltip arrow placement='right' title={localizationCore.actions.delete}>
+              <IconButton size='large' color='error' onClick={() => handleDeleteRow(row)}>
+                <Delete />
+              </IconButton>
+            </Tooltip>}
         </Box>
       )
     }
@@ -495,7 +495,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
 
   const renderTopToolbarCustomActions = (props: { table: MRT_TableInstance<TItem> }) => 
   {
-    if(onAddItem || formCreated)
+    if (onAddItem || formCreated)
     {
       return <Button
         color='secondary'
@@ -520,7 +520,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
 
   useEffect(() => 
   {
-    const initialColumnFiltersFns:Record<string, MRT_FilterOption> = MaterialReactTableHelper.getFilterOptions(objectInfo);
+    const initialColumnFiltersFns: Record<string, MRT_FilterOption> = MaterialReactTableHelper.getFilterOptions(objectInfo);
     setColumnFiltersFns(initialColumnFiltersFns);
   }, []);
 
@@ -530,7 +530,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
     filterIncludeAny: localizationCore.filters.includeAny,
     filterIncludeAll: localizationCore.filters.includeAll,
     filterIncludeEquals: localizationCore.filters.includeEquals,
-    filterIncludeNone: localizationCore.filters.includeNone     
+    filterIncludeNone: localizationCore.filters.includeNone
   }
 
   return (
@@ -567,7 +567,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
           includeNone: (row, id, filterValue) => 
           {
             return true;
-          }                        
+          }
         }}
 
         onSortingChange={setSortingColumn}
@@ -599,15 +599,15 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
           {localizationCore.actions.deleteObject}<br />
           <div>
             {deleteItem &&
-                properties.map((p, index) =>
-                {
-                  const value = deleteItem![p.fieldName];
-                  const name = p.name;
-                  return <div key={index} style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '8px'}}>
-                    <span style={{margin: '4px'}}>{name}</span>
-                    <span style={{margin: '4px'}}><b>{value}</b></span>
-                  </div>;
-                })
+              properties.map((p, index) =>
+              {
+                const value = deleteItem![p.fieldName];
+                const name = p.name;
+                return <div key={index} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '8px' }}>
+                  <span style={{ margin: '4px' }}>{name}</span>
+                  <span style={{ margin: '4px' }}><b>{value}</b></span>
+                </div>;
+              })
             }
           </div>
         </DialogContent>
@@ -619,7 +619,7 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
       {formCreated && formCreated(
         {
           open: openCreatedDialog,
-          onClose: handleCloseCreatedDialog, 
+          onClose: handleCloseCreatedDialog,
           onCreate: handleOkCreatedDialog,
           onCreatedItem: setCreatedItem
         })}

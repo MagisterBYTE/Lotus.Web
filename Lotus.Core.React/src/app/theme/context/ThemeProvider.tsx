@@ -6,7 +6,7 @@ import { TControlSize } from 'ui/types';
 
 export const ThemeProvider = (props: { children: React.ReactNode }) => 
 {
-  const sizeControl:Record<TControlSize, CSSProperties> = 
+  const sizeControl: Record<TControlSize, CSSProperties> =
   {
     smaller: {
       padding: '0.25em 0.25em',

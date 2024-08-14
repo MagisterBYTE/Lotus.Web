@@ -1,135 +1,65 @@
-import React, { CSSProperties, useState } from 'react';
-import { IconButton, Popover, SxProps, Typography } from '@mui/material';
-import { IInformationData } from 'ui/types/InformationData';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import React, { ComponentPropsWithRef, ReactNode } from 'react';
+import { TColorType } from 'ui/types';
+import { TTypographyVariant, Typography } from '../Typography';
+import './Label.css';
 
-export interface ILabelProps extends IInformationData
+export interface ILabelProps extends ComponentPropsWithRef<'p'>
 {
   /**
-   * Надпись
+   * Параметры надписи
    */
-  label?: React.ReactNode;
+  label?: ReactNode;
 
   /**
-   * Визуальные параметры надпись
+   * Цвет
    */
-  labelStyle?: SxProps;
+  color?: TColorType;
+
+  /**
+   * Вариант отображения
+   */
+  variant?: TTypographyVariant;
 
   /**
    * Размещать надпись сверху
    */
-  isTopLabel?:boolean;
-
-  /**
-   * Дочерние компоненты
-   */
-  children?: React.ReactNode;
-
-  /**
-   * 100% ширина
-   */
-  // eslint-disable-next-line react/boolean-prop-naming
-  fullWidth?:boolean;
+  isTopLabel?: boolean;
 }
 
-export const Label:React.FC<ILabelProps> = ({textInfo, label, labelStyle, isTopLabel, children, fullWidth}:ILabelProps) => 
+export const Label: React.FC<ILabelProps> = (
+  {
+    label,
+    color,
+    variant = TTypographyVariant.TitleMedium,
+    isTopLabel,
+    ...propsLabel
+  }: ILabelProps) => 
 {
-  const [anchorElemInfo, setAnchorElemInfo] = React.useState<HTMLButtonElement|null>(null);
-  const [openInfo, setOpenInfo] = useState<boolean>(false);
-
-  const handleOpenInfo = (event: React.MouseEvent<HTMLButtonElement>) => 
+  if (label)
   {
-    setOpenInfo(true);
-    setAnchorElemInfo(event.currentTarget);
-  };
-
-  const handleCloseInfo = () => 
-  {
-    setOpenInfo(false);
-    setAnchorElemInfo(null);
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const flexDirection:any  = isTopLabel === true ? 'column' : 'row';
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-  const alignItems: any = isTopLabel === true ? 'flex-start' : 'center';
-
-  const cssProps:CSSProperties = fullWidth ? 
+    if (isTopLabel)
     {
-      display: 'flex', 
-      flexDirection: flexDirection, 
-      justifyContent: 'flex-start',
-      alignItems: alignItems,
-      width: '100%' 
-    } : 
-    {
-      display: 'flex', 
-      flexDirection: flexDirection, 
-      justifyContent: 'flex-start',
-      alignItems: alignItems
-    }
-
-  if(isTopLabel && textInfo && (label || children))
-  {
-    return (
-      <div style={cssProps}>
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-          <IconButton onClick={handleOpenInfo}>
-            <HelpOutlineIcon />
-          </IconButton>
-          <Popover
-            open={openInfo}
-            anchorEl={anchorElemInfo}
-            onClose={handleCloseInfo}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'right'
-            }}
-          >
-            <Typography sx={{ p: 1 }}>{textInfo}</Typography>
-          </Popover>    
-          {label && <Typography sx={labelStyle}>{label}</Typography>}
+      return (
+        <div className={`lotus-label-container-v lotus-gap-v-${variant}`}>
+          <Typography color={color} variant={variant} {...propsLabel}>
+            {label}
+          </Typography>
+          {propsLabel.children}
         </div>
-        {children}
-      </div>
-      
-    )
+      )
+    }
+    else
+    {
+      return (<div className={`lotus-label-container-h lotus-gap-h-${variant}`}>
+        <Typography color={color} variant={variant} {...propsLabel}>
+          {label}
+        </Typography>
+        {propsLabel.children}
+      </div>)
+    }
   }
-
-  if(textInfo && (label || children))
+  else
   {
-    return (
-      <div style={cssProps}>
-        <IconButton onClick={handleOpenInfo}>
-          <HelpOutlineIcon />
-        </IconButton>
-        <Popover
-          open={openInfo}
-          anchorEl={anchorElemInfo}
-          onClose={handleCloseInfo}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right'
-          }}
-        >
-          <Typography sx={{ p: 1 }}>{textInfo}</Typography>
-        </Popover>
-        {label && <Typography sx={labelStyle}>{label}</Typography>}
-        {children}
-      </div>
-    )
+    return propsLabel.children
   }
-
-  if(label)
-  {
-    return (
-      <div style={cssProps}>
-        <Typography sx={labelStyle}>{label}</Typography>
-        {children}
-      </div>
-    )
-  }
-
-  return <>{children}</>;
 }

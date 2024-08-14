@@ -18,7 +18,7 @@ export interface ISelectMultiProps<TValueOption extends TKey = TKey> extends ILa
    * Размер
    */
   size?: TControlSize;
-  
+
   /**
    * Список опций
    */
@@ -29,7 +29,7 @@ export interface ISelectMultiProps<TValueOption extends TKey = TKey> extends ILa
    * @param selectedValues Выбранные значения или пустой массив
    * @returns 
    */
-  onSetSelectedValues?: (selectedValues: TValueOption[])=>void;
+  onSetSelectedValues?: (selectedValues: TValueOption[]) => void;
 
   /**
    * Изначально выбранные значения
@@ -40,10 +40,10 @@ export interface ISelectMultiProps<TValueOption extends TKey = TKey> extends ILa
    * Дополнительный элемент справа
    */
   rightElement?: ReactNode;
-}  
+}
 
-export const SelectMulti = <TValueOption extends TKey = TKey>({options, onSetSelectedValues, initialSelectedValues, 
-  textInfo, textInfoKey, labelStyle, isTopLabel, rightElement, ...props}: ISelectMultiProps<TValueOption>) =>
+export const SelectMulti = <TValueOption extends TKey = TKey>({ options, onSetSelectedValues, initialSelectedValues,
+  textInfo, textInfoKey, labelStyle, isTopLabel, rightElement, ...props }: ISelectMultiProps<TValueOption>) =>
 {
   const [selectedOptions, setSelectedOptions] = useState<ISelectOption[]>(
     SelectOptionHelper.getSelectOptionsByValues(options, initialSelectedValues));
@@ -53,12 +53,12 @@ export const SelectMulti = <TValueOption extends TKey = TKey>({options, onSetSel
   {
     const selectedValues = newValue.map(x => x.value);
     setSelectedOptions(newValue.map(x => x));
-    if(onSetSelectedValues)
+    if (onSetSelectedValues)
     {
       onSetSelectedValues(selectedValues);
     }
   };
-  
+
   const RenderItem = (props: OptionProps<ISelectOption>) => 
   {
     const {
@@ -71,12 +71,12 @@ export const SelectMulti = <TValueOption extends TKey = TKey>({options, onSetSel
       innerProps,
       data
     } = props;
-  
-    if(data.icon)
+
+    if (data.icon)
     {
-      if(typeof data.icon === 'string')
+      if (typeof data.icon === 'string')
       {
-        return(
+        return (
           <div
             ref={innerRef}
             className={cx(
@@ -90,9 +90,9 @@ export const SelectMulti = <TValueOption extends TKey = TKey>({options, onSetSel
             )}
             {...innerProps}
           >
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
-              <img src={data.icon} width='32' height='32'/>
-              <span style={{paddingLeft: 8}}>{data.text}</span>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+              <img src={data.icon} width='32' height='32' />
+              <span style={{ paddingLeft: 8 }}>{data.text}</span>
             </div>
           </div>);
       }
@@ -112,18 +112,18 @@ export const SelectMulti = <TValueOption extends TKey = TKey>({options, onSetSel
             )}
             {...innerProps}
           >
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
               <>
                 {data.icon}
               </>
-              <span style={{paddingLeft: 8}}>{data.text}</span>
+              <span style={{ paddingLeft: 8 }}>{data.text}</span>
             </div>
-          </div>); 
+          </div>);
       }
     }
     else
     {
-      return(
+      return (
         <div
           ref={innerRef}
           className={cx(
@@ -141,37 +141,37 @@ export const SelectMulti = <TValueOption extends TKey = TKey>({options, onSetSel
         </div>
       );
     }
-  }  
+  }
 
   return (
     <Label
       label={props.label}
       labelStyle={labelStyle}
       isTopLabel={isTopLabel}
-      fullWidth={props.fullWidth} 
-      textInfo={textInfo} 
+      fullWidth={props.fullWidth}
+      textInfo={textInfo}
       textInfoKey={textInfoKey} >
-      <HorizontalStack fullWidth> 
+      <HorizontalStack fullWidth>
         <Select
           isMulti
           options={options}
           {...props}
           value={selectedOptions}
           onChange={handleSelect}
-          components={{ Option: RenderItem }} 
+          components={{ Option: RenderItem }}
           inputValue=''
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onInputChange={function (newValue: string, actionMeta: InputActionMeta): void
           {
             throw new Error('Function not implemented.');
-          } } 
+          }}
           onMenuOpen={function (): void
           {
             throw new Error('Function not implemented.');
-          } } onMenuClose={function (): void
+          }} onMenuClose={function (): void
           {
             throw new Error('Function not implemented.');
-          } }/>
+          }} />
         {rightElement}
       </HorizontalStack>
     </Label>

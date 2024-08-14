@@ -6,7 +6,7 @@ export interface IThemeContextType
 {
   theme: TThemeMode;
   setTheme: (theme: TThemeMode) => void;
-  sizeControl:Record<TControlSize, CSSProperties>
+  sizeControl: Record<TControlSize, CSSProperties>
 }
 
 export const ThemeContext = createContext<IThemeContextType | undefined>(undefined);

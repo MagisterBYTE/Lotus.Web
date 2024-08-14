@@ -1,1 +1,0 @@
-export { IconButtonAwesome, type IIconButtonAwesomesProps } from './IconButtonAwesome';

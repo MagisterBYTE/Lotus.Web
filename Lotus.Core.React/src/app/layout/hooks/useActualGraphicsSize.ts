@@ -71,11 +71,12 @@ export const useActualGraphicsSize = (margin: IRectOffset = defaultRectOffset): 
     };
   }, [])
 
-  return { 
-    left: marginLeftDefault, 
-    right: marginRightDefault, 
-    top: marginTop, 
-    bottom: marginBottomDefault, 
-    width: width, 
-    height: height };
+  return {
+    left: marginLeftDefault,
+    right: marginRightDefault,
+    top: marginTop,
+    bottom: marginBottomDefault,
+    width: width,
+    height: height
+  };
 }

@@ -1,7 +1,7 @@
-import classNames from 'classnames';
 import React, { ComponentPropsWithRef } from 'react';
 import { TColorType, TControlSize, TControlVariant } from 'ui/types';
 import './Chip.css';
+import { cx } from '@emotion/css';
 
 export interface IChipProps extends ComponentPropsWithRef<'span'>
 {
@@ -28,7 +28,7 @@ export interface IChipProps extends ComponentPropsWithRef<'span'>
 
 export const Chip: React.FC<IChipProps> = ({ color = 'primary', size = 'medium', variant = 'filled', ...props }: IChipProps) => 
 {
-  const chipClass = classNames('lotus-chip',
+  const chipClass = cx('lotus-chip',
     `lotus-chip-${variant}-${color}`,
     `lotus-size-${size}`,
     variant == 'filled' ? `lotus-background-${color}` : `lotus-border-${color}`,

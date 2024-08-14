@@ -15,18 +15,19 @@ export interface IVerticalStackProps extends ComponentPropsWithRef<'div'>
 
 export const VerticalStack: React.FC<IVerticalStackProps> = (props: IVerticalStackProps) => 
 {
+  const { gap, alignItems, justifyContent, wrap, children, fullWidth, fullHeight, ...divProps } = props
   return (
-    <div {...props} style={{
+    <div {...divProps} style={{
       display: 'flex',
       flexDirection: 'column',
-      gap: props.gap,
-      alignItems: props.alignItems ?? 'start',
-      justifyContent: props.justifyContent ?? 'flex-start',
-      flexWrap: props.wrap,
-      width: props.fullWidth ? 'width: 100%' : undefined,
-      height: props.fullHeight ? 'height: 100%' : undefined
+      gap: gap,
+      alignItems: alignItems ?? 'start',
+      justifyContent: justifyContent ?? 'flex-start',
+      flexWrap: wrap,
+      width: fullWidth ? '100%' : undefined,
+      height: fullHeight ? '100%' : undefined
     }}>
-      {props.children}
+      {children}
     </div>
   );
 };

@@ -21,7 +21,7 @@ export const feedbackSlice = createSlice({
     {
       state.alertMessage = action.payload.message;
       state.alertOpen = true,
-      state.alertType = action.payload.type
+        state.alertType = action.payload.type
     });
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

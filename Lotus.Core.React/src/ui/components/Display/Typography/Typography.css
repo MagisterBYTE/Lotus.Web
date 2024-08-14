@@ -1,81 +1,74 @@
 .lotus-typography-h3 {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
+  margin: 0px 0px 0.5rem;
   font-weight: 400;
   font-size: 3rem;
-  line-height: 1.167;
-  letter-spacing: 0em;
+  line-height: 1.2;
 }
 
 .lotus-typography-h4 {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
+  margin: 0px 0px 0.4rem;
   font-weight: 400;
   font-size: 2.125rem;
-  line-height: 1.235;
-  letter-spacing: 0.00735em;
+  line-height: 1.2;
 }
 
 .lotus-typography-h5 {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
+  margin: 0px 0px 0.3em;
   font-weight: 400;
   font-size: 1.5rem;
-  line-height: 1.334;
-  letter-spacing: 0em;
+  line-height: 1.2;
 }
 
 .lotus-typography-h6 {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
+  margin: 0px 0px 0.2rem;
   font-weight: 500;
   font-size: 1.25rem;
-  line-height: 1.6;
-  letter-spacing: 0.0075em;
+  line-height: 1.1;
 }
 
-.lotus-typography-subtitle1 {
+.lotus-typography-large {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
+  margin: 0px 0px 0.05rem;
   font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.75;
-  letter-spacing: 0.00938em;
+  font-size: large;
+  line-height: 1.05;
 }
 
-.lotus-typography-subtitle2 {
+.lotus-typography-medium {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 1.57;
-  letter-spacing: 0.00714em;
+  font-weight: 400;
+  font-size: medium;
+  line-height: 1.05;
+}
+
+.lotus-typography-small {
+  font-family: var(--lotus-font-main);
+  font-weight: 400;
+  font-size: small;
+  line-height: 1;
+}
+
+.lotus-typography-smaller {
+  font-family: var(--lotus-font-main);
+  font-weight: 400;
+  font-size: x-small;
+  line-height: 0.8;
 }
 
 .lotus-typography-body1 {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
   font-weight: 400;
   font-size: 1rem;
-  line-height: 1.5;
-  letter-spacing: 0.00938em;
+  line-height: 1.1;
 }
 
 .lotus-typography-body2 {
   font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
   font-weight: 400;
   font-size: 0.875rem;
-  line-height: 1.43;
-  letter-spacing: 0.01071em
-}
-
-.lotus-typography-caption1 {
-  font-family: var(--lotus-font-main);
-  margin: 0px 0px 0.35em;
-  font-weight: 400;
-  font-size: 0.75rem;
-  line-height: 1.66;
-  letter-spacing: 0.025em;
-  display: block;
+  line-height: 1.05;
 }

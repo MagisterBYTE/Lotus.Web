@@ -26,12 +26,22 @@ export enum TTypographyVariant
   /**
    * Подзаголовок 1 уровня
    */
-  Subtitle1 = 'subtitle1',
+  TitleLarge = 'large',
 
   /**
    * Подзаголовок 2 уровня
    */
-  Subtitle2 = 'subtitle2',
+  TitleMedium = 'medium',
+
+  /**
+   * Подзаголовок 3 уровня
+   */
+  TitleSmall = 'small',
+
+  /**
+   * Подзаголовок 4 уровня
+   */
+  TitleSmaller = 'smaller',
 
   /**
    * Основной текст вариант 1
@@ -42,9 +52,4 @@ export enum TTypographyVariant
    * Основной текст вариант 2
    */
   Body2 = 'body2',
-
-  /**
-   * Надпись вариант 1
-   */
-  Caption1 = 'caption1',
 }

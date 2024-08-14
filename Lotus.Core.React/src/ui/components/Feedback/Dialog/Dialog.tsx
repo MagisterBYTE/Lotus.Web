@@ -1,8 +1,8 @@
-import classNames from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Button } from 'ui/components/Controls';
 import './Dialog.css';
+import { cx } from '@emotion/css';
 
 export interface IDialogComponent
 {
@@ -57,7 +57,7 @@ export const Dialog = forwardRef<IDialogComponent, IDialogProps>(function Dialog
     dialogRef?.current?.close();
   };
 
-  const dialogClass = classNames('lotus-dialog');
+  const dialogClass = cx('lotus-dialog');
 
   return (
     <dialog

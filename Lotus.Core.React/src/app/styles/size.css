@@ -1,19 +1,59 @@
-.lotus-size-smaller {
-  padding: var(--lotus-padding-smaller);
-  font-size: x-small
+.lotus-size-smaller-minimum {
+  padding: var(--lotus-padding-minimum-smaller);
+  font-size: x-small;
 }
 
-.lotus-size-small {
-  padding: var(--lotus-padding-small);
-  font-size: small
+.lotus-size-small-minimum {
+  padding: var(--lotus-padding-minimum-small);
+  font-size: small;
 }
 
-.lotus-size-medium {
-  padding: var(--lotus-padding-medium);
+.lotus-size-medium-minimum {
+  padding: var(--lotus-padding-minimum-medium);
   font-size: medium;
 }
 
-.lotus-size-large {
-  padding: var(--lotus-padding-large);
+.lotus-size-large-minimum {
+  padding: var(--lotus-padding-minimum-large);
+  font-size: large;
+}
+
+.lotus-size-smaller-normal {
+  padding: var(--lotus-padding-normal-smaller);
+  font-size: x-small;
+}
+
+.lotus-size-small-normal {
+  padding: var(--lotus-padding-normal-small);
+  font-size: small;
+}
+
+.lotus-size-medium-normal {
+  padding: var(--lotus-padding-normal-medium);
+  font-size: medium;
+}
+
+.lotus-size-large-normal {
+  padding: var(--lotus-padding-normal-large);
+  font-size: large;
+}
+
+.lotus-size-smaller-enlarged {
+  padding: var(--lotus-padding-enlarged-smaller);
+  font-size: x-small;
+}
+
+.lotus-size-small-enlarged {
+  padding: var(--lotus-padding-enlarged-small);
+  font-size: small;
+}
+
+.lotus-size-medium-enlarged {
+  padding: var(--lotus-padding-enlarged-medium);
+  font-size: medium;
+}
+
+.lotus-size-large-enlarged {
+  padding: var(--lotus-padding-enlarged-large);
   font-size: large;
 }

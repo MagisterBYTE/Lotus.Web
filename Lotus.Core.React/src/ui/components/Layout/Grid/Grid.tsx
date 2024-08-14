@@ -14,19 +14,21 @@ export interface IGridProps extends ComponentPropsWithRef<'div'>
 
 export const Grid: React.FC<IGridProps> = (props: IGridProps) => 
 {
+  const { gridTemplateColumns, gridTemplateRows, columnGap, rowGap, horizontalAlign, verticalAlign, horizontalContentAlign,
+    verticalContentAlign, children, ...divProps } = props
   return (
-    <div {...props} style={{
+    <div {...divProps} style={{
       display: 'grid',
-      gridTemplateColumns: props.gridTemplateColumns,
-      gridTemplateRows: props.gridTemplateRows,
-      columnGap: props.columnGap,
-      rowGap: props.rowGap,
-      justifyContent: props.horizontalAlign ?? 'stretch',
-      alignContent: props.verticalAlign ?? 'center',
-      justifyItems: props.horizontalContentAlign ?? 'start',
-      alignItems: props.verticalContentAlign ?? 'center'
+      gridTemplateColumns: gridTemplateColumns,
+      gridTemplateRows: gridTemplateRows,
+      columnGap: columnGap,
+      rowGap: rowGap,
+      justifyContent: horizontalAlign ?? 'stretch',
+      alignContent: verticalAlign ?? 'center',
+      justifyItems: horizontalContentAlign ?? 'start',
+      alignItems: verticalContentAlign ?? 'center'
     }}>
-      {props.children}
+      {children}
     </div>
   );
 };

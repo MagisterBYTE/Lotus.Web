@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { TColorType, TControlSize } from 'ui/types';
+import { TColorType, TControlPadding, TControlSize } from 'ui/types';
 import { GiAnt } from 'react-icons/gi';
 import { HorizontalStack } from 'ui/components/Layout';
 import { Button } from './Button';
@@ -29,6 +29,10 @@ const meta = {
     variant: {
       control: 'select',
       options: Object.values(TButtonVariant)
+    },
+    paddingControl: {
+      control: 'radio',
+      options: Object.values(TControlPadding)
     }
   }
 

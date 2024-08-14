@@ -1,119 +1,35 @@
-
 .lotus-background-primary {
   background-color: var(--lotus-color-primary);
-}
-
-.lotus-background-primary:hover {
-  background-color: var(--lotus-color-primaryDark);
-}
-
-.lotus-background-primary:active {
-  background-color: var(--lotus-color-primaryDarker);
-}
-
-.lotus-background-primary:disabled {
-  background-color: var(--lotus-color-primary);  
-  opacity: 0.65;
 }
 
 .lotus-background-secondary {
   background-color: var(--lotus-color-secondary);
 }
 
-.lotus-background-secondary:hover {
-  background-color: var(--lotus-color-secondaryDark);
-}
-
-.lotus-background-secondary:active {
-  background-color: var(--lotus-color-secondaryDarker);
-}
-
-.lotus-background-secondary:disabled {
-  background-color: var(--lotus-color-secondary);  
-  opacity: 0.65;
-}
-
 .lotus-background-success {
   background-color: var(--lotus-color-success);
-}
-
-.lotus-background-success:hover {
-  background-color: var(--lotus-color-successDark);
-}
-
-.lotus-background-success:active {
-  background-color: var(--lotus-color-successDarker);
-}
-
-.lotus-background-success:disabled {
-  background-color: var(--lotus-color-success);  
-  opacity: 0.65;
 }
 
 .lotus-background-danger {
   background-color: var(--lotus-color-danger);
 }
 
-.lotus-background-danger:hover {
-  background-color: var(--lotus-color-dangerDark);
-}
-
-.lotus-background-danger:active {
-  background-color: var(--lotus-color-dangerDarker);
-}
-
-.lotus-background-danger:disabled {
-  background-color: var(--lotus-color-danger);  
-  opacity: 0.65;
-}
-
 .lotus-background-warning {
   background-color: var(--lotus-color-warning);
-}
-
-.lotus-background-warning:hover {
-  background-color: var(--lotus-color-warningDark);
-}
-
-.lotus-background-warning:active {
-  background-color: var(--lotus-color-warningDarker);
-}
-
-.lotus-background-warning:disabled {
-  background-color: var(--lotus-color-warning);  
-  opacity: 0.65;
 }
 
 .lotus-background-info {
   background-color: var(--lotus-color-info);
 }
 
-.lotus-background-info:hover {
-  background-color: var(--lotus-color-infoDark);
-}
-
-.lotus-background-info:active {
-  background-color: var(--lotus-color-infoDarker);
-}
-
-.lotus-background-info:disabled {
-  background-color: var(--lotus-color-info);  
-  opacity: 0.65;
-}
-
 .lotus-background-accent {
   background-color: var(--lotus-color-accent);
 }
 
-.lotus-background-accent:hover {
-  background-color: var(--lotus-color-accentDark);
+.lotus-background-light {
+  background-color: var(--lotus-color-light);
 }
 
-.lotus-background-accent:active {
-  background-color: var(--lotus-color-accentDarker);
-}
-
-.lotus-background-accent:disabled {
-  background-color: var(--lotus-color-accent);  
-  opacity: 0.65;
+.lotus-background-dark {
+  background-color: var(--lotus-color-dark);
 }
