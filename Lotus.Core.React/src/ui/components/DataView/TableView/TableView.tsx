@@ -19,9 +19,10 @@ import
 } from 'material-react-table';
 import { MRT_Localization_RU } from 'material-react-table/locales/ru';
 import { ReactElement, useEffect, useState } from 'react';
-import { SelectOne } from 'ui/components/Controls';
-import { SelectMulti } from 'ui/components/Controls/SelectMulti/SelectMulti';
-import { toastError, toastPromise, ToastWrapper } from '../../Feedback/Toast';
+import { Select } from 'ui/components/Controls/Select';
+import { TControlSize } from 'ui/types';
+import { MultiSelect } from 'ui/components/Controls/MultiSelect';
+import { toastError, toastPromise, ToastWrapper } from 'ui/components/Feedback/Toast';
 import { EditTableFilterArray, EditTableFilterEnum, EditTableFilterString } from './TableViewFilterTypes';
 
 export interface IFormCreatedItem<TItem extends Record<string, any> | null>
@@ -164,10 +165,10 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
         const id = cell.getValue() as TKey;
         const options = property.options!;
 
-        return <SelectOne size='small'
-          // sx={{width: '100%'}}
+        return <Select size={TControlSize.Small}
+          width='100%'
           initialSelectedValue={id}
-          onSetSelectedValue={(selectedValue) => { setSelectedValue(property.fieldName, selectedValue) }}
+          onSetSelectedValue={(selectedValue) => { setSelectedValue(property.fieldName, selectedValue!) }}
           options={options} />
       }
 
@@ -199,8 +200,8 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
       {
         const massive = cell.getValue() as any[];
         const options = property.options!;
-        return <SelectMulti size='medium'
-          // sx={{width: '100%'}}
+        return <MultiSelect size={TControlSize.Medium}
+          width='100%'
           initialSelectedValues={massive}
           onSetSelectedValues={(selectedValues) => { setSelectedValues(property.fieldName, selectedValues) }}
           options={options} />

@@ -1,1 +1,0 @@
-export { IconPopoverInfo, type IIconPopoverInfoProps } from './IconPopoverInfo';

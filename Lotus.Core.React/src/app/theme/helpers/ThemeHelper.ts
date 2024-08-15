@@ -1,6 +1,5 @@
 import { TColorType, TControlSize, TCssFontSize } from 'ui/types';
 import { CSSProperties } from 'react';
-import { TTypographyVariant } from 'ui/components';
 import { ThemeConstants } from '../constants';
 import { TThemeMode } from '../types';
 
@@ -182,27 +181,6 @@ export class ThemeHelper
     }
 
     return 16 * 1.5;
-  }
-
-  /**
-   * Получение оптимального варианта текста при указанном размере элемента UI
-   * @param size Размере элемента UI
-   * @returns Оптимальный варианта текста
-   */
-  public static getTypographyVariantByControlSize(size?: TControlSize): TTypographyVariant
-  {
-    if (size)
-    {
-      switch (size)
-      {
-        case TControlSize.Smaller: return TTypographyVariant.TitleSmaller;
-        case TControlSize.Small: return TTypographyVariant.TitleSmall;
-        case TControlSize.Medium: return TTypographyVariant.TitleMedium;
-        case TControlSize.Large: return TTypographyVariant.TitleLarge;
-      }
-    }
-
-    return TTypographyVariant.TitleMedium;
   }
 
   /**

@@ -19,7 +19,7 @@ export default tseslint.config(
     }
   },
   {
-    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js', 'rollup.config.js', '.storybook']
+    ignores: ['dist', 'node_modules', 'coverage', 'eslint.config.js', 'rollup.config.js', 'rollup.config.mjs', '.storybook']
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

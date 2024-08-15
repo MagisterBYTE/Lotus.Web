@@ -3,7 +3,6 @@ import { ToastErrorPanel } from './ToastErrorPanel';
 
 export interface IToastErrorProps
 {
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error: any;
   title: string;

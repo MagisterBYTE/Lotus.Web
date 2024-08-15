@@ -4,7 +4,8 @@ import { useLayoutEffect } from 'react';
  * Хук для вызова функции в случае изменения размера или ориентации экрана
  * @param callback Вызываемая функция
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export const useScreenResizeOrOrientation = (callback: Function) =>
 {
   const handleScreenResizeOrOrientation = () =>

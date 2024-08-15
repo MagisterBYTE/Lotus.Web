@@ -1,8 +1,8 @@
 import
-  {
-    FilterFunctionEnum, IFilterFunctionDesc, IFilterObject, IFilterProperty, IObjectInfo,
-    IPropertyDescriptor, PropertyTypeEnum, StringHelper
-  } from 'lotus-core';
+{
+  FilterFunctionEnum, IFilterFunctionDesc, IFilterObject, IFilterProperty, IObjectInfo,
+  IPropertyDescriptor, PropertyTypeEnum, StringHelper
+} from 'lotus-core';
 import { MRT_ColumnDef, MRT_ColumnFiltersState, MRT_FilterOption } from 'material-react-table';
 
 export class MaterialReactTableHelper

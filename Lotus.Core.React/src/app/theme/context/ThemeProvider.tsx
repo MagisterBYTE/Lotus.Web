@@ -1,8 +1,8 @@
 import { CSSProperties, useEffect, useState } from 'react';
+import { TControlSize } from 'ui/types';
 import { TThemeMode } from '../types';
 import { ThemeHelper } from '../helpers';
 import { ThemeContext } from './ThemeContext';
-import { TControlSize } from 'ui/types';
 
 export const ThemeProvider = (props: { children: React.ReactNode }) => 
 {

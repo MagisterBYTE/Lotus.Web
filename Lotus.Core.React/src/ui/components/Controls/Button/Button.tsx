@@ -3,7 +3,8 @@ import React, { ComponentPropsWithRef } from 'react';
 import { TColorType, TControlPadding, TControlState } from 'ui/types';
 import { TControlSize } from 'ui/types/ControlSize';
 import useRipple from 'use-ripple-hook';
-import { ThemeConstants, ThemeHelper } from 'app/theme';
+import { ThemeHelper } from 'app/theme/helpers';
+import { ThemeConstants } from 'app/theme/constants';
 import { ButtonHelper } from './ButtonHelper';
 import { TButtonVariant } from './ButtonVariant';
 

@@ -6,6 +6,7 @@ import { ILabelProps, Label } from 'ui/components/Display/Label';
 import { TColorType, TControlPadding, TControlSize, TCssWidth } from 'ui/types';
 import { ThemeHelper } from 'app/theme';
 import { IconContext } from 'react-icons';
+import { TypographyHelper } from 'ui/components/Display/Typography';
 import { SelectHelper } from './SelectHelper';
 
 export interface ISelectProps<TValueOption extends TKey = TKey> extends Props<ISelectOption, false> 
@@ -55,7 +56,7 @@ export interface ISelectProps<TValueOption extends TKey = TKey> extends Props<IS
    * @param selectedValue Выбранное значение
    * @returns 
    */
-  onSetSelectedValue?: (selectedValue: TValueOption) => void;
+  onSetSelectedValue?: (selectedValue: TValueOption|undefined) => void;
 
   /**
    * Изначально выбранное значение
@@ -87,40 +88,51 @@ export const Select = <TValueOption extends TKey = TKey>(
 
   const handleSelect = (newValue: SingleValue<ISelectOption>, _actionMeta: ActionMeta<ISelectOption>) => 
   {
-    const value = newValue?.value;
-    setSelectedOption(newValue!);
-    if (onSetSelectedValue)
+    if(newValue)
     {
-      onSetSelectedValue(value);
+      setSelectedOption(newValue);
+      if (onSetSelectedValue)
+      {
+        onSetSelectedValue(newValue.value);
+      }
+    }
+    else
+    {
+      setSelectedOption(undefined);
+      if (onSetSelectedValue)
+      {
+        onSetSelectedValue(undefined);
+      }
     }
   };
 
   const selectOptionStyles: StylesConfig<ISelectOption> = {
     container: (base) => ({
       ...base,
-      width: width
+      width: width,
+      minHeight: hasIcons ? `${SelectHelper.getMainContainerHeightFromSize(size)}px` : base.minHeight
     }),
     control: (styles, state) =>
-    ({
-      ...styles,
-      minHeight: 'unset',
-      paddingTop: 0,
-      paddingBottom: 0,
-      ...ThemeHelper.getFontFamilyPropsAsCSS(),
-      ...ThemeHelper.getFontSizeByControlSizeAsCSS(size),
-      ...ThemeHelper.getTransitionPropsAsCSS(),
-      ...ThemeHelper.getBorderPropsAsCSS(),
-      ...SelectHelper.getBorderColorProps(color, state.isDisabled, state.isFocused),
-      ...SelectHelper.getBoxShadowProps(color, state.isDisabled, state.isFocused),
-      ':hover':
+      ({
+        ...styles,
+        minHeight: hasIcons ? `${SelectHelper.getMainContainerHeightFromSize(size)}px` : styles.minHeight,
+        paddingTop: 0,
+        paddingBottom: 0,
+        ...ThemeHelper.getFontFamilyPropsAsCSS(),
+        ...ThemeHelper.getFontSizeByControlSizeAsCSS(size),
+        ...ThemeHelper.getTransitionPropsAsCSS(),
+        ...ThemeHelper.getBorderPropsAsCSS(),
+        ...SelectHelper.getBorderColorProps(color, state.isDisabled, state.isFocused),
+        ...SelectHelper.getBoxShadowProps(color, state.isDisabled, state.isFocused),
+        ':hover':
       {
         ...SelectHelper.getBorderColorProps(color, state.isDisabled, state.isFocused)
       },
-      ':disabled':
+        ':disabled':
       {
         ...ThemeHelper.getOpacityPropsForDisabledAsCSS()
       }
-    }),
+      }),
     dropdownIndicator: (base) => ({
       ...base,
       paddingTop: 0,
@@ -259,25 +271,7 @@ export const Select = <TValueOption extends TKey = TKey>(
     }
   }
 
-
-  if (labelProps)
-  {
-    return <Label {...labelProps} variant={labelProps.variant ?? ThemeHelper.getTypographyVariantByControlSize(size)}>
-      <ReactSelect
-        {...propsReactSelect}
-        options={options}
-        value={selectedOption}
-        styles={selectOptionStyles}
-        classNamePrefix='react-select'
-        getOptionLabel={(selectOption) => selectOption.text}
-        getOptionValue={(selectOption) => selectOption.value}
-        // @ts-expect-error onChange
-        onChange={handleSelect}
-        components={{ Option: RenderOption, SingleValue: RenderSingleValue }}
-      />
-    </Label>
-  }
-  else
+  const RenderReactSelect = () =>
   {
     return <ReactSelect
       {...propsReactSelect}
@@ -289,7 +283,19 @@ export const Select = <TValueOption extends TKey = TKey>(
       getOptionValue={(selectOption) => selectOption.value}
       // @ts-expect-error onChange
       onChange={handleSelect}
-      components={{ Option: RenderOption, SingleValue: RenderSingleValue }}
-    />
+      components={{ Option: RenderOption, SingleValue: RenderSingleValue }} />
+  }
+
+  if (labelProps)
+  {
+    return <Label {...labelProps} variant={labelProps.variant ?? TypographyHelper.getTypographyVariantByControlSize(size)}>
+      {
+        RenderReactSelect()
+      }
+    </Label>
+  }
+  else
+  {
+    return RenderReactSelect();
   }
 }

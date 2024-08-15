@@ -4,20 +4,20 @@ import { LayoutHelper } from '../helpers';
 import { ViewSettingsConstants } from '../constants';
 import { ILayoutState } from './LayoutState';
 import
-  {
-    setScreenTypeAction, showHeaderLayoutAction,
-    showLeftPanelLayoutAction,
-    openLeftPanelLayoutAction,
-    showRightPanelLayoutAction,
-    setWidthLeftPanelLayoutAction,
-    showFooterLayoutAction,
-    collapseFooterLayoutAction,
-    showHeaderUserLayoutAction,
-    showFooterUserLayoutAction,
-    addCommandLeftPanelLayoutAction,
-    removeCommandLeftPanelLayoutAction,
-    setCommandsLeftPanelLayoutAction
-  } from './LayoutActions';
+{
+  setScreenTypeAction, showHeaderLayoutAction,
+  showLeftPanelLayoutAction,
+  openLeftPanelLayoutAction,
+  showRightPanelLayoutAction,
+  setWidthLeftPanelLayoutAction,
+  showFooterLayoutAction,
+  collapseFooterLayoutAction,
+  showHeaderUserLayoutAction,
+  showFooterUserLayoutAction,
+  addCommandLeftPanelLayoutAction,
+  removeCommandLeftPanelLayoutAction,
+  setCommandsLeftPanelLayoutAction
+} from './LayoutActions';
 
 const initialState: ILayoutState = LayoutHelper.loadFromStorage();
 

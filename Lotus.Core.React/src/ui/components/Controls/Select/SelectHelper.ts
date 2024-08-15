@@ -16,6 +16,19 @@ export class SelectHelper
     return 0.5;
   }
 
+  public static getMainContainerHeightFromSize(size: TControlSize): number
+  {
+    switch (size) 
+    {
+      case TControlSize.Smaller: return 22;
+      case TControlSize.Small: return 28;
+      case TControlSize.Medium: return 36;
+      case TControlSize.Large: return 44;
+    }
+
+    return 36;
+  }
+
   public static getBorderColorProps(color: TColorType, isDisabled: boolean, isFocused: boolean): CSSProperties
   {
     if (isDisabled)

@@ -55,8 +55,8 @@ export class ButtonHelper
           switch (variant)
           {
             case TButtonVariant.Filled: return `background-color: var(--lotus-color-${color});`;
-            case TButtonVariant.Outline: return `background-color: var(--lotus-color-${'white'});`;
-            case TButtonVariant.Text: return `background-color: var(--lotus-color-${'white'});`;
+            case TButtonVariant.Outline: return `background-color: var(--lotus-color-${'light'});`;
+            case TButtonVariant.Text: return `background-color: var(--lotus-color-${'light'});`;
           }
         } break;
       case TControlState.Hover:
@@ -79,8 +79,8 @@ export class ButtonHelper
         switch (variant)
         {
           case TButtonVariant.Filled: return `background-color: var(--lotus-color-${color});`;
-          case TButtonVariant.Outline: return `background-color: var(--lotus-color-${'white'});`;
-          case TButtonVariant.Text: return `background-color: var(--lotus-color-${'white'});`;
+          case TButtonVariant.Outline: return `background-color: var(--lotus-color-${'light'});`;
+          case TButtonVariant.Text: return `background-color: var(--lotus-color-${'light'});`;
         } break;
     }
 

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
 
-// https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-// eslint-disable-next-line @typescript-eslint/ban-types
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export const useInterval = (callback: Function, delay: number) => 
 {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   const savedCallback = useRef<Function>()
   useEffect(() => 
   {

@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithRef } from 'react';
 import { TColorType, TControlPadding, TControlSize, TControlState } from 'ui/types';
 import { css, cx } from '@emotion/css';
-import { ILabelProps, Label } from 'ui/components/Display';
+import { ILabelProps, Label, TypographyHelper } from 'ui/components/Display';
 import { ThemeHelper } from 'app/theme';
 import { InputFieldHelper } from './InputFieldHelper';
 
@@ -58,7 +58,7 @@ export const InputField: React.FC<IInputFieldProps> = ({ color = TColorType.Prim
 
   if (labelProps)
   {
-    return <Label {...labelProps} variant={labelProps.variant ?? ThemeHelper.getTypographyVariantByControlSize(size)}>
+    return <Label {...labelProps} variant={labelProps.variant ?? TypographyHelper.getTypographyVariantByControlSize(size)}>
       <input type='text' {...propsInput} className={InputFieldClass} />
     </Label>
   }

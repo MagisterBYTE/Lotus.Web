@@ -6,6 +6,7 @@ import { ILabelProps, Label } from 'ui/components/Display/Label';
 import { TColorType, TControlPadding, TControlSize, TCssWidth } from 'ui/types';
 import { ThemeHelper } from 'app/theme';
 import { IconContext } from 'react-icons';
+import { TypographyHelper } from 'ui/components/Display/Typography';
 import { SelectHelper } from '../Select/SelectHelper';
 
 export interface IMultiSelectProps<TValueOption extends TKey = TKey> extends Props<ISelectOption, true> 
@@ -89,40 +90,52 @@ export const MultiSelect = <TValueOption extends TKey = TKey>(
 
   const handleMultiSelect = (newValue: MultiValue<ISelectOption>, _actionMeta: ActionMeta<ISelectOption>) => 
   {
-    const values = newValue.map(x => x.value);
-    setSelectedOptions(Array.from(newValue));
-    if (onSetSelectedValues)
+    if(newValue)
     {
-      onSetSelectedValues(values);
+      const values = newValue.map(x => x.value);
+      setSelectedOptions(Array.from(newValue));
+      if (onSetSelectedValues)
+      {
+        onSetSelectedValues(values);
+      }
+    }
+    else
+    {
+      setSelectedOptions([]);
+      if (onSetSelectedValues)
+      {
+        onSetSelectedValues([]);
+      }
     }
   };
 
   const selectOptionStyles: StylesConfig<ISelectOption> = {
     container: (base) => ({
       ...base,
-      width: width
+      width: width,
+      minHeight: hasIcons ? `${SelectHelper.getMainContainerHeightFromSize(size)}px` : base.minHeight
     }),
     control: (styles, state) =>
-    ({
-      ...styles,
-      minHeight: 'unset',
-      paddingTop: 0,
-      paddingBottom: 0,
-      ...ThemeHelper.getFontFamilyPropsAsCSS(),
-      ...ThemeHelper.getFontSizeByControlSizeAsCSS(size),
-      ...ThemeHelper.getTransitionPropsAsCSS(),
-      ...ThemeHelper.getBorderPropsAsCSS(),
-      ...SelectHelper.getBorderColorProps(color, state.isDisabled, state.isFocused),
-      ...SelectHelper.getBoxShadowProps(color, state.isDisabled, state.isFocused),
-      ':hover':
+      ({
+        ...styles,
+        minHeight: hasIcons ? `${SelectHelper.getMainContainerHeightFromSize(size)}px` : styles.minHeight,
+        paddingTop: 0,
+        paddingBottom: 0,
+        ...ThemeHelper.getFontFamilyPropsAsCSS(),
+        ...ThemeHelper.getFontSizeByControlSizeAsCSS(size),
+        ...ThemeHelper.getTransitionPropsAsCSS(),
+        ...ThemeHelper.getBorderPropsAsCSS(),
+        ...SelectHelper.getBorderColorProps(color, state.isDisabled, state.isFocused),
+        ...SelectHelper.getBoxShadowProps(color, state.isDisabled, state.isFocused),
+        ':hover':
       {
         ...SelectHelper.getBorderColorProps(color, state.isDisabled, state.isFocused)
       },
-      ':disabled':
+        ':disabled':
       {
         ...ThemeHelper.getOpacityPropsForDisabledAsCSS()
       }
-    }),
+      }),
     dropdownIndicator: (base) => ({
       ...base,
       paddingTop: 0,
@@ -130,6 +143,7 @@ export const MultiSelect = <TValueOption extends TKey = TKey>(
     }),
     valueContainer: (base) => ({
       ...base,
+      padding: '2px',
       paddingTop: 0,
       paddingBottom: 0
     }),
@@ -141,7 +155,7 @@ export const MultiSelect = <TValueOption extends TKey = TKey>(
     input: (base) => (
       {
         ...base,
-        marginLeft: hasIcons ? `${SelectHelper.getMarginOffsetInput(size)}px` : 0,
+        marginLeft: 0,
         marginRight: 0,
         marginTop: 0,
         marginBottom: 0,
@@ -153,8 +167,6 @@ export const MultiSelect = <TValueOption extends TKey = TKey>(
     {
       return {
         ...styles,
-        padding: `var(--lotus-padding-${paddingControl}-${size})`,
-        paddingLeft: `${SelectHelper.getPaddingLeftOption(size)}px`,
         ...ThemeHelper.getFontFamilyPropsAsCSS(),
         ...ThemeHelper.getFontSizeByControlSizeAsCSS(size),
         ...ThemeHelper.getTransitionPropsAsCSS(),
@@ -190,12 +202,39 @@ export const MultiSelect = <TValueOption extends TKey = TKey>(
     {
       return {
         ...styles,
-        padding: hasIcons ? `var(--lotus-padding-${paddingControl}-${size})` : 0,
-        marginLeft: hasIcons ? `${SelectHelper.getMarginOffsetSingleValue(size)}px` : '2px',
+        backgroundColor: `var(--lotus-color-${color}Palest)`,
+        borderColor: `var(--lotus-color-${color}Light)`,
+        ...ThemeHelper.getBorderPropsAsCSS(),
+        padding: hasIcons ? `var(--lotus-padding-${paddingControl}-${size})` : 1,
+        marginLeft: '2px',
         ...ThemeHelper.getFontFamilyPropsAsCSS(),
         ...ThemeHelper.getFontSizeByControlSizeAsCSS(size),
         ...ThemeHelper.getTransitionPropsAsCSS(),
         ... (hasIcons ? SelectHelper.getFlexContainer(size) : {})
+      };
+    },
+
+    multiValueRemove: (styles) =>
+    {
+      return {
+        ...styles,
+        ':hover':
+        {
+          backgroundColor: `var(--lotus-color-${color}Light)`
+        }
+      };
+    },
+
+    multiValueLabel: (styles) =>
+    {
+      return {
+        ...styles,
+        padding: 0,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        gap: '0.4rem'
       };
     }
   };
@@ -261,27 +300,10 @@ export const MultiSelect = <TValueOption extends TKey = TKey>(
     }
   }
 
-
-  if (labelProps)
-  {
-    return <Label {...labelProps} variant={labelProps.variant ?? ThemeHelper.getTypographyVariantByControlSize(size)}>
-      <ReactSelect
-        {...propsReactSelect}
-        options={options}
-        value={selectedOptions}
-        styles={selectOptionStyles}
-        classNamePrefix='react-multiSelect'
-        getOptionLabel={(MultiSelectOption) => MultiSelectOption.text}
-        getOptionValue={(MultiSelectOption) => MultiSelectOption.value}
-        // @ts-expect-error onChange
-        onChange={handleMultiSelect}
-        components={{ Option: RenderOption, MultiValue: RenderMultiValue }}
-      />
-    </Label>
-  }
-  else
+  const RenderReactSelect = () =>
   {
     return <ReactSelect
+      isMulti
       {...propsReactSelect}
       options={options}
       value={selectedOptions}
@@ -289,9 +311,21 @@ export const MultiSelect = <TValueOption extends TKey = TKey>(
       classNamePrefix='react-multiSelect'
       getOptionLabel={(MultiSelectOption) => MultiSelectOption.text}
       getOptionValue={(MultiSelectOption) => MultiSelectOption.value}
-      // @ts-expect-error onChange
+      // @ts-expect-error handleMultiSelect
       onChange={handleMultiSelect}
+      className='basic-multi-select'
       components={{ Option: RenderOption, MultiValue: RenderMultiValue }}
     />
+  }
+
+  if (labelProps)
+  {
+    return <Label {...labelProps} variant={labelProps.variant ?? TypographyHelper.getTypographyVariantByControlSize(size)} >
+      {RenderReactSelect()}
+    </Label>
+  }
+  else
+  {
+    return RenderReactSelect();
   }
 }

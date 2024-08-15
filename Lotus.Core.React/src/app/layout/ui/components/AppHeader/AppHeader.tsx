@@ -3,6 +3,7 @@ import { openLeftPanelLayoutAction, useLayoutState } from 'app/layout/store';
 import { useAppDispatchCore } from 'app/store';
 import './AppHeader.css';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface IAppHeaderProps extends ComponentPropsWithRef<'header'> 
 {
 

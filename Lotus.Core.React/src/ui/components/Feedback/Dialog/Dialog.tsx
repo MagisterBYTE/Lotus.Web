@@ -1,8 +1,7 @@
-import { PropsWithChildren, ReactNode } from 'react';
-import { forwardRef, useImperativeHandle, useRef } from 'react';
-import { Button } from 'ui/components/Controls';
-import './Dialog.css';
 import { cx } from '@emotion/css';
+import { forwardRef, PropsWithChildren, ReactNode, useImperativeHandle, useRef } from 'react';
+import { Button, TButtonVariant } from 'ui/components/Controls';
+import './Dialog.css';
 
 export interface IDialogComponent
 {
@@ -73,15 +72,18 @@ export const Dialog = forwardRef<IDialogComponent, IDialogProps>(function Dialog
           <button onClick={handleButtonCloseClick} className='lotus-dialog-header-button'> ✕ </button>
         </div>
 
-
         <div className='lotus-dialog-body'>
           {children}
         </div>
 
         <div className='lotus-dialog-footer'>
           {footer}
-          <Button value='Ок' label='Ок' variant='outline' />
-          <Button onClick={handleButtonCloseClick} value='Cancel' label='Cancel' variant='outline' />
+          <Button value='Ок' variant={TButtonVariant.Outline} >
+            Ок
+          </Button>
+          <Button onClick={handleButtonCloseClick} value='Cancel' variant={TButtonVariant.Outline} >
+            Cancel
+          </Button>
         </div>
       </div>
     </dialog>
