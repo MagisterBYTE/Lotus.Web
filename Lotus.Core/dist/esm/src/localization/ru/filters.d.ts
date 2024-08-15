@@ -1,0 +1,24 @@
+export declare const filters: {
+    equals: string;
+    equalsAbbr: string;
+    notEqual: string;
+    notEqualAbbr: string;
+    lessThan: string;
+    lessThanAbbr: string;
+    lessThanOrEqual: string;
+    lessThanOrEqualAbbr: string;
+    greaterThan: string;
+    greaterThanAbbr: string;
+    greaterThanOrEqual: string;
+    greaterThanOrEqualAbbr: string;
+    between: string;
+    betweenAbbr: string;
+    contains: string;
+    startsWith: string;
+    endsWith: string;
+    notEmpty: string;
+    includeAny: string;
+    includeAll: string;
+    includeEquals: string;
+    includeNone: string;
+};
