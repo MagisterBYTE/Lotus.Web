@@ -1,4 +1,4 @@
-import { NumberHelper, SelectOptionHelper, instanceOfResult, PropertyTypeEnum, FilterFunctionEnum, StringHelper, FilterFunctionHelper } from 'lotus-core';
+import { NumberHelper, SelectOptionHelper, PropertyTypeEnum, FilterFunctionEnum, StringHelper, instanceOfResult, localizationCore, FilterFunctionHelper } from 'lotus-core';
 import * as React from 'react';
 import { useLayoutEffect, useState, createContext, useEffect, forwardRef, useRef, useImperativeHandle } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,9 +8,13 @@ import { css, cx } from '@emotion/css';
 import useRipple from 'use-ripple-hook';
 import ReactSelect, { components } from 'react-select';
 import { IconContext } from 'react-icons';
+import { Save, Cancel, Edit, Delete } from '@mui/icons-material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { MenuItem, Dialog as Dialog$1, DialogTitle, DialogContent, DialogActions, Button as Button$1, Box, Tooltip, IconButton, Select as Select$1 } from '@mui/material';
+import { MaterialReactTable } from 'material-react-table';
+import { MRT_Localization_RU } from 'material-react-table/locales/ru';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Select as Select$1, MenuItem } from '@mui/material';
 
 class ViewSettingsConstants {
     /**
@@ -1945,81 +1949,6 @@ const Select = ({ color = TColorType.Primary, size = TControlSize.Medium, isBack
     }
 };
 
-const Dialog = forwardRef(function Dialog({ label, footer, children }, ref) {
-    const dialogRef = useRef(null);
-    useImperativeHandle(ref, () => {
-        return {
-            get isOpen() {
-                return dialogRef?.current?.open;
-            },
-            get getReturnValue() {
-                return dialogRef?.current?.returnValue;
-            },
-            show() {
-                dialogRef?.current?.show();
-            },
-            showModal() {
-                dialogRef?.current?.showModal();
-            },
-            close(returnValue) {
-                dialogRef?.current?.close(returnValue);
-            }
-        };
-    }, []);
-    const handleButtonCloseClick = () => {
-        dialogRef?.current?.close();
-    };
-    const dialogClass = cx('lotus-dialog');
-    return (jsx("dialog", { ref: dialogRef, className: dialogClass, children: jsxs("div", { className: 'lotus-dialog-main', children: [jsxs("div", { className: 'lotus-dialog-header', children: [label && (jsx("div", { className: 'lotus-dialog-header-text', children: label })), jsx("button", { onClick: handleButtonCloseClick, className: 'lotus-dialog-header-button', children: " \u2715 " })] }), jsx("div", { className: 'lotus-dialog-body', children: children }), jsxs("div", { className: 'lotus-dialog-footer', children: [footer, jsx(Button, { value: '\u041E\u043A', variant: TButtonVariant.Outline, children: "\u041E\u043A" }), jsx(Button, { onClick: handleButtonCloseClick, value: 'Cancel', variant: TButtonVariant.Outline, children: "Cancel" })] })] }) }));
-});
-
-const ToastWrapper = (props) => {
-    return jsx(ToastContainer, { ...props });
-};
-
-const ToastErrorPanel = ({ title, error }) => {
-    const result = instanceOfResult(error);
-    if (result) {
-        return jsxs(Fragment, { children: [jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Code: ", result.code] }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", result.message] }), result.data && jsxs("p", { style: { fontSize: '0.8em' }, children: ["Data: ", result.data] })] });
-    }
-    else {
-        const authError = (error['error'] && error['error_description']);
-        if (authError) {
-            return jsxs(Fragment, { children: [jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Error: ", error['error']] }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", error['error_description']] })] });
-        }
-        else {
-            return jsxs(Fragment, { children: [jsx("span", { style: { fontSize: '0.9em' }, children: title }), jsx("br", {}), jsxs("span", { style: { fontSize: '0.8em' }, children: ["Error: ", error.toString()] }), jsx("br", {})] });
-        }
-    }
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const toastError = (error, title) => {
-    return toast.error(jsx(ToastErrorPanel, { error: error, title: title }));
-};
-
-const toastPromise = (promise, textPending, textSuccess, textFailed, options) => {
-    return toast.promise(promise, {
-        pending: textPending,
-        success: textSuccess,
-        error: {
-            render({ data }) {
-                return jsx(ToastErrorPanel, { error: data, title: textFailed });
-            }
-        }
-    }, options);
-};
-
-const AppMainLayout = ({ page }) => {
-    const layoutState = useLayoutState();
-    if (layoutState.screenType != TScreenType.Landscape) {
-        return (jsxs(Fragment, { children: [jsx(AppHeader, {}), jsx(AppLeftPanel, {}), page, jsx(AppFooter, {})] }));
-    }
-    else {
-        return (jsxs(HorizontalStack, { children: [jsx(AppLeftPanel, {}), page] }));
-    }
-};
-
 class MaterialReactTableHelper {
     static getDefaultFilterFunction(property) {
         switch (property.propertyType) {
@@ -2141,6 +2070,430 @@ class MaterialReactTableHelper {
     }
 }
 
+const ToastWrapper = (props) => {
+    return jsx(ToastContainer, { ...props });
+};
+
+const ToastErrorPanel = ({ title, error }) => {
+    const result = instanceOfResult(error);
+    if (result) {
+        return jsxs(Fragment, { children: [jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Code: ", result.code] }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", result.message] }), result.data && jsxs("p", { style: { fontSize: '0.8em' }, children: ["Data: ", result.data] })] });
+    }
+    else {
+        const authError = (error['error'] && error['error_description']);
+        if (authError) {
+            return jsxs(Fragment, { children: [jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Error: ", error['error']] }), jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", error['error_description']] })] });
+        }
+        else {
+            return jsxs(Fragment, { children: [jsx("span", { style: { fontSize: '0.9em' }, children: title }), jsx("br", {}), jsxs("span", { style: { fontSize: '0.8em' }, children: ["Error: ", error.toString()] }), jsx("br", {})] });
+        }
+    }
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const toastError = (error, title) => {
+    return toast.error(jsx(ToastErrorPanel, { error: error, title: title }));
+};
+
+const toastPromise = (promise, textPending, textSuccess, textFailed, options) => {
+    return toast.promise(promise, {
+        pending: textPending,
+        success: textSuccess,
+        error: {
+            render({ data }) {
+                return jsx(ToastErrorPanel, { error: data, title: textFailed });
+            }
+        }
+    }, options);
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditTableFilterString = (column, onSelectFilterMode) => {
+    return [
+        jsx(MenuItem, { onClick: () => { onSelectFilterMode('contains'); column.filterFn = 'contains'; }, children: localizationCore.filters.contains }, 'stringContains'),
+        jsx(MenuItem, { onClick: () => onSelectFilterMode('equals'), children: localizationCore.filters.equals }, 'stringEquals'),
+        jsx(MenuItem, { onClick: () => onSelectFilterMode('startsWith'), children: localizationCore.filters.startsWith }, 'stringStartsWith'),
+        jsx(MenuItem, { onClick: () => onSelectFilterMode('endsWith'), children: localizationCore.filters.endsWith }, 'stringEndsWith'),
+        jsx(MenuItem, { onClick: () => onSelectFilterMode('notEquals'), children: localizationCore.filters.notEqual }, 'stringNotEquals'),
+        jsx(MenuItem, { onClick: () => onSelectFilterMode('notEmpty'), children: localizationCore.filters.notEmpty }, 'stringNotEmpty')
+    ];
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditTableFilterEnum = (column, onSelectFilterMode) => {
+    return [
+        jsx(MenuItem, { onClick: () => { onSelectFilterMode('equals'); }, children: localizationCore.filters.equals }, 'equals'),
+        jsx(MenuItem, { onClick: () => { onSelectFilterMode('notEquals'); }, children: localizationCore.filters.notEqual }, 'notEquals')
+    ];
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditTableFilterArray = (column, onSelectFilterMode) => {
+    return [
+        jsx(MenuItem, { onClick: () => { onSelectFilterMode('includeAny'); }, children: localizationCore.filters.includeAny }, 'includeAny'),
+        jsx(MenuItem, { onClick: () => { onSelectFilterMode('includeAll'); }, children: localizationCore.filters.includeAll }, 'includeAll'),
+        jsx(MenuItem, { onClick: () => { onSelectFilterMode('includeEquals'); }, children: localizationCore.filters.includeEquals }, 'includeEquals'),
+        jsx(MenuItem, { onClick: () => { onSelectFilterMode('includeNone'); }, children: localizationCore.filters.includeNone }, 'includeNone')
+    ];
+};
+
+const TableView = (props) => {
+    const { objectInfo, onGetItems, onTransformFilterRequest, onAddItem, onUpdateItem, onDuplicateItem, onDeleteItem, formCreated, formDeleted } = props;
+    const properties = objectInfo.getProperties();
+    // Получение данных
+    const [isLoading, setIsLoading] = useState(false);
+    const [isRefetching, setIsRefetching] = useState(false);
+    const [items, setItems] = useState([]);
+    const [pageInfo, setPageInfo] = useState({ pageNumber: 0, pageSize: 10, currentPageSize: 10, totalCount: 10 });
+    const [paginationModel, setPaginationModel] = useState({ pageSize: 10, pageIndex: 0 });
+    // Сортировка и фильтрация
+    const [sortingColumn, setSortingColumn] = useState([]);
+    const [columnFilters, setColumnFilters] = useState([]);
+    const [columnFiltersFns, setColumnFiltersFns] = useState();
+    const [globalFilter, setGlobalFilter] = useState('');
+    // Редактирование текущей записи
+    const [currentEditRow, setCurrentEditRow] = useState(null);
+    const [currentItem, setCurrentItem] = useState(null);
+    const [currentItemInvalid, setCurrentItemInvalid] = useState(false);
+    // Удаление
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [deleteItem, setDeleteItem] = useState(null);
+    // Создание новой записи через окно
+    const [openCreatedDialog, setOpenCreatedDialog] = useState(false);
+    const [createdItem, setCreatedItem] = useState(null);
+    const [autoCloseToastify, setAutoCloseToastify] = useState(2000);
+    // Служебные методы для получения данных текущего редактируемого объекта
+    const setSelectedValues = (accessorKey, newSelectedValues) => {
+        const newItem = { ...currentItem };
+        // @ts-ignore
+        newItem[accessorKey] = newSelectedValues;
+        setCurrentItem(newItem);
+    };
+    const setSelectedValue = (accessorKey, newSelectedValue) => {
+        const newItem = { ...currentItem };
+        // @ts-ignore
+        newItem[accessorKey] = newSelectedValue;
+        setCurrentItem(newItem);
+    };
+    // Модифицированные столбцы 
+    const editColumns = properties.map((property) => {
+        const column = MaterialReactTableHelper.convertPropertyDescriptorToColumn(property);
+        if (property.editing?.editorType === 'text') {
+            column.muiEditTextFieldProps = {
+                error: property.editing?.onValidation(currentItem).error,
+                helperText: property.editing?.onValidation(currentItem).text,
+                required: property.editing?.required,
+                variant: 'outlined',
+                size: 'small',
+                type: 'text',
+                onChange: (event) => {
+                    const newItem = { ...currentItem };
+                    newItem[column.accessorKey] = event.target.value;
+                    setCurrentItem(newItem);
+                    let isErrorValidation = false;
+                    properties.forEach((c) => {
+                        const errorValidation = c.editing?.onValidation(newItem).error;
+                        if (errorValidation) {
+                            isErrorValidation = true;
+                            setCurrentItemInvalid(true);
+                        }
+                    });
+                    if (isErrorValidation === false) {
+                        setCurrentItemInvalid(false);
+                    }
+                }
+            };
+            column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterString(column, onSelectFilterMode);
+        }
+        if (property.editing?.editorType === 'select') {
+            column.Cell = function ({ cell }) {
+                const id = cell.getValue();
+                const options = property.options;
+                const text = SelectOptionHelper.getTextByValue(options, id);
+                return (jsx(Fragment, { children: text }));
+            };
+            column.Edit = function ({ cell, column, table }) {
+                const id = cell.getValue();
+                const options = property.options;
+                return jsx(Select, { size: TControlSize.Small, width: '100%', initialSelectedValue: id, onSetSelectedValue: (selectedValue) => { setSelectedValue(property.fieldName, selectedValue); }, options: options });
+            };
+            column.muiEditTextFieldProps = {
+                error: property.editing?.onValidation(currentItem).error,
+                helperText: property.editing?.onValidation(currentItem).text,
+                required: property.editing?.required,
+                size: 'small',
+                variant: 'outlined',
+                select: true
+            };
+            column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterEnum(column, onSelectFilterMode);
+        }
+        if (property.editing?.editorType === 'multi-select') {
+            column.Cell = function ({ cell }) {
+                const massive = cell.getValue();
+                const options = property.options;
+                const texts = SelectOptionHelper.getTextsByValues(options, massive);
+                const text = texts.join(', ');
+                return (jsx(Fragment, { children: text }));
+            };
+            column.Edit = function ({ cell, column, table }) {
+                const massive = cell.getValue();
+                const options = property.options;
+                return jsx(MultiSelect, { size: TControlSize.Medium, width: '100%', initialSelectedValues: massive, onSetSelectedValues: (selectedValues) => { setSelectedValues(property.fieldName, selectedValues); }, options: options });
+            };
+            column.muiEditTextFieldProps = {
+                error: property.editing?.onValidation(currentItem).error,
+                helperText: property.editing?.onValidation(currentItem).text,
+                required: property.editing?.required,
+                size: 'small',
+                variant: 'outlined',
+                select: true
+            };
+            column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterArray(column, onSelectFilterMode);
+        }
+        if (property.viewImage) ;
+        return column;
+    });
+    //
+    // #region Получение данных
+    //
+    const getFilterQueryItems = () => {
+        const pageInfo = { pageNumber: paginationModel.pageIndex, pageSize: paginationModel.pageSize };
+        const sorting = sortingColumn.map((column) => {
+            const sort = {
+                propertyName: StringHelper.capitalizeFirstLetter(column.id),
+                isDesc: column.desc
+            };
+            return sort;
+        });
+        const filtering = MaterialReactTableHelper.convertColumnsFilterToFilterObjects(objectInfo, columnFilters, columnFiltersFns);
+        const request = { pageInfo: pageInfo, sorting: sorting, filtering: filtering };
+        if (onTransformFilterRequest) {
+            const transformRequest = onTransformFilterRequest(request);
+            return transformRequest;
+        }
+        else {
+            return request;
+        }
+    };
+    const refreshItems = (async (filter) => {
+        try {
+            if (!items.length) {
+                setIsLoading(true);
+            }
+            else {
+                setIsRefetching(true);
+            }
+            const response = await onGetItems(filter);
+            setItems(response.payload);
+            setPageInfo(response.pageInfo);
+            setIsLoading(false);
+            setIsRefetching(false);
+        }
+        catch (exc) {
+            setIsLoading(false);
+            setIsRefetching(false);
+            toastError(exc, localizationCore.actions.gettingFailed);
+        }
+    });
+    // #endregion
+    //
+    // #region Добавление данных
+    //
+    const handleAddRow = async () => {
+        if (onAddItem) {
+            const result = toastPromise(onAddItem(), localizationCore.actions.adding, localizationCore.actions.addingSucceed, localizationCore.actions.addingFailed);
+            result.then(() => {
+                refreshItems(getFilterQueryItems());
+            });
+        }
+        else {
+            setCreatedItem(null);
+            setOpenCreatedDialog(true);
+        }
+    };
+    const handleCloseCreatedDialog = () => {
+        setOpenCreatedDialog(false);
+    };
+    const handleOkCreatedDialog = async () => {
+        setOpenCreatedDialog(false);
+        await refreshItems(getFilterQueryItems());
+    };
+    // #endregion
+    //
+    // #region Редактирование данных
+    //
+    const handleEditRow = (table, row) => {
+        table.setEditingRow(row);
+        setCurrentEditRow(row);
+        setCurrentItem(row.original);
+    };
+    const handleCancelRow = (table, row) => {
+        table.setEditingRow(null);
+        setCurrentEditRow(null);
+        setCurrentItem(null);
+    };
+    // #endregion
+    //
+    // #region Обновление данных
+    //
+    const handleSaveRow = async (table, row) => {
+        const updateItem = { ...currentItem };
+        if (onUpdateItem) {
+            const result = toastPromise(onUpdateItem(updateItem), localizationCore.actions.saving, localizationCore.actions.savingSucceed, localizationCore.actions.savingFailed);
+            result.then((value) => {
+                const newItems = [...items];
+                newItems[currentEditRow.index] = value.payload;
+                setItems(newItems);
+            });
+        }
+        table.setEditingRow(null);
+        setCurrentEditRow(null);
+    };
+    // #endregion
+    //
+    // #region Удаление данных
+    //
+    const handleDeleteRow = (row) => {
+        setDeleteItem(row.original);
+        setOpenDeleteDialog(true);
+    };
+    const handleCloseDeleteDialog = () => {
+        setOpenDeleteDialog(false);
+    };
+    const handleOkDeleteDialog = async () => {
+        setOpenDeleteDialog(false);
+        if (onDeleteItem) {
+            const result = toastPromise(onDeleteItem(deleteItem.id), localizationCore.actions.deleting, localizationCore.actions.deletingSucceed, localizationCore.actions.deletingFailed);
+            result.then(() => {
+                const newItems = items.filter(x => x.id !== deleteItem.id);
+                setItems(newItems);
+            });
+        }
+        setDeleteItem(null);
+    };
+    // #endregion
+    //
+    // Фильтрация
+    // 
+    const handleColumnFilterFnsChange = (updaterOrValue) => {
+        const data = updaterOrValue;
+        setColumnFiltersFns(data);
+    };
+    //
+    // Методы оформления
+    //
+    const renderRowActions = (props) => {
+        const { table, row } = props;
+        if (currentEditRow && currentEditRow.index === row.index) {
+            return (jsxs(Box, { sx: { display: 'flex', gap: '1rem' }, children: [jsx(Tooltip, { arrow: true, placement: 'left', title: localizationCore.actions.save, children: jsx(IconButton, { size: 'large', disabled: currentItemInvalid, onClick: () => { handleSaveRow(table); }, children: jsx(Save, { color: currentItemInvalid ? 'disabled' : 'primary' }) }) }), jsx(Tooltip, { arrow: true, placement: 'left', title: localizationCore.actions.cancel, children: jsx(IconButton, { size: 'large', onClick: () => { handleCancelRow(table); }, children: jsx(Cancel, {}) }) })] }));
+        }
+        else {
+            return (jsxs(Box, { sx: { display: 'flex', gap: '1rem' }, children: [jsx(Tooltip, { arrow: true, placement: 'left', title: localizationCore.actions.edit, children: jsx(IconButton, { size: 'large', onClick: () => { handleEditRow(table, row); }, children: jsx(Edit, {}) }) }), onDuplicateItem &&
+                        jsx(Tooltip, { arrow: true, placement: 'left', title: localizationCore.actions.duplicate, children: jsx(IconButton, { size: 'large', onClick: () => { }, children: jsx(ContentCopyIcon, {}) }) }), onDeleteItem &&
+                        jsx(Tooltip, { arrow: true, placement: 'right', title: localizationCore.actions.delete, children: jsx(IconButton, { size: 'large', color: 'error', onClick: () => handleDeleteRow(row), children: jsx(Delete, {}) }) })] }));
+        }
+    };
+    const renderTopToolbarCustomActions = (props) => {
+        if (onAddItem || formCreated) {
+            return jsx(Button$1, { color: 'secondary', onClick: () => handleAddRow(), variant: 'contained', children: localizationCore.actions.add });
+        }
+        return jsx(Fragment, { children: ' ' });
+    };
+    //
+    // Методы жизненного цикла
+    //
+    useEffect(() => {
+        const filter = getFilterQueryItems();
+        refreshItems(filter);
+    }, [paginationModel.pageIndex, paginationModel.pageSize, sortingColumn, columnFilters, columnFiltersFns, globalFilter]);
+    useEffect(() => {
+        const initialColumnFiltersFns = MaterialReactTableHelper.getFilterOptions(objectInfo);
+        setColumnFiltersFns(initialColumnFiltersFns);
+    }, []);
+    const localizationFull = {
+        ...MRT_Localization_RU,
+        filterIncludeAny: localizationCore.filters.includeAny,
+        filterIncludeAll: localizationCore.filters.includeAll,
+        filterIncludeEquals: localizationCore.filters.includeEquals,
+        filterIncludeNone: localizationCore.filters.includeNone
+    };
+    return (jsxs(Fragment, { children: [jsx(MaterialReactTable, { ...props, table: undefined, columns: editColumns, data: items, editDisplayMode: 'row', manualSorting: true, manualFiltering: true, enablePagination: true, manualPagination: true, renderRowActions: props.renderRowActions ?? renderRowActions, renderTopToolbarCustomActions: props.renderTopToolbarCustomActions ?? renderTopToolbarCustomActions, rowCount: pageInfo.totalCount, onColumnFiltersChange: setColumnFilters, onColumnFilterFnsChange: handleColumnFilterFnsChange, onGlobalFilterChange: setGlobalFilter, filterFns: {
+                    includeAny: (row, id, filterValue) => {
+                        return true;
+                    },
+                    includeAll: (row, id, filterValue) => {
+                        return true;
+                    },
+                    includeEquals: (row, id, filterValue) => {
+                        return true;
+                    },
+                    includeNone: (row, id, filterValue) => {
+                        return true;
+                    }
+                }, onSortingChange: setSortingColumn, onPaginationChange: setPaginationModel, state: {
+                    isLoading: isLoading,
+                    showProgressBars: isRefetching,
+                    showSkeletons: false,
+                    pagination: paginationModel,
+                    columnFilters: columnFilters,
+                    columnFilterFns: columnFiltersFns,
+                    globalFilter: globalFilter,
+                    sorting: sortingColumn
+                }, localization: localizationFull }), jsx(ToastWrapper, { autoClose: autoCloseToastify }), jsxs(Dialog$1, { open: openDeleteDialog, onClose: handleCloseDeleteDialog, children: [jsx(DialogTitle, { children: localizationCore.actions.delete }), jsxs(DialogContent, { children: [localizationCore.actions.deleteObject, jsx("br", {}), jsx("div", { children: deleteItem &&
+                                    properties.map((p, index) => {
+                                        const value = deleteItem[p.fieldName];
+                                        const name = p.name;
+                                        return jsxs("div", { style: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '8px' }, children: [jsx("span", { style: { margin: '4px' }, children: name }), jsx("span", { style: { margin: '4px' }, children: jsx("b", { children: value }) })] }, index);
+                                    }) })] }), jsxs(DialogActions, { children: [jsx(Button$1, { variant: 'outlined', onClick: handleCloseDeleteDialog, children: localizationCore.actions.cancel }), jsx(Button$1, { variant: 'outlined', color: 'primary', onClick: handleOkDeleteDialog, autoFocus: true, children: localizationCore.actions.confirm })] })] }, 'dialog-delete'), formCreated && formCreated({
+                open: openCreatedDialog,
+                onClose: handleCloseCreatedDialog,
+                onCreate: handleOkCreatedDialog,
+                onCreatedItem: setCreatedItem
+            })] }));
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditActionRow = (props) => {
+    const { table, row } = props;
+    return (jsx(Tooltip, { arrow: true, placement: 'left', title: localizationCore.actions.edit, children: jsx(IconButton, { size: 'large', onClick: () => { props.onEditRow(table, row); }, children: jsx(Edit, {}) }) }));
+};
+
+const Dialog = forwardRef(function Dialog({ label, footer, children }, ref) {
+    const dialogRef = useRef(null);
+    useImperativeHandle(ref, () => {
+        return {
+            get isOpen() {
+                return dialogRef?.current?.open;
+            },
+            get getReturnValue() {
+                return dialogRef?.current?.returnValue;
+            },
+            show() {
+                dialogRef?.current?.show();
+            },
+            showModal() {
+                dialogRef?.current?.showModal();
+            },
+            close(returnValue) {
+                dialogRef?.current?.close(returnValue);
+            }
+        };
+    }, []);
+    const handleButtonCloseClick = () => {
+        dialogRef?.current?.close();
+    };
+    const dialogClass = cx('lotus-dialog');
+    return (jsx("dialog", { ref: dialogRef, className: dialogClass, children: jsxs("div", { className: 'lotus-dialog-main', children: [jsxs("div", { className: 'lotus-dialog-header', children: [label && (jsx("div", { className: 'lotus-dialog-header-text', children: label })), jsx("button", { onClick: handleButtonCloseClick, className: 'lotus-dialog-header-button', children: " \u2715 " })] }), jsx("div", { className: 'lotus-dialog-body', children: children }), jsxs("div", { className: 'lotus-dialog-footer', children: [footer, jsx(Button, { value: '\u041E\u043A', variant: TButtonVariant.Outline, children: "\u041E\u043A" }), jsx(Button, { onClick: handleButtonCloseClick, value: 'Cancel', variant: TButtonVariant.Outline, children: "Cancel" })] })] }) }));
+});
+
+const AppMainLayout = ({ page }) => {
+    const layoutState = useLayoutState();
+    if (layoutState.screenType != TScreenType.Landscape) {
+        return (jsxs(Fragment, { children: [jsx(AppHeader, {}), jsx(AppLeftPanel, {}), page, jsx(AppFooter, {})] }));
+    }
+    else {
+        return (jsxs(HorizontalStack, { children: [jsx(AppLeftPanel, {}), page] }));
+    }
+};
+
 class ReduxToolkitHelper {
     static getErrorText(value) {
         const newChar = '\n';
@@ -2236,4 +2589,4 @@ const SelectFilterFunction = (props) => {
     return jsx(Select$1, { value: selectedValue, renderValue: (selected) => { return FilterFunctionHelper.getDescByName(selected).desc; }, children: groupFilterFunctions.map((option) => (jsx(MenuItem, { value: option.name, onClick: () => { handleSelectFilterFunction(option); }, children: (option.desc) }, option.id))) });
 };
 
-export { AppFooter, AppHeader, AppLeftPanel, AppMainLayout, Button, ButtonHelper, Chip, ChipHelper, CssTypesHelper, Dialog, Grid, HorizontalStack, InputField, InputFieldHelper, Label, LayoutHelper, MaterialReactTableHelper, MultiSelect, ReduxToolkitHelper, Select, SelectFilterFunction, SelectHelper, TBreakpoint, TButtonVariant, TChipVariant, TColorType, TControlPadding, TControlSize, TControlState, TPlacementDensity, TScreenType, TTypographyVariant, ThemeConstants, ThemeHelper, ThemeProvider, ToastErrorPanel, ToastWrapper, Typography, TypographyHelper, VerticalStack, ViewSettingsConstants, addCommandLeftPanelLayoutAction, collapseFooterLayoutAction, feedbackSlice, hideAlertFeedbackAction, makeStoreCore, openLeftPanelLayoutAction, removeCommandLeftPanelLayoutAction, setCommandsLeftPanelLayoutAction, showAlertFeedbackAction, showFooterLayoutAction, showFooterUserLayoutAction, showHeaderLayoutAction, showHeaderUserLayoutAction, showLeftPanelLayoutAction, storeCore, toastError, toastPromise, useActualGraphicsSize, useAppDispatchCore, useAppSelectorCore, useFeedbackState, useForm, useInterval, useLayoutState, useMediaQuery, useScreenResizeOrOrientation, useScreenTypeChanged, useThemeSelector };
+export { AppFooter, AppHeader, AppLeftPanel, AppMainLayout, Button, ButtonHelper, Chip, ChipHelper, CssTypesHelper, Dialog, EditActionRow, EditTableFilterArray, EditTableFilterEnum, EditTableFilterString, Grid, HorizontalStack, InputField, InputFieldHelper, Label, LayoutHelper, MaterialReactTableHelper, MultiSelect, ReduxToolkitHelper, Select, SelectFilterFunction, SelectHelper, TBreakpoint, TButtonVariant, TChipVariant, TColorType, TControlPadding, TControlSize, TControlState, TPlacementDensity, TScreenType, TTypographyVariant, TableView, ThemeConstants, ThemeHelper, ThemeProvider, ToastErrorPanel, ToastWrapper, Typography, TypographyHelper, VerticalStack, ViewSettingsConstants, addCommandLeftPanelLayoutAction, collapseFooterLayoutAction, feedbackSlice, hideAlertFeedbackAction, makeStoreCore, openLeftPanelLayoutAction, removeCommandLeftPanelLayoutAction, setCommandsLeftPanelLayoutAction, showAlertFeedbackAction, showFooterLayoutAction, showFooterUserLayoutAction, showHeaderLayoutAction, showHeaderUserLayoutAction, showLeftPanelLayoutAction, storeCore, toastError, toastPromise, useActualGraphicsSize, useAppDispatchCore, useAppSelectorCore, useFeedbackState, useForm, useInterval, useLayoutState, useMediaQuery, useScreenResizeOrOrientation, useScreenTypeChanged, useThemeSelector };

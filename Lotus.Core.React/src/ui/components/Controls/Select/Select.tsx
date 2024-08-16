@@ -140,6 +140,7 @@ export const Select = <TValueOption extends TKey = TKey>(
     }),
     valueContainer: (base) => ({
       ...base,
+      zIndex: 200,
       paddingTop: 0,
       paddingBottom: 0
     }),

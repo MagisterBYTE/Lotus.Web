@@ -9,9 +9,13 @@ var css = require('@emotion/css');
 var useRipple = require('use-ripple-hook');
 var ReactSelect = require('react-select');
 var reactIcons = require('react-icons');
+var iconsMaterial = require('@mui/icons-material');
+var ContentCopyIcon = require('@mui/icons-material/ContentCopy');
+var material = require('@mui/material');
+var materialReactTable = require('material-react-table');
+var ru = require('material-react-table/locales/ru');
 var reactToastify = require('react-toastify');
 require('react-toastify/dist/ReactToastify.css');
-var material = require('@mui/material');
 
 function _interopNamespaceDefault(e) {
     var n = Object.create(null);
@@ -1965,81 +1969,6 @@ const Select = ({ color = exports.TColorType.Primary, size = exports.TControlSiz
     }
 };
 
-const Dialog = React.forwardRef(function Dialog({ label, footer, children }, ref) {
-    const dialogRef = React.useRef(null);
-    React.useImperativeHandle(ref, () => {
-        return {
-            get isOpen() {
-                return dialogRef?.current?.open;
-            },
-            get getReturnValue() {
-                return dialogRef?.current?.returnValue;
-            },
-            show() {
-                dialogRef?.current?.show();
-            },
-            showModal() {
-                dialogRef?.current?.showModal();
-            },
-            close(returnValue) {
-                dialogRef?.current?.close(returnValue);
-            }
-        };
-    }, []);
-    const handleButtonCloseClick = () => {
-        dialogRef?.current?.close();
-    };
-    const dialogClass = css.cx('lotus-dialog');
-    return (jsxRuntime.jsx("dialog", { ref: dialogRef, className: dialogClass, children: jsxRuntime.jsxs("div", { className: 'lotus-dialog-main', children: [jsxRuntime.jsxs("div", { className: 'lotus-dialog-header', children: [label && (jsxRuntime.jsx("div", { className: 'lotus-dialog-header-text', children: label })), jsxRuntime.jsx("button", { onClick: handleButtonCloseClick, className: 'lotus-dialog-header-button', children: " \u2715 " })] }), jsxRuntime.jsx("div", { className: 'lotus-dialog-body', children: children }), jsxRuntime.jsxs("div", { className: 'lotus-dialog-footer', children: [footer, jsxRuntime.jsx(Button, { value: '\u041E\u043A', variant: exports.TButtonVariant.Outline, children: "\u041E\u043A" }), jsxRuntime.jsx(Button, { onClick: handleButtonCloseClick, value: 'Cancel', variant: exports.TButtonVariant.Outline, children: "Cancel" })] })] }) }));
-});
-
-const ToastWrapper = (props) => {
-    return jsxRuntime.jsx(reactToastify.ToastContainer, { ...props });
-};
-
-const ToastErrorPanel = ({ title, error }) => {
-    const result = lotusCore.instanceOfResult(error);
-    if (result) {
-        return jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Code: ", result.code] }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", result.message] }), result.data && jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Data: ", result.data] })] });
-    }
-    else {
-        const authError = (error['error'] && error['error_description']);
-        if (authError) {
-            return jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Error: ", error['error']] }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", error['error_description']] })] });
-        }
-        else {
-            return jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", { style: { fontSize: '0.9em' }, children: title }), jsxRuntime.jsx("br", {}), jsxRuntime.jsxs("span", { style: { fontSize: '0.8em' }, children: ["Error: ", error.toString()] }), jsxRuntime.jsx("br", {})] });
-        }
-    }
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const toastError = (error, title) => {
-    return reactToastify.toast.error(jsxRuntime.jsx(ToastErrorPanel, { error: error, title: title }));
-};
-
-const toastPromise = (promise, textPending, textSuccess, textFailed, options) => {
-    return reactToastify.toast.promise(promise, {
-        pending: textPending,
-        success: textSuccess,
-        error: {
-            render({ data }) {
-                return jsxRuntime.jsx(ToastErrorPanel, { error: data, title: textFailed });
-            }
-        }
-    }, options);
-};
-
-const AppMainLayout = ({ page }) => {
-    const layoutState = useLayoutState();
-    if (layoutState.screenType != exports.TScreenType.Landscape) {
-        return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx(AppHeader, {}), jsxRuntime.jsx(AppLeftPanel, {}), page, jsxRuntime.jsx(AppFooter, {})] }));
-    }
-    else {
-        return (jsxRuntime.jsxs(HorizontalStack, { children: [jsxRuntime.jsx(AppLeftPanel, {}), page] }));
-    }
-};
-
 class MaterialReactTableHelper {
     static getDefaultFilterFunction(property) {
         switch (property.propertyType) {
@@ -2161,6 +2090,430 @@ class MaterialReactTableHelper {
     }
 }
 
+const ToastWrapper = (props) => {
+    return jsxRuntime.jsx(reactToastify.ToastContainer, { ...props });
+};
+
+const ToastErrorPanel = ({ title, error }) => {
+    const result = lotusCore.instanceOfResult(error);
+    if (result) {
+        return jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Code: ", result.code] }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", result.message] }), result.data && jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Data: ", result.data] })] });
+    }
+    else {
+        const authError = (error['error'] && error['error_description']);
+        if (authError) {
+            return jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("p", { style: { fontSize: '0.9em' }, children: title }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Error: ", error['error']] }), jsxRuntime.jsxs("p", { style: { fontSize: '0.8em' }, children: ["Message: ", error['error_description']] })] });
+        }
+        else {
+            return jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx("span", { style: { fontSize: '0.9em' }, children: title }), jsxRuntime.jsx("br", {}), jsxRuntime.jsxs("span", { style: { fontSize: '0.8em' }, children: ["Error: ", error.toString()] }), jsxRuntime.jsx("br", {})] });
+        }
+    }
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const toastError = (error, title) => {
+    return reactToastify.toast.error(jsxRuntime.jsx(ToastErrorPanel, { error: error, title: title }));
+};
+
+const toastPromise = (promise, textPending, textSuccess, textFailed, options) => {
+    return reactToastify.toast.promise(promise, {
+        pending: textPending,
+        success: textSuccess,
+        error: {
+            render({ data }) {
+                return jsxRuntime.jsx(ToastErrorPanel, { error: data, title: textFailed });
+            }
+        }
+    }, options);
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditTableFilterString = (column, onSelectFilterMode) => {
+    return [
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => { onSelectFilterMode('contains'); column.filterFn = 'contains'; }, children: lotusCore.localizationCore.filters.contains }, 'stringContains'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => onSelectFilterMode('equals'), children: lotusCore.localizationCore.filters.equals }, 'stringEquals'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => onSelectFilterMode('startsWith'), children: lotusCore.localizationCore.filters.startsWith }, 'stringStartsWith'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => onSelectFilterMode('endsWith'), children: lotusCore.localizationCore.filters.endsWith }, 'stringEndsWith'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => onSelectFilterMode('notEquals'), children: lotusCore.localizationCore.filters.notEqual }, 'stringNotEquals'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => onSelectFilterMode('notEmpty'), children: lotusCore.localizationCore.filters.notEmpty }, 'stringNotEmpty')
+    ];
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditTableFilterEnum = (column, onSelectFilterMode) => {
+    return [
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => { onSelectFilterMode('equals'); }, children: lotusCore.localizationCore.filters.equals }, 'equals'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => { onSelectFilterMode('notEquals'); }, children: lotusCore.localizationCore.filters.notEqual }, 'notEquals')
+    ];
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditTableFilterArray = (column, onSelectFilterMode) => {
+    return [
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => { onSelectFilterMode('includeAny'); }, children: lotusCore.localizationCore.filters.includeAny }, 'includeAny'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => { onSelectFilterMode('includeAll'); }, children: lotusCore.localizationCore.filters.includeAll }, 'includeAll'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => { onSelectFilterMode('includeEquals'); }, children: lotusCore.localizationCore.filters.includeEquals }, 'includeEquals'),
+        jsxRuntime.jsx(material.MenuItem, { onClick: () => { onSelectFilterMode('includeNone'); }, children: lotusCore.localizationCore.filters.includeNone }, 'includeNone')
+    ];
+};
+
+const TableView = (props) => {
+    const { objectInfo, onGetItems, onTransformFilterRequest, onAddItem, onUpdateItem, onDuplicateItem, onDeleteItem, formCreated, formDeleted } = props;
+    const properties = objectInfo.getProperties();
+    // Получение данных
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [isRefetching, setIsRefetching] = React.useState(false);
+    const [items, setItems] = React.useState([]);
+    const [pageInfo, setPageInfo] = React.useState({ pageNumber: 0, pageSize: 10, currentPageSize: 10, totalCount: 10 });
+    const [paginationModel, setPaginationModel] = React.useState({ pageSize: 10, pageIndex: 0 });
+    // Сортировка и фильтрация
+    const [sortingColumn, setSortingColumn] = React.useState([]);
+    const [columnFilters, setColumnFilters] = React.useState([]);
+    const [columnFiltersFns, setColumnFiltersFns] = React.useState();
+    const [globalFilter, setGlobalFilter] = React.useState('');
+    // Редактирование текущей записи
+    const [currentEditRow, setCurrentEditRow] = React.useState(null);
+    const [currentItem, setCurrentItem] = React.useState(null);
+    const [currentItemInvalid, setCurrentItemInvalid] = React.useState(false);
+    // Удаление
+    const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
+    const [deleteItem, setDeleteItem] = React.useState(null);
+    // Создание новой записи через окно
+    const [openCreatedDialog, setOpenCreatedDialog] = React.useState(false);
+    const [createdItem, setCreatedItem] = React.useState(null);
+    const [autoCloseToastify, setAutoCloseToastify] = React.useState(2000);
+    // Служебные методы для получения данных текущего редактируемого объекта
+    const setSelectedValues = (accessorKey, newSelectedValues) => {
+        const newItem = { ...currentItem };
+        // @ts-ignore
+        newItem[accessorKey] = newSelectedValues;
+        setCurrentItem(newItem);
+    };
+    const setSelectedValue = (accessorKey, newSelectedValue) => {
+        const newItem = { ...currentItem };
+        // @ts-ignore
+        newItem[accessorKey] = newSelectedValue;
+        setCurrentItem(newItem);
+    };
+    // Модифицированные столбцы 
+    const editColumns = properties.map((property) => {
+        const column = MaterialReactTableHelper.convertPropertyDescriptorToColumn(property);
+        if (property.editing?.editorType === 'text') {
+            column.muiEditTextFieldProps = {
+                error: property.editing?.onValidation(currentItem).error,
+                helperText: property.editing?.onValidation(currentItem).text,
+                required: property.editing?.required,
+                variant: 'outlined',
+                size: 'small',
+                type: 'text',
+                onChange: (event) => {
+                    const newItem = { ...currentItem };
+                    newItem[column.accessorKey] = event.target.value;
+                    setCurrentItem(newItem);
+                    let isErrorValidation = false;
+                    properties.forEach((c) => {
+                        const errorValidation = c.editing?.onValidation(newItem).error;
+                        if (errorValidation) {
+                            isErrorValidation = true;
+                            setCurrentItemInvalid(true);
+                        }
+                    });
+                    if (isErrorValidation === false) {
+                        setCurrentItemInvalid(false);
+                    }
+                }
+            };
+            column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterString(column, onSelectFilterMode);
+        }
+        if (property.editing?.editorType === 'select') {
+            column.Cell = function ({ cell }) {
+                const id = cell.getValue();
+                const options = property.options;
+                const text = lotusCore.SelectOptionHelper.getTextByValue(options, id);
+                return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: text }));
+            };
+            column.Edit = function ({ cell, column, table }) {
+                const id = cell.getValue();
+                const options = property.options;
+                return jsxRuntime.jsx(Select, { size: exports.TControlSize.Small, width: '100%', initialSelectedValue: id, onSetSelectedValue: (selectedValue) => { setSelectedValue(property.fieldName, selectedValue); }, options: options });
+            };
+            column.muiEditTextFieldProps = {
+                error: property.editing?.onValidation(currentItem).error,
+                helperText: property.editing?.onValidation(currentItem).text,
+                required: property.editing?.required,
+                size: 'small',
+                variant: 'outlined',
+                select: true
+            };
+            column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterEnum(column, onSelectFilterMode);
+        }
+        if (property.editing?.editorType === 'multi-select') {
+            column.Cell = function ({ cell }) {
+                const massive = cell.getValue();
+                const options = property.options;
+                const texts = lotusCore.SelectOptionHelper.getTextsByValues(options, massive);
+                const text = texts.join(', ');
+                return (jsxRuntime.jsx(jsxRuntime.Fragment, { children: text }));
+            };
+            column.Edit = function ({ cell, column, table }) {
+                const massive = cell.getValue();
+                const options = property.options;
+                return jsxRuntime.jsx(MultiSelect, { size: exports.TControlSize.Medium, width: '100%', initialSelectedValues: massive, onSetSelectedValues: (selectedValues) => { setSelectedValues(property.fieldName, selectedValues); }, options: options });
+            };
+            column.muiEditTextFieldProps = {
+                error: property.editing?.onValidation(currentItem).error,
+                helperText: property.editing?.onValidation(currentItem).text,
+                required: property.editing?.required,
+                size: 'small',
+                variant: 'outlined',
+                select: true
+            };
+            column.renderColumnFilterModeMenuItems = ({ column, onSelectFilterMode }) => EditTableFilterArray(column, onSelectFilterMode);
+        }
+        if (property.viewImage) ;
+        return column;
+    });
+    //
+    // #region Получение данных
+    //
+    const getFilterQueryItems = () => {
+        const pageInfo = { pageNumber: paginationModel.pageIndex, pageSize: paginationModel.pageSize };
+        const sorting = sortingColumn.map((column) => {
+            const sort = {
+                propertyName: lotusCore.StringHelper.capitalizeFirstLetter(column.id),
+                isDesc: column.desc
+            };
+            return sort;
+        });
+        const filtering = MaterialReactTableHelper.convertColumnsFilterToFilterObjects(objectInfo, columnFilters, columnFiltersFns);
+        const request = { pageInfo: pageInfo, sorting: sorting, filtering: filtering };
+        if (onTransformFilterRequest) {
+            const transformRequest = onTransformFilterRequest(request);
+            return transformRequest;
+        }
+        else {
+            return request;
+        }
+    };
+    const refreshItems = (async (filter) => {
+        try {
+            if (!items.length) {
+                setIsLoading(true);
+            }
+            else {
+                setIsRefetching(true);
+            }
+            const response = await onGetItems(filter);
+            setItems(response.payload);
+            setPageInfo(response.pageInfo);
+            setIsLoading(false);
+            setIsRefetching(false);
+        }
+        catch (exc) {
+            setIsLoading(false);
+            setIsRefetching(false);
+            toastError(exc, lotusCore.localizationCore.actions.gettingFailed);
+        }
+    });
+    // #endregion
+    //
+    // #region Добавление данных
+    //
+    const handleAddRow = async () => {
+        if (onAddItem) {
+            const result = toastPromise(onAddItem(), lotusCore.localizationCore.actions.adding, lotusCore.localizationCore.actions.addingSucceed, lotusCore.localizationCore.actions.addingFailed);
+            result.then(() => {
+                refreshItems(getFilterQueryItems());
+            });
+        }
+        else {
+            setCreatedItem(null);
+            setOpenCreatedDialog(true);
+        }
+    };
+    const handleCloseCreatedDialog = () => {
+        setOpenCreatedDialog(false);
+    };
+    const handleOkCreatedDialog = async () => {
+        setOpenCreatedDialog(false);
+        await refreshItems(getFilterQueryItems());
+    };
+    // #endregion
+    //
+    // #region Редактирование данных
+    //
+    const handleEditRow = (table, row) => {
+        table.setEditingRow(row);
+        setCurrentEditRow(row);
+        setCurrentItem(row.original);
+    };
+    const handleCancelRow = (table, row) => {
+        table.setEditingRow(null);
+        setCurrentEditRow(null);
+        setCurrentItem(null);
+    };
+    // #endregion
+    //
+    // #region Обновление данных
+    //
+    const handleSaveRow = async (table, row) => {
+        const updateItem = { ...currentItem };
+        if (onUpdateItem) {
+            const result = toastPromise(onUpdateItem(updateItem), lotusCore.localizationCore.actions.saving, lotusCore.localizationCore.actions.savingSucceed, lotusCore.localizationCore.actions.savingFailed);
+            result.then((value) => {
+                const newItems = [...items];
+                newItems[currentEditRow.index] = value.payload;
+                setItems(newItems);
+            });
+        }
+        table.setEditingRow(null);
+        setCurrentEditRow(null);
+    };
+    // #endregion
+    //
+    // #region Удаление данных
+    //
+    const handleDeleteRow = (row) => {
+        setDeleteItem(row.original);
+        setOpenDeleteDialog(true);
+    };
+    const handleCloseDeleteDialog = () => {
+        setOpenDeleteDialog(false);
+    };
+    const handleOkDeleteDialog = async () => {
+        setOpenDeleteDialog(false);
+        if (onDeleteItem) {
+            const result = toastPromise(onDeleteItem(deleteItem.id), lotusCore.localizationCore.actions.deleting, lotusCore.localizationCore.actions.deletingSucceed, lotusCore.localizationCore.actions.deletingFailed);
+            result.then(() => {
+                const newItems = items.filter(x => x.id !== deleteItem.id);
+                setItems(newItems);
+            });
+        }
+        setDeleteItem(null);
+    };
+    // #endregion
+    //
+    // Фильтрация
+    // 
+    const handleColumnFilterFnsChange = (updaterOrValue) => {
+        const data = updaterOrValue;
+        setColumnFiltersFns(data);
+    };
+    //
+    // Методы оформления
+    //
+    const renderRowActions = (props) => {
+        const { table, row } = props;
+        if (currentEditRow && currentEditRow.index === row.index) {
+            return (jsxRuntime.jsxs(material.Box, { sx: { display: 'flex', gap: '1rem' }, children: [jsxRuntime.jsx(material.Tooltip, { arrow: true, placement: 'left', title: lotusCore.localizationCore.actions.save, children: jsxRuntime.jsx(material.IconButton, { size: 'large', disabled: currentItemInvalid, onClick: () => { handleSaveRow(table); }, children: jsxRuntime.jsx(iconsMaterial.Save, { color: currentItemInvalid ? 'disabled' : 'primary' }) }) }), jsxRuntime.jsx(material.Tooltip, { arrow: true, placement: 'left', title: lotusCore.localizationCore.actions.cancel, children: jsxRuntime.jsx(material.IconButton, { size: 'large', onClick: () => { handleCancelRow(table); }, children: jsxRuntime.jsx(iconsMaterial.Cancel, {}) }) })] }));
+        }
+        else {
+            return (jsxRuntime.jsxs(material.Box, { sx: { display: 'flex', gap: '1rem' }, children: [jsxRuntime.jsx(material.Tooltip, { arrow: true, placement: 'left', title: lotusCore.localizationCore.actions.edit, children: jsxRuntime.jsx(material.IconButton, { size: 'large', onClick: () => { handleEditRow(table, row); }, children: jsxRuntime.jsx(iconsMaterial.Edit, {}) }) }), onDuplicateItem &&
+                        jsxRuntime.jsx(material.Tooltip, { arrow: true, placement: 'left', title: lotusCore.localizationCore.actions.duplicate, children: jsxRuntime.jsx(material.IconButton, { size: 'large', onClick: () => { }, children: jsxRuntime.jsx(ContentCopyIcon, {}) }) }), onDeleteItem &&
+                        jsxRuntime.jsx(material.Tooltip, { arrow: true, placement: 'right', title: lotusCore.localizationCore.actions.delete, children: jsxRuntime.jsx(material.IconButton, { size: 'large', color: 'error', onClick: () => handleDeleteRow(row), children: jsxRuntime.jsx(iconsMaterial.Delete, {}) }) })] }));
+        }
+    };
+    const renderTopToolbarCustomActions = (props) => {
+        if (onAddItem || formCreated) {
+            return jsxRuntime.jsx(material.Button, { color: 'secondary', onClick: () => handleAddRow(), variant: 'contained', children: lotusCore.localizationCore.actions.add });
+        }
+        return jsxRuntime.jsx(jsxRuntime.Fragment, { children: ' ' });
+    };
+    //
+    // Методы жизненного цикла
+    //
+    React.useEffect(() => {
+        const filter = getFilterQueryItems();
+        refreshItems(filter);
+    }, [paginationModel.pageIndex, paginationModel.pageSize, sortingColumn, columnFilters, columnFiltersFns, globalFilter]);
+    React.useEffect(() => {
+        const initialColumnFiltersFns = MaterialReactTableHelper.getFilterOptions(objectInfo);
+        setColumnFiltersFns(initialColumnFiltersFns);
+    }, []);
+    const localizationFull = {
+        ...ru.MRT_Localization_RU,
+        filterIncludeAny: lotusCore.localizationCore.filters.includeAny,
+        filterIncludeAll: lotusCore.localizationCore.filters.includeAll,
+        filterIncludeEquals: lotusCore.localizationCore.filters.includeEquals,
+        filterIncludeNone: lotusCore.localizationCore.filters.includeNone
+    };
+    return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx(materialReactTable.MaterialReactTable, { ...props, table: undefined, columns: editColumns, data: items, editDisplayMode: 'row', manualSorting: true, manualFiltering: true, enablePagination: true, manualPagination: true, renderRowActions: props.renderRowActions ?? renderRowActions, renderTopToolbarCustomActions: props.renderTopToolbarCustomActions ?? renderTopToolbarCustomActions, rowCount: pageInfo.totalCount, onColumnFiltersChange: setColumnFilters, onColumnFilterFnsChange: handleColumnFilterFnsChange, onGlobalFilterChange: setGlobalFilter, filterFns: {
+                    includeAny: (row, id, filterValue) => {
+                        return true;
+                    },
+                    includeAll: (row, id, filterValue) => {
+                        return true;
+                    },
+                    includeEquals: (row, id, filterValue) => {
+                        return true;
+                    },
+                    includeNone: (row, id, filterValue) => {
+                        return true;
+                    }
+                }, onSortingChange: setSortingColumn, onPaginationChange: setPaginationModel, state: {
+                    isLoading: isLoading,
+                    showProgressBars: isRefetching,
+                    showSkeletons: false,
+                    pagination: paginationModel,
+                    columnFilters: columnFilters,
+                    columnFilterFns: columnFiltersFns,
+                    globalFilter: globalFilter,
+                    sorting: sortingColumn
+                }, localization: localizationFull }), jsxRuntime.jsx(ToastWrapper, { autoClose: autoCloseToastify }), jsxRuntime.jsxs(material.Dialog, { open: openDeleteDialog, onClose: handleCloseDeleteDialog, children: [jsxRuntime.jsx(material.DialogTitle, { children: lotusCore.localizationCore.actions.delete }), jsxRuntime.jsxs(material.DialogContent, { children: [lotusCore.localizationCore.actions.deleteObject, jsxRuntime.jsx("br", {}), jsxRuntime.jsx("div", { children: deleteItem &&
+                                    properties.map((p, index) => {
+                                        const value = deleteItem[p.fieldName];
+                                        const name = p.name;
+                                        return jsxRuntime.jsxs("div", { style: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between', margin: '8px' }, children: [jsxRuntime.jsx("span", { style: { margin: '4px' }, children: name }), jsxRuntime.jsx("span", { style: { margin: '4px' }, children: jsxRuntime.jsx("b", { children: value }) })] }, index);
+                                    }) })] }), jsxRuntime.jsxs(material.DialogActions, { children: [jsxRuntime.jsx(material.Button, { variant: 'outlined', onClick: handleCloseDeleteDialog, children: lotusCore.localizationCore.actions.cancel }), jsxRuntime.jsx(material.Button, { variant: 'outlined', color: 'primary', onClick: handleOkDeleteDialog, autoFocus: true, children: lotusCore.localizationCore.actions.confirm })] })] }, 'dialog-delete'), formCreated && formCreated({
+                open: openCreatedDialog,
+                onClose: handleCloseCreatedDialog,
+                onCreate: handleOkCreatedDialog,
+                onCreatedItem: setCreatedItem
+            })] }));
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const EditActionRow = (props) => {
+    const { table, row } = props;
+    return (jsxRuntime.jsx(material.Tooltip, { arrow: true, placement: 'left', title: lotusCore.localizationCore.actions.edit, children: jsxRuntime.jsx(material.IconButton, { size: 'large', onClick: () => { props.onEditRow(table, row); }, children: jsxRuntime.jsx(iconsMaterial.Edit, {}) }) }));
+};
+
+const Dialog = React.forwardRef(function Dialog({ label, footer, children }, ref) {
+    const dialogRef = React.useRef(null);
+    React.useImperativeHandle(ref, () => {
+        return {
+            get isOpen() {
+                return dialogRef?.current?.open;
+            },
+            get getReturnValue() {
+                return dialogRef?.current?.returnValue;
+            },
+            show() {
+                dialogRef?.current?.show();
+            },
+            showModal() {
+                dialogRef?.current?.showModal();
+            },
+            close(returnValue) {
+                dialogRef?.current?.close(returnValue);
+            }
+        };
+    }, []);
+    const handleButtonCloseClick = () => {
+        dialogRef?.current?.close();
+    };
+    const dialogClass = css.cx('lotus-dialog');
+    return (jsxRuntime.jsx("dialog", { ref: dialogRef, className: dialogClass, children: jsxRuntime.jsxs("div", { className: 'lotus-dialog-main', children: [jsxRuntime.jsxs("div", { className: 'lotus-dialog-header', children: [label && (jsxRuntime.jsx("div", { className: 'lotus-dialog-header-text', children: label })), jsxRuntime.jsx("button", { onClick: handleButtonCloseClick, className: 'lotus-dialog-header-button', children: " \u2715 " })] }), jsxRuntime.jsx("div", { className: 'lotus-dialog-body', children: children }), jsxRuntime.jsxs("div", { className: 'lotus-dialog-footer', children: [footer, jsxRuntime.jsx(Button, { value: '\u041E\u043A', variant: exports.TButtonVariant.Outline, children: "\u041E\u043A" }), jsxRuntime.jsx(Button, { onClick: handleButtonCloseClick, value: 'Cancel', variant: exports.TButtonVariant.Outline, children: "Cancel" })] })] }) }));
+});
+
+const AppMainLayout = ({ page }) => {
+    const layoutState = useLayoutState();
+    if (layoutState.screenType != exports.TScreenType.Landscape) {
+        return (jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [jsxRuntime.jsx(AppHeader, {}), jsxRuntime.jsx(AppLeftPanel, {}), page, jsxRuntime.jsx(AppFooter, {})] }));
+    }
+    else {
+        return (jsxRuntime.jsxs(HorizontalStack, { children: [jsxRuntime.jsx(AppLeftPanel, {}), page] }));
+    }
+};
+
 class ReduxToolkitHelper {
     static getErrorText(value) {
         const newChar = '\n';
@@ -2266,6 +2619,10 @@ exports.Chip = Chip;
 exports.ChipHelper = ChipHelper;
 exports.CssTypesHelper = CssTypesHelper;
 exports.Dialog = Dialog;
+exports.EditActionRow = EditActionRow;
+exports.EditTableFilterArray = EditTableFilterArray;
+exports.EditTableFilterEnum = EditTableFilterEnum;
+exports.EditTableFilterString = EditTableFilterString;
 exports.Grid = Grid;
 exports.HorizontalStack = HorizontalStack;
 exports.InputField = InputField;
@@ -2278,6 +2635,7 @@ exports.ReduxToolkitHelper = ReduxToolkitHelper;
 exports.Select = Select;
 exports.SelectFilterFunction = SelectFilterFunction;
 exports.SelectHelper = SelectHelper;
+exports.TableView = TableView;
 exports.ThemeConstants = ThemeConstants;
 exports.ThemeHelper = ThemeHelper;
 exports.ThemeProvider = ThemeProvider;
