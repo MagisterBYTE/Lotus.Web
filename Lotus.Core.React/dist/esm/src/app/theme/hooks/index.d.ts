@@ -1,0 +1,1 @@
+export { useThemeSelector } from './useThemeSelector';

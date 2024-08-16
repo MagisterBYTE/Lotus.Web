@@ -14,11 +14,11 @@ export default
     output: [
       {
         file: packageJson.main,
-        format: 'cjs',
+        format: 'cjs'
       },
       {
         file: packageJson.module,
-        format: 'esm',
+        format: 'esm'
       }
     ],
 

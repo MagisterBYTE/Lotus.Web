@@ -425,5 +425,5 @@ yarn-error.log*
 Docs/html/
 
 *storybook.log
-Lotus.Core.React/dist/
+Lotus.Core/coverage/
 Lotus.Core.React/coverage/
