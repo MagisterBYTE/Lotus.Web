@@ -1865,6 +1865,7 @@ const Select = ({ color = exports.TColorType.Primary, size = exports.TControlSiz
         }),
         valueContainer: (base) => ({
             ...base,
+            zIndex: 200,
             paddingTop: 0,
             paddingBottom: 0
         }),
@@ -2233,7 +2234,7 @@ const TableView = (props) => {
             column.Edit = function ({ cell, column, table }) {
                 const id = cell.getValue();
                 const options = property.options;
-                return jsxRuntime.jsx(Select, { size: exports.TControlSize.Small, width: '100%', initialSelectedValue: id, onSetSelectedValue: (selectedValue) => { setSelectedValue(property.fieldName, selectedValue); }, options: options });
+                return jsxRuntime.jsx(Select, { size: exports.TControlSize.Medium, width: '100%', menuPortalTarget: document.body, initialSelectedValue: id, onSetSelectedValue: (selectedValue) => { setSelectedValue(property.fieldName, selectedValue); }, options: options });
             };
             column.muiEditTextFieldProps = {
                 error: property.editing?.onValidation(currentItem).error,

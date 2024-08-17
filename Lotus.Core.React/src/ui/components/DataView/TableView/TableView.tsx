@@ -165,8 +165,9 @@ export const TableView = <TItem extends Record<string, any> & IEditable,>(props:
         const id = cell.getValue() as TKey;
         const options = property.options!;
 
-        return <Select size={TControlSize.Small}
+        return <Select size={TControlSize.Medium}
           width='100%'
+          menuPortalTarget={document.body}
           initialSelectedValue={id}
           onSetSelectedValue={(selectedValue) => { setSelectedValue(property.fieldName, selectedValue!) }}
           options={options} />

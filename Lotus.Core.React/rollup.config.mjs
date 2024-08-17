@@ -22,7 +22,7 @@ export default
       }
     ],
 
-    external: ['lotus-core', 'use-ripple-hook'],
+    external: ['lotus-core'],
 
     plugins: [
       peerDepsExternal(),
