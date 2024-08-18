@@ -1,1 +1,0 @@
-export { SelectFilterFunction } from './SelectFilterFunction';

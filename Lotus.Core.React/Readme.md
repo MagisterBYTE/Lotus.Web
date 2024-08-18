@@ -1,1 +1,0 @@
-Модуль Core.React для TypeScript платформы Lotus
