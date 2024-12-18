@@ -14,12 +14,6 @@ namespace Lotus.Web
     /// </summary>
     public static class XHttpContextExtension
     {
-        private static readonly JsonSerializerOptions Options = new()
-        {
-            PropertyNameCaseInsensitive = true,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-        };
-
         /// <summary>
         /// Получение токена доступа через контекст запроса.
         /// </summary>

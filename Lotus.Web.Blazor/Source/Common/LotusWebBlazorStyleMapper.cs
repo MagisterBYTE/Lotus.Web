@@ -29,7 +29,7 @@ namespace Lotus.Web
         /// <returns>Пара свойства и значения стиля CSS.</returns>
         public static KeyValuePair<string, string> GetStylePropertyAndValue(string style)
         {
-            var find_key = style.IndexOf(":");
+            var find_key = style.IndexOf(':');
             if (find_key > 0 && find_key < style.Length - 2)
             {
                 // Свойство есть

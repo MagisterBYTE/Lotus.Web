@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Components;
 
-#pragma warning disable BL0007
-
 namespace Lotus.Web
 {
     /**
@@ -91,9 +89,9 @@ namespace Lotus.Web
         public LotusBaseDomComponent()
         {
             _id = "lotus_id_" + Guid.NewGuid().ToString();
-            _classMapper = new CClassMapper();
-            _styleMapper = new CStyleMapper();
-            _attributes = new Dictionary<string, object>();
+            _classMapper = [];
+            _styleMapper = [];
+            _attributes = [];
         }
         #endregion
     }

@@ -41,10 +41,7 @@ namespace Lotus.Web
         /// <returns>Задача.</returns>
         public override Task OnExceptionAsync(ExceptionContext context)
         {
-            if (context is null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
+            ArgumentNullException.ThrowIfNull(context);
 
             OnException(context);
             return Task.CompletedTask;

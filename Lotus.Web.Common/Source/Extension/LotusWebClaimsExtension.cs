@@ -49,7 +49,7 @@ namespace Lotus.Web
                 return new HashSet<string>(functions, StringComparer.OrdinalIgnoreCase);
             }
 
-            return new HashSet<string>();
+            return [];
         }
     }
     /**@}*/
