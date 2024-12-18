@@ -67,7 +67,7 @@ namespace Lotus.Web
         /// </summary>
         /// <param name="filesRequest">Параметры получения списка.</param>
         /// <param name="token">Токен отмены.</param>
-        /// <returns>Cписок файлов в формате Base64.</returns>
+        /// <returns>Список файлов в формате Base64.</returns>
         [HttpGet("getAllBase64")]
         [ProducesResponseType(typeof(ResponsePage<FileBase64Dto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAllBase64([FromQuery] FilesRequest filesRequest, CancellationToken token)

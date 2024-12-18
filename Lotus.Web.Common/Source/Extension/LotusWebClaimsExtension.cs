@@ -37,15 +37,15 @@ namespace Lotus.Web
         /// </summary>
         /// <param name="claims">Список утверждений.</param>
         /// <param name="claimType">Тип утверждения.</param>
-        /// <param name="separatop">Разделитель.</param>
+        /// <param name="separator">Разделитель.</param>
         /// <returns>Список уникальный значений.</returns>
         public static HashSet<string> FindFirstValueAsHashSet(this IEnumerable<Claim> claims,
-            string claimType, char separatop = ',')
+            string claimType, char separator = ',')
         {
             var value = claims.FindFirstValue(claimType);
             if (string.IsNullOrEmpty(value) == false)
             {
-                var functions = value.Split(new[] { separatop }, StringSplitOptions.RemoveEmptyEntries).ToArray();
+                var functions = value.Split([separator], StringSplitOptions.RemoveEmptyEntries).ToArray();
                 return new HashSet<string>(functions, StringComparer.OrdinalIgnoreCase);
             }
 

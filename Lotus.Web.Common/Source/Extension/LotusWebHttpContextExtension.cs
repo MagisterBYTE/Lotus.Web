@@ -1,7 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-using Microsoft.Extensions.Primitives;
 using Microsoft.Net.Http.Headers;
 
 using UAParser;
@@ -67,11 +66,11 @@ namespace Lotus.Web
         /// <summary>
         /// Получение устройство входа пользователя через контекст запроса.
         /// </summary>
-        /// <param name="httpContex">Контекст запроса.</param>
+        /// <param name="httpContext">Контекст запроса.</param>
         /// <returns>Устройство входа.</returns>
-        public static Device GetDeviceFromRequest(this HttpContext httpContex)
+        public static Device GetDeviceFromRequest(this HttpContext httpContext)
         {
-            if (httpContex.Request.Headers.TryGetValue("User-Agent", out var userAgent))
+            if (httpContext.Request.Headers.TryGetValue("User-Agent", out var userAgent))
             {
                 // get a parser with the embedded regex patterns
                 var uaParser = Parser.GetDefault();
@@ -96,11 +95,11 @@ namespace Lotus.Web
         /// <summary>
         /// Получение названия браузера пользователя через контекст запроса.
         /// </summary>
-        /// <param name="httpContex">Контекст запроса.</param>
+        /// <param name="httpContext">Контекст запроса.</param>
         /// <returns>Названия браузера.</returns>
-        public static string GetBrowserFromRequest(this HttpContext httpContex)
+        public static string GetBrowserFromRequest(this HttpContext httpContext)
         {
-            if (httpContex.Request.Headers.TryGetValue("User-Agent", out var userAgent))
+            if (httpContext.Request.Headers.TryGetValue("User-Agent", out var userAgent))
             {
                 // get a parser with the embedded regex patterns
                 var uaParser = Parser.GetDefault();

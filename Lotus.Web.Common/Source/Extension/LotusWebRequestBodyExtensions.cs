@@ -11,7 +11,7 @@ namespace Lotus.Web
     public static class XRequestBodyExtensions
     {
         /// <summary>
-        /// Чтение тела запроса из запроса и возвращает соержимое в виде строки.
+        /// Чтение тела запроса из запроса и возвращает содержимое в виде строки.
         /// </summary>
         /// <param name="httpRequest">HTTP запрос.</param>
         /// <returns>Строка с содержимым тела запроса.</returns>

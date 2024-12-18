@@ -21,7 +21,7 @@ namespace Lotus.Web
         /// <summary>
         /// Неизвестный параметр устройства.
         /// </summary>
-        public const string Unknow = "Unknow";
+        public const string Unknown = "Unknown";
 
         /// <summary>
         /// Имя таблицы.
@@ -85,7 +85,7 @@ namespace Lotus.Web
         /// </summary>
         public void SetCodeId()
         {
-            CodeId = $"{Family ?? Unknow}-{Brand ?? Unknow}-{Model ?? Unknow}";
+            CodeId = $"{Family ?? Unknown}-{Brand ?? Unknown}-{Model ?? Unknown}";
         }
         #endregion
     }
